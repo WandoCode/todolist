@@ -1,7 +1,6 @@
 import {
   getFirestore,
   collection,
-  getDoc,
   getDocs,
   addDoc,
   doc,
@@ -26,7 +25,7 @@ const db = getFirestore(app)
 let mockDatas
 if (useMockDatas) mockDatas = todosMock
 
-const todoStore = (name) => {
+const todosStore = (name) => {
   let currentTodos = []
 
   const getCurrentTodos = () => {
@@ -111,4 +110,4 @@ const todoStore = (name) => {
   return { addTodo, getTodo, getTodos, delTodo, updateTodo, getCurrentTodos }
 }
 
-export default todoStore
+export default todosStore

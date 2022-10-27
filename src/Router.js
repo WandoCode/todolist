@@ -1,11 +1,11 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import Todolist from './pages/Todolist'
+import Home from './pages/Home'
 
 function Router() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={Todolist} />
+        <Route path="/" element={Home} />
       </Routes>
     </BrowserRouter>
   )
