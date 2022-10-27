@@ -47,7 +47,7 @@ describe('Given I call the getTodo store function with a given id, then', () => 
 
 describe('Given I call the addTodo store function with correct object, then', () => {
   test('it should be inserted into the local store', async () => {
-    const newTodo = { id: 100000 }
+    const newTodo = { id: '100000' }
 
     await storeInstance.addTodo(newTodo)
 
@@ -60,7 +60,7 @@ describe('Given I call the addTodo store function with correct object, then', ()
 
   if (testingFirebase)
     test('it should be added to the DB', async () => {
-      const newTodo = { id: 100000 }
+      const newTodo = { id: '100000' }
 
       await storeInstance.addTodo(newTodo)
 
@@ -73,7 +73,7 @@ describe('Given I call the addTodo store function with correct object, then', ()
 
 describe('Given I call the delTodo store function with correct id, then', () => {
   test('it should remove the linked object from the local store', async () => {
-    const testID = 1
+    const testID = '635ac8e2fd34ccb3c78ad8fb'
     await storeInstance.delTodo(testID)
 
     const todos = storeInstance.getCurrentTodos()
@@ -85,7 +85,7 @@ describe('Given I call the delTodo store function with correct id, then', () => 
 
   if (testingFirebase)
     test('it should remove the linked object from the DB', async () => {
-      const testID = 1
+      const testID = '635ac8e2fd34ccb3c78ad8fb'
       await storeInstance.delTodo(testID)
 
       const updatedTodos = await storeInstance.getTodos()
@@ -97,7 +97,7 @@ describe('Given I call the delTodo store function with correct id, then', () => 
 
 describe('Given I call the updateTodo store function with correct id and datas, then', () => {
   test('it should update the linked object in the local store', async () => {
-    const testID = 1
+    const testID = '635ac8e2fd34ccb3c78ad8fb'
     const datas = { name: 'Max' }
 
     await storeInstance.updateTodo(testID, datas)
@@ -112,7 +112,7 @@ describe('Given I call the updateTodo store function with correct id and datas, 
 
   if (testingFirebase)
     test('it should update the linked object in the DB', async () => {
-      const testID = 1
+      const testID = '635ac8e2fd34ccb3c78ad8fb'
       const datas = { test: 'test', donne: 'a' }
 
       await storeInstance.updateTodo(testID, datas)
