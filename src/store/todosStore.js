@@ -6,6 +6,7 @@ import {
   addDoc,
   doc,
   deleteDoc,
+  updateDoc,
 } from 'firebase/firestore/lite'
 
 import app from './config'
@@ -56,4 +57,13 @@ const delTodo = async (id) => {
   }
 }
 
-export { addTodo, getTodo, getTodos, delTodo }
+const updateTodo = async (id, payload) => {
+  try {
+    const docRef = doc(db, 'todos', id)
+    await updateDoc(docRef, payload)
+  } catch (err) {
+    console.error('Error updating todos: ', err)
+  }
+}
+
+export { addTodo, getTodo, getTodos, delTodo, updateTodo }
