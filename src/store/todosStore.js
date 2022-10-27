@@ -8,6 +8,7 @@ import {
   deleteDoc,
   updateDoc,
 } from 'firebase/firestore/lite'
+import uniqid from 'uniqid'
 
 import todosMock from '../mocks/todos.json'
 
@@ -25,17 +26,30 @@ const db = getFirestore(app)
 let mockDatas
 if (useMockDatas) mockDatas = todosMock
 
-const todoStore = () => {
+const todoStore = (name) => {
   let currentTodos = []
 
-  const addTodo = async (todoObject) => {
-    try {
-      if (useMockDatas) return
+  const getCurrentTodos = () => {
+    return currentTodos
+  }
 
+  const getTodos = async () => {
+    try {
+      if (useMockDatas) {
+        currentTodos = [...mockDatas.todos]
+        return mockDatas.todos
+      }
       const todosCol = collection(db, collectionName)
-      await addDoc(todosCol, todoObject)
+      const rep = await getDocs(todosCol)
+
+      const todos = rep.docs.map((doc) => {
+        return { id: doc.id, ...doc.data() }
+      })
+
+      currentTodos = todos
+      return todos
     } catch (err) {
-      console.error('Error adding todo: ', err)
+      console.error('Error retreiving todos: ', err)
     }
   }
 
@@ -43,29 +57,29 @@ const todoStore = () => {
     return currentTodos.find((el) => el.id === id)
   }
 
-  const getTodos = async () => {
+  const addTodo = async (todoObject) => {
     try {
-      let todos
-      if (useMockDatas) todos = mockDatas.todos
-      else {
-        const todosCol = collection(db, collectionName)
-        const rep = await getDocs(todosCol)
-
-        todos = rep.docs.map((doc) => {
-          return { id: doc.id, ...doc.data() }
-        })
+      if (useMockDatas) {
+        const newTodo = { id: uniqid(), ...todoObject }
+        currentTodos.push(newTodo)
+        return
       }
-      currentTodos = todos
 
-      return todos
+      const todosCol = collection(db, collectionName)
+      const rep = await addDoc(todosCol, todoObject)
+
+      currentTodos.push({ id: rep.id, ...todoObject })
     } catch (err) {
-      console.error('Error retreiving todos: ', err)
+      console.error('Error adding todo: ', err)
     }
   }
 
   const delTodo = async (id) => {
     try {
-      if (useMockDatas) return
+      if (useMockDatas) {
+        currentTodos = currentTodos.filter((el) => el.id !== id)
+        return
+      }
 
       const docRef = doc(db, collectionName, id)
 
@@ -77,7 +91,15 @@ const todoStore = () => {
 
   const updateTodo = async (id, payload) => {
     try {
-      if (useMockDatas) return
+      if (useMockDatas) {
+        currentTodos = currentTodos.map((el) => {
+          if (el.id === id) {
+            return { ...el, ...payload }
+          } else return el
+        })
+
+        return
+      }
 
       const docRef = doc(db, collectionName, id)
       await updateDoc(docRef, payload)
@@ -86,7 +108,7 @@ const todoStore = () => {
     }
   }
 
-  return { addTodo, getTodo, getTodos, delTodo, updateTodo }
+  return { addTodo, getTodo, getTodos, delTodo, updateTodo, getCurrentTodos }
 }
 
 export default todoStore
