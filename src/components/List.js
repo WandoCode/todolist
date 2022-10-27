@@ -1,5 +1,6 @@
 import { useSelector } from 'react-redux'
 import { useEffect } from 'react'
+import TodoItem from './TodoItem'
 
 function List() {
   const todos = useSelector((state) => state.todos.todos)
@@ -12,8 +13,6 @@ function List() {
       if (a.archived < b.archived) return -1
       if (a.priority < b.priority) return 1
       if (a.priority > b.priority) return -1
-      if (a.order > b.order) return 1
-      if (a.order < b.order) return -1
       return 0
     })
 
@@ -22,12 +21,11 @@ function List() {
 
   const todosListDOM = (todosArray) => {
     const sortedTodos = orderTodos(todosArray)
-    console.log(sortedTodos)
+
     const todosDOM = sortedTodos.map((todo) => {
-      return <li key={todo.id}>{todo.message}</li>
+      return <TodoItem todo={todo} />
     })
 
-    const liDOM = []
     return <ul> {todosDOM}</ul>
   }
 
