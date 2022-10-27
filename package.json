@@ -17,7 +17,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test:mock": "set REACT_APP_LOCAL=true& react-scripts test",
+    "test:firebase": "set REACT_APP_LOCAL=false& react-scripts test",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
