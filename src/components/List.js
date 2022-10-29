@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import TodoItem from './TodoItem'
-import { useDispatch, useSelector, shallowEqual } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { switchItems } from '../redux/todos/todos.action'
 
 function List() {
@@ -9,15 +9,15 @@ function List() {
   const [droppedItem, setDroppedItem] = useState(0)
   const [itemListDOM, setItemListDOM] = useState([])
   const [doSwitchItems, setDoSwitchItems] = useState(false)
-  const todos = useSelector((state) => state.todos.todos, shallowEqual)
+  const { todos, archive, pin } = useSelector((state) => state.todos)
 
-  const handleDragStart = (elIndex) => {
-    setDraggedItem(elIndex)
+  const handleDragStart = (elIndex, status) => {
+    setDraggedItem({ index: elIndex, list: status })
   }
 
-  const handleDrop = (elIndex) => {
+  const handleDrop = (elIndex, status) => {
     setDoSwitchItems(true)
-    setDroppedItem(elIndex)
+    setDroppedItem({ index: elIndex, list: status })
   }
 
   const handleDragEnter = () => {
@@ -32,12 +32,12 @@ function List() {
     return
   }
 
-  const todosListDOM = (todosArray) => {
+  const makeItemListDOM = (todosArray) => {
     const todosDOM = todosArray.map((todo, index) => {
       return (
         <TodoItem
           todo={todo}
-          key={todo.order}
+          key={todo.id}
           tempOrder={index}
           onHandleDragStart={handleDragStart}
           onHandleDrop={handleDrop}
@@ -52,18 +52,22 @@ function List() {
   }
 
   useEffect(() => {
-    setItemListDOM(todosListDOM(todos))
-  }, [todos])
+    const allItemsDOM = [
+      ...makeItemListDOM(pin),
+      ...makeItemListDOM(todos),
+      ...makeItemListDOM(archive),
+    ]
+    setItemListDOM(allItemsDOM)
+  }, [todos, archive, pin])
 
   useEffect(() => {
     if (!doSwitchItems) return
     if (todos.length === 0) return
 
-    const itemA = todos[draggedItem]
-    const itemB = todos[droppedItem]
-
-    if (itemA.status === itemB.status) {
-      dispatch(switchItems(draggedItem, droppedItem))
+    if (draggedItem.status === droppedItem.status) {
+      dispatch(
+        switchItems(draggedItem.index, droppedItem.index, draggedItem.list)
+      )
     }
 
     setDoSwitchItems(false)

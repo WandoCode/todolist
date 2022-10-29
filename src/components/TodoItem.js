@@ -25,11 +25,11 @@ function TodoItem({
     return itemClass
   }
   const handleDragStart = (e) => {
-    onHandleDragStart(tempOrder)
+    onHandleDragStart(tempOrder, todo.status)
   }
 
   const handleDrop = (e) => {
-    onHandleDrop(tempOrder)
+    onHandleDrop(tempOrder, todo.status)
   }
 
   const handleDragEnter = (e) => {
