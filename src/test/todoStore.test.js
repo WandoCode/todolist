@@ -123,3 +123,7 @@ describe('Given I call the updateTodo store function with correct id and datas, 
       // expect(todo).toEqual()
     })
 })
+
+// TODO: au chargement des mock: les mettre sur le localStorage si pas encore presentes
+// TODO: Ensuite, dans tout les cas, charger le localstorage dans redux.
+// TODO: Faire les changements sur le localstorage comme je les ferai sur firestore
