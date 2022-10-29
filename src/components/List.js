@@ -8,6 +8,7 @@ function List() {
   const [draggedItem, setDraggedItem] = useState(0)
   const [droppedItem, setDroppedItem] = useState(0)
   const [itemListDOM, setItemListDOM] = useState([])
+  const [doSwitchItems, setDoSwitchItems] = useState(false)
   const todos = useSelector((state) => state.todos.todos, shallowEqual)
 
   const orderTodos = (todosArray) => {
@@ -34,6 +35,7 @@ function List() {
   const handleDrop = (e) => {
     const element = e.target
     const elementOrder = parseInt(element.getAttribute('data-order'))
+    setDoSwitchItems(true)
     setDroppedItem(elementOrder)
   }
 
@@ -68,18 +70,22 @@ function List() {
   }
 
   useEffect(() => {
-    const newList = todosListDOM(todos)
-    setItemListDOM([...newList])
+    setItemListDOM(todosListDOM(todos))
   }, [todos])
 
   useEffect(() => {
+    if (!doSwitchItems) return
     if (todos.length === 0) return
+
     const itemA = todos[draggedItem]
     const itemB = todos[droppedItem]
+
     if (itemA.status === itemB.status) {
       dispatch(switchItems(draggedItem, droppedItem))
     }
-  }, [droppedItem])
+
+    setDoSwitchItems(false)
+  }, [doSwitchItems])
 
   return (
     <div className="list">
