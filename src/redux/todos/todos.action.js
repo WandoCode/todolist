@@ -8,8 +8,11 @@ const switchItems = createAction('todos/switchItems', (indexA, indexB) => ({
   payload: { indexA, indexB },
 }))
 
-const archiveItem = createAction('todos/archiveItem', (index) => ({
+const toggleArchiveItem = createAction('todos/toggleArchiveItem', (index) => ({
+  payload: index,
+}))
+const togglePinItem = createAction('todos/togglePinItem', (index) => ({
   payload: index,
 }))
 
-export { getTodos, switchItems, archiveItem }
+export { getTodos, switchItems, toggleArchiveItem, togglePinItem }

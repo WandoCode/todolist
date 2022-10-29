@@ -1,5 +1,9 @@
 import { useDispatch } from 'react-redux'
-import { archiveItem, switchItems } from '../redux/todos/todos.action'
+import {
+  toggleArchiveItem,
+  togglePinItem,
+  switchItems,
+} from '../redux/todos/todos.action'
 import { useState } from 'react'
 
 function TodoItem({
@@ -41,10 +45,13 @@ function TodoItem({
     onHandleDragLeave(e)
   }
 
-  const handleArchive = (e) => {
-    dispatch(archiveItem(tempOrder))
+  const handleToggleArchive = (e) => {
+    dispatch(toggleArchiveItem(tempOrder))
   }
-  const handlePin = (e) => {
+
+  const handleTogglePin = (e) => {
+    dispatch(togglePinItem(tempOrder))
+
     return
   }
   return (
@@ -59,8 +66,12 @@ function TodoItem({
     >
       {todo.message}
       <div className="btns">
-        <button onClick={handleArchive}>x</button>
-        <button onClick={handlePin}>p</button>
+        <button onClick={handleToggleArchive}>
+          {todo.status !== -1 ? 'x' : 'rx'}
+        </button>
+        <button onClick={handleTogglePin}>
+          {todo.status !== 1 ? 'p' : 'rp'}
+        </button>
       </div>
     </li>
   )
