@@ -1,5 +1,5 @@
 import { createReducer } from '@reduxjs/toolkit'
-import { getTodos, switchItems } from './todos.action'
+import { archiveItem, getTodos, switchItems } from './todos.action'
 
 const initialState = { todos: [] }
 
@@ -15,6 +15,10 @@ const todosReducer = createReducer(initialState, (builder) => {
       const itemA = state.todos[indexA]
       state.todos.splice(indexA, 1)
       state.todos.splice(indexB, 0, itemA)
+    })
+    .addCase(archiveItem, (state, action) => {
+      const index = action.payload
+      state.todos[index].status = -1
     })
 })
 

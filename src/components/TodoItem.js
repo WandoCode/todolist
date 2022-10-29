@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux'
-import { switchItems } from '../redux/todos/todos.action'
+import { archiveItem, switchItems } from '../redux/todos/todos.action'
 import { useState } from 'react'
 
 function TodoItem({
@@ -11,6 +11,8 @@ function TodoItem({
   onHandleDragOver,
   onHandleDragLeave,
 }) {
+  const dispatch = useDispatch()
+
   const buildItemClass = () => {
     let itemClass = 'todo-item '
     if (todo.status === -1) itemClass += 'archived'
@@ -19,11 +21,11 @@ function TodoItem({
     return itemClass
   }
   const handleDragStart = (e) => {
-    onHandleDragStart(e)
+    onHandleDragStart(tempOrder)
   }
 
   const handleDrop = (e) => {
-    onHandleDrop(e)
+    onHandleDrop(tempOrder)
   }
 
   const handleDragEnter = (e) => {
@@ -39,6 +41,12 @@ function TodoItem({
     onHandleDragLeave(e)
   }
 
+  const handleArchive = (e) => {
+    dispatch(archiveItem(tempOrder))
+  }
+  const handlePin = (e) => {
+    return
+  }
   return (
     <li
       draggable="true"
@@ -48,9 +56,12 @@ function TodoItem({
       onDragLeave={handleDragLeave}
       onDrop={handleDrop}
       className={buildItemClass()}
-      data-order={tempOrder}
     >
       {todo.message}
+      <div className="btns">
+        <button onClick={handleArchive}>x</button>
+        <button onClick={handlePin}>p</button>
+      </div>
     </li>
   )
 }

@@ -26,17 +26,13 @@ function List() {
     return arrayCopy
   }
 
-  const handleDragStart = (e) => {
-    const element = e.target
-    const elementOrder = parseInt(element.getAttribute('data-order'))
-    setDraggedItem(elementOrder)
+  const handleDragStart = (elIndex) => {
+    setDraggedItem(elIndex)
   }
 
-  const handleDrop = (e) => {
-    const element = e.target
-    const elementOrder = parseInt(element.getAttribute('data-order'))
+  const handleDrop = (elIndex) => {
     setDoSwitchItems(true)
-    setDroppedItem(elementOrder)
+    setDroppedItem(elIndex)
   }
 
   const handleDragEnter = () => {
@@ -50,6 +46,7 @@ function List() {
   const handleDragLeave = () => {
     return
   }
+
   const todosListDOM = (todosArray) => {
     const todosDOM = todosArray.map((todo, index) => {
       return (

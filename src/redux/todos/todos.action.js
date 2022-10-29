@@ -8,4 +8,8 @@ const switchItems = createAction('todos/switchItems', (indexA, indexB) => ({
   payload: { indexA, indexB },
 }))
 
-export { getTodos, switchItems }
+const archiveItem = createAction('todos/archiveItem', (index) => ({
+  payload: index,
+}))
+
+export { getTodos, switchItems, archiveItem }
