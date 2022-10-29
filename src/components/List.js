@@ -1,35 +1,91 @@
-import { useSelector } from 'react-redux'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import TodoItem from './TodoItem'
+import { useDispatch, useSelector, shallowEqual } from 'react-redux'
+import { switchItems } from '../redux/todos/todos.action'
 
 function List() {
-  const todos = useSelector((state) => state.todos.todos)
+  const dispatch = useDispatch()
+  const [draggedItem, setDraggedItem] = useState(0)
+  const [droppedItem, setDroppedItem] = useState(0)
+  const [itemListDOM, setItemListDOM] = useState([])
+  const todos = useSelector((state) => state.todos.todos, shallowEqual)
 
   const orderTodos = (todosArray) => {
     const arrayCopy = [...todosArray]
 
     arrayCopy.sort((a, b) => {
-      if (a.archived > b.archived) return 1
-      if (a.archived < b.archived) return -1
-      if (a.priority < b.priority) return 1
-      if (a.priority > b.priority) return -1
+      if (a.status < b.status) return 1
+      if (a.status > b.status) return -1
+      if (a.order > b.order) return 1
+      if (a.order < b.order) return -1
+
       return 0
     })
 
     return arrayCopy
   }
 
-  const todosListDOM = (todosArray) => {
-    const sortedTodos = orderTodos(todosArray)
-
-    const todosDOM = sortedTodos.map((todo) => {
-      return <TodoItem todo={todo} />
-    })
-
-    return <ul> {todosDOM}</ul>
+  const handleDragStart = (e) => {
+    const element = e.target
+    const elementOrder = parseInt(element.getAttribute('data-order'))
+    setDraggedItem(elementOrder)
   }
 
-  return <div className="list">{todosListDOM(todos)}</div>
+  const handleDrop = (e) => {
+    const element = e.target
+    const elementOrder = parseInt(element.getAttribute('data-order'))
+    setDroppedItem(elementOrder)
+  }
+
+  const handleDragEnter = () => {
+    return
+  }
+
+  const handleDragOver = (e) => {
+    return
+  }
+
+  const handleDragLeave = () => {
+    return
+  }
+  const todosListDOM = (todosArray) => {
+    const todosDOM = todosArray.map((todo, index) => {
+      return (
+        <TodoItem
+          todo={todo}
+          key={todo.order}
+          tempOrder={index}
+          onHandleDragStart={handleDragStart}
+          onHandleDrop={handleDrop}
+          onHandleDragEnter={handleDragEnter}
+          onHandleDragOver={handleDragOver}
+          onHandleDragLeave={handleDragLeave}
+        />
+      )
+    })
+
+    return todosDOM
+  }
+
+  useEffect(() => {
+    const newList = todosListDOM(todos)
+    setItemListDOM([...newList])
+  }, [todos])
+
+  useEffect(() => {
+    if (todos.length === 0) return
+    const itemA = todos[draggedItem]
+    const itemB = todos[droppedItem]
+    if (itemA.status === itemB.status) {
+      dispatch(switchItems(draggedItem, droppedItem))
+    }
+  }, [droppedItem])
+
+  return (
+    <div className="list">
+      <ul>{itemListDOM}</ul>
+    </div>
+  )
 }
 
 export default List
