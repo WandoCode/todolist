@@ -6,15 +6,7 @@ import {
 } from '../redux/todos/todos.action'
 import { useState } from 'react'
 
-function TodoItem({
-  todo,
-  tempOrder,
-  onHandleDragStart,
-  onHandleDrop,
-  onHandleDragEnter,
-  onHandleDragOver,
-  onHandleDragLeave,
-}) {
+function TodoItem({ todo, tempOrder, onHandleDragStart, onHandleDrop }) {
   const dispatch = useDispatch()
 
   const buildItemClass = () => {
@@ -32,17 +24,8 @@ function TodoItem({
     onHandleDrop(tempOrder, todo.status)
   }
 
-  const handleDragEnter = (e) => {
-    onHandleDragEnter(e)
-  }
-
   const handleDragOver = (e) => {
     e.preventDefault() // Important for onDrop to work
-    onHandleDragOver(e)
-  }
-
-  const handleDragLeave = (e) => {
-    onHandleDragLeave(e)
   }
 
   const handleToggleArchive = (e) => {
@@ -58,9 +41,7 @@ function TodoItem({
     <li
       draggable="true"
       onDragStart={handleDragStart}
-      onDragEnter={handleDragEnter}
       onDragOver={handleDragOver}
-      onDragLeave={handleDragLeave}
       onDrop={handleDrop}
       className={buildItemClass()}
     >

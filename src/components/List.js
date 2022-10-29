@@ -5,8 +5,8 @@ import { switchItems } from '../redux/todos/todos.action'
 
 function List() {
   const dispatch = useDispatch()
-  const [draggedItem, setDraggedItem] = useState(0)
-  const [droppedItem, setDroppedItem] = useState(0)
+  const [draggedItem, setDraggedItem] = useState({ index: null, list: null })
+  const [droppedItem, setDroppedItem] = useState({ index: null, list: null })
   const [itemListDOM, setItemListDOM] = useState([])
   const [doSwitchItems, setDoSwitchItems] = useState(false)
   const { todos, archive, pin } = useSelector((state) => state.todos)
@@ -20,18 +20,6 @@ function List() {
     setDroppedItem({ index: elIndex, list: status })
   }
 
-  const handleDragEnter = () => {
-    return
-  }
-
-  const handleDragOver = (e) => {
-    return
-  }
-
-  const handleDragLeave = () => {
-    return
-  }
-
   const makeItemListDOM = (todosArray) => {
     const todosDOM = todosArray.map((todo, index) => {
       return (
@@ -41,9 +29,6 @@ function List() {
           tempOrder={index}
           onHandleDragStart={handleDragStart}
           onHandleDrop={handleDrop}
-          onHandleDragEnter={handleDragEnter}
-          onHandleDragOver={handleDragOver}
-          onHandleDragLeave={handleDragLeave}
         />
       )
     })
@@ -64,7 +49,8 @@ function List() {
     if (!doSwitchItems) return
     if (todos.length === 0) return
 
-    if (draggedItem.status === droppedItem.status) {
+    if (draggedItem.list === droppedItem.list) {
+      console.log(1)
       dispatch(
         switchItems(draggedItem.index, droppedItem.index, draggedItem.list)
       )
