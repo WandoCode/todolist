@@ -1,47 +1,10 @@
 {
   "todos": [
     {
-      "id": "635ac8e2fd34ccb3c78ad8fb",
-      "author": "Wright",
-      "creationDate": "Tue Nov 30 1999 16:11:14 GMT+0100 (heure normale d’Europe centrale)",
-      "archived": true,
-      "priority": false,
-      "message": "amet cillum non amet sunt ea cupidatat do irure irure non sit",
-      "order": 0
-    },
-    {
-      "id": "635ac8e2a1dc4b0053b26d88",
-      "author": "Marissa",
-      "creationDate": "Thu Oct 06 1960 03:58:20 GMT+0100 (heure d’été d’Europe centrale)",
-      "archived": false,
-      "priority": false,
-      "message": "duis tempor est aliquip cupidatat est ullamco elit exercitation cillum cillum Lorem",
-      "order": 1
-    },
-    {
-      "id": "635ac8e2eca39d0442a58b4d",
-      "author": "Briana",
-      "creationDate": "Sun Apr 03 1955 08:55:04 GMT+0100 (heure d’été d’Europe centrale)",
-      "archived": true,
-      "priority": false,
-      "message": "et cillum minim ullamco consequat Lorem ex eu laboris consequat nulla irure",
-      "order": 2
-    },
-    {
-      "id": "635ac8e2237c546b18d2a8f7",
-      "author": "Elena",
-      "creationDate": "Mon Mar 18 1963 12:22:29 GMT+0100 (heure normale d’Europe centrale)",
-      "archived": true,
-      "priority": true,
-      "message": "nisi est qui culpa consectetur adipisicing nisi aliquip adipisicing fugiat nulla culpa",
-      "order": 3
-    },
-    {
       "id": "635ac8e21d5360ff91a8eec8",
       "author": "Charles",
       "creationDate": "Wed Apr 05 1967 04:47:22 GMT+0100 (heure d’été d’Europe centrale)",
-      "archived": false,
-      "priority": true,
+      "status": 1,
       "message": "amet dolor adipisicing adipisicing tempor consectetur duis aliquip officia consequat esse occaecat",
       "order": 4
     },
@@ -49,8 +12,7 @@
       "id": "635ac8e2e184e01747d21a4d",
       "author": "Hernandez",
       "creationDate": "Mon May 11 1959 18:33:54 GMT+0100 (heure d’été d’Europe centrale)",
-      "archived": false,
-      "priority": true,
+      "status": 1,
       "message": "velit Lorem sint occaecat aliqua ea Lorem est dolor velit id qui",
       "order": 5
     },
@@ -58,35 +20,15 @@
       "id": "635ac8e279f36bd0c01d0ff7",
       "author": "Robertson",
       "creationDate": "Sun Jun 15 1958 02:26:02 GMT+0100 (heure d’été d’Europe centrale)",
-      "archived": false,
-      "priority": true,
+      "status": 1,
       "message": "ea elit proident minim proident irure officia aliqua nostrud id proident sint",
       "order": 6
-    },
-    {
-      "id": "635ac8e2aeeb9ab3727b795d",
-      "author": "Sybil",
-      "creationDate": "Mon Feb 14 1972 00:32:23 GMT+0100 (heure normale d’Europe centrale)",
-      "archived": false,
-      "priority": false,
-      "message": "et tempor dolor in officia excepteur irure ea nisi non magna do",
-      "order": 7
-    },
-    {
-      "id": "635ac8e2c8359bb3bd4bf49b",
-      "author": "Lewis",
-      "creationDate": "Thu Apr 30 1998 09:32:13 GMT+0200 (heure d’été d’Europe centrale)",
-      "archived": true,
-      "priority": false,
-      "message": "enim enim nisi occaecat velit veniam anim ullamco laborum nostrud ad do",
-      "order": 8
     },
     {
       "id": "635ac8e273392cd7d469367e",
       "author": "Tracie",
       "creationDate": "Sun Oct 30 1966 08:57:37 GMT+0100 (heure normale d’Europe centrale)",
-      "archived": false,
-      "priority": true,
+      "status": 1,
       "message": "ullamco minim sunt nostrud ipsum Lorem enim dolore magna in mollit ex",
       "order": 9
     },
@@ -94,35 +36,39 @@
       "id": "635ac8e2de21cd30fb8a5556",
       "author": "Mckay",
       "creationDate": "Fri Aug 28 1987 09:11:51 GMT+0200 (heure d’été d’Europe centrale)",
-      "archived": false,
-      "priority": true,
+      "status": 1,
       "message": "sunt sunt consequat consectetur sint pariatur magna sit officia nisi ullamco amet",
       "order": 10
-    },
-    {
-      "id": "635ac8e210a160a76b8c6ade",
-      "author": "Annabelle",
-      "creationDate": "Sun Aug 25 1957 10:47:15 GMT+0100 (heure d’été d’Europe centrale)",
-      "archived": true,
-      "priority": false,
-      "message": "nulla exercitation aute sunt ipsum do ut exercitation ullamco in et incididunt",
-      "order": 11
     },
     {
       "id": "635ac8e2f90b05f7a69cdc96",
       "author": "Bridgett",
       "creationDate": "Tue Aug 26 1997 22:47:29 GMT+0200 (heure d’été d’Europe centrale)",
-      "archived": false,
-      "priority": true,
+      "status": 1,
       "message": "aute deserunt ex minim id nisi amet ad dolor est nulla nostrud",
       "order": 12
+    },
+    {
+      "id": "635ac8e2a1dc4b0053b26d88",
+      "author": "Marissa",
+      "creationDate": "Thu Oct 06 1960 03:58:20 GMT+0100 (heure d’été d’Europe centrale)",
+      "status": 0,
+      "message": "duis tempor est aliquip cupidatat est ullamco elit exercitation cillum cillum Lorem",
+      "order": 1
+    },
+    {
+      "id": "635ac8e2aeeb9ab3727b795d",
+      "author": "Sybil",
+      "creationDate": "Mon Feb 14 1972 00:32:23 GMT+0100 (heure normale d’Europe centrale)",
+      "status": 0,
+      "message": "et tempor dolor in officia excepteur irure ea nisi non magna do",
+      "order": 7
     },
     {
       "id": "635ac8e21c795e4cf66377d0",
       "author": "Holland",
       "creationDate": "Tue May 19 1998 10:40:41 GMT+0200 (heure d’été d’Europe centrale)",
-      "archived": false,
-      "priority": false,
+      "status": 0,
       "message": "sint magna reprehenderit irure pariatur Lorem occaecat excepteur elit consectetur cupidatat irure",
       "order": 13
     },
@@ -130,10 +76,49 @@
       "id": "635ac8e2b0ea07f325abadad",
       "author": "Kristie",
       "creationDate": "Tue Feb 17 1981 21:49:12 GMT+0100 (heure normale d’Europe centrale)",
-      "archived": false,
-      "priority": false,
+      "status": 0,
       "message": "dolore laborum magna nisi ad id occaecat commodo aliquip amet excepteur sunt",
       "order": 14
+    },
+    {
+      "id": "635ac8e2237c546b18d2a8f7",
+      "author": "Elena",
+      "creationDate": "Mon Mar 18 1963 12:22:29 GMT+0100 (heure normale d’Europe centrale)",
+      "status": -1,
+      "message": "nisi est qui culpa consectetur adipisicing nisi aliquip adipisicing fugiat nulla culpa",
+      "order": 3
+    },
+    {
+      "id": "635ac8e2fd34ccb3c78ad8fb",
+      "author": "Wright",
+      "creationDate": "Tue Nov 30 1999 16:11:14 GMT+0100 (heure normale d’Europe centrale)",
+      "status": -1,
+      "message": "amet cillum non amet sunt ea cupidatat do irure irure non sit",
+      "order": 0
+    },
+    {
+      "id": "635ac8e2eca39d0442a58b4d",
+      "author": "Briana",
+      "creationDate": "Sun Apr 03 1955 08:55:04 GMT+0100 (heure d’été d’Europe centrale)",
+      "status": -1,
+      "message": "et cillum minim ullamco consequat Lorem ex eu laboris consequat nulla irure",
+      "order": 2
+    },
+    {
+      "id": "635ac8e2c8359bb3bd4bf49b",
+      "author": "Lewis",
+      "creationDate": "Thu Apr 30 1998 09:32:13 GMT+0200 (heure d’été d’Europe centrale)",
+      "status": -1,
+      "message": "enim enim nisi occaecat velit veniam anim ullamco laborum nostrud ad do",
+      "order": 8
+    },
+    {
+      "id": "635ac8e210a160a76b8c6ade",
+      "author": "Annabelle",
+      "creationDate": "Sun Aug 25 1957 10:47:15 GMT+0100 (heure d’été d’Europe centrale)",
+      "status": -1,
+      "message": "nulla exercitation aute sunt ipsum do ut exercitation ullamco in et incididunt",
+      "order": 11
     }
   ]
 }
