@@ -2,8 +2,6 @@ const orderTodos = (todosArray) => {
   const arrayCopy = [...todosArray]
 
   arrayCopy.sort((a, b) => {
-    if (a.status < b.status) return 1
-    if (a.status > b.status) return -1
     if (a.order > b.order) return 1
     if (a.order < b.order) return -1
 
@@ -11,6 +9,14 @@ const orderTodos = (todosArray) => {
   })
 
   return arrayCopy
+}
+
+const normalizeOrder = (todosArray) => {
+  const arrayCopy = [...todosArray]
+
+  return arrayCopy.map((el, index) => {
+    return { ...el, order: index }
+  })
 }
 
 const getTodosListName = (status) => {
@@ -21,4 +27,4 @@ const getTodosListName = (status) => {
   return list
 }
 
-export { orderTodos, getTodosListName }
+export { orderTodos, getTodosListName, normalizeOrder }

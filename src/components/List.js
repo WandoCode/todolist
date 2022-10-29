@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import TodoItem from './TodoItem'
 import { useDispatch, useSelector } from 'react-redux'
-import { switchItems } from '../redux/todos/todos.action'
+import { normalizeList, switchItems } from '../redux/todos/todos.action'
 
 function List() {
   const dispatch = useDispatch()
@@ -9,6 +9,7 @@ function List() {
   const [droppedItem, setDroppedItem] = useState({ index: null, list: null })
   const [itemListDOM, setItemListDOM] = useState([])
   const [doSwitchItems, setDoSwitchItems] = useState(false)
+
   const { todos, archive, pin } = useSelector((state) => state.todos)
 
   const handleDragStart = (elIndex, status) => {
@@ -43,6 +44,7 @@ function List() {
       ...makeItemListDOM(archive),
     ]
     setItemListDOM(allItemsDOM)
+    console.log(todos.map((el) => el.order))
   }, [todos, archive, pin])
 
   useEffect(() => {
@@ -54,6 +56,7 @@ function List() {
       dispatch(
         switchItems(draggedItem.index, droppedItem.index, draggedItem.list)
       )
+      dispatch(normalizeList(draggedItem.list))
     }
 
     setDoSwitchItems(false)

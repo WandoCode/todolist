@@ -4,8 +4,9 @@ import {
   getTodos,
   switchItems,
   togglePinItem,
+  normalizeList,
 } from './todos.action'
-import { orderTodos, getTodosListName } from '../../utils/helpers'
+import { getTodosListName, normalizeOrder } from '../../utils/helpers'
 
 const initialState = { todos: [], archive: [], pin: [] }
 
@@ -49,6 +50,11 @@ const todosReducer = createReducer(initialState, (builder) => {
 
       state[newList].push({ ...state[oldList][index] })
       state[oldList].splice(index, 1)
+    })
+    .addCase(normalizeList, (state, action) => {
+      const list = getTodosListName(action.payload.list)
+
+      state[list] = normalizeOrder(state[list])
     })
 })
 

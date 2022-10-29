@@ -1,4 +1,5 @@
 import todosStore from '../../store/todosStore'
+import { orderTodos } from '../../utils/helpers'
 import { getTodos } from './todos.action'
 
 const getTodosMiddleware = () => {
@@ -10,7 +11,11 @@ const getTodosMiddleware = () => {
     const archive = todosRaw.filter((el) => el.status === -1)
     const pin = todosRaw.filter((el) => el.status === 1)
 
-    dispatch(getTodos(todos, archive, pin))
+    const sortedTodos = orderTodos(todos)
+    const sortedArchive = orderTodos(archive)
+    const sortedPin = orderTodos(pin)
+
+    dispatch(getTodos(sortedTodos, sortedArchive, sortedPin))
   }
 }
 

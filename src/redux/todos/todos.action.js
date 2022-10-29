@@ -22,4 +22,14 @@ const togglePinItem = createAction('todos/togglePinItem', (index, list) => ({
   payload: { index, list },
 }))
 
-export { getTodos, switchItems, toggleArchiveItem, togglePinItem }
+const normalizeList = createAction('todos/normalizeList', (list) => ({
+  payload: { list },
+}))
+
+export {
+  getTodos,
+  switchItems,
+  toggleArchiveItem,
+  togglePinItem,
+  normalizeList,
+}
