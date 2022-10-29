@@ -12,13 +12,9 @@ const todosReducer = createReducer(initialState, (builder) => {
       const indexA = action.payload.indexA
       const indexB = action.payload.indexB
 
-      const tempTodos = [...state.todos]
-
-      const itemA = tempTodos[indexA]
-      tempTodos.splice(indexA, 1)
-      tempTodos.splice(indexB, 0, itemA)
-
-      return { todos: tempTodos }
+      const itemA = state.todos[indexA]
+      state.todos.splice(indexA, 1)
+      state.todos.splice(indexB, 0, itemA)
     })
 })
 
