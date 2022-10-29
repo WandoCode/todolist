@@ -5,7 +5,7 @@ import {
   switchItems,
   togglePinItem,
 } from './todos.action'
-import { orderTodos } from '../../utils/helpers'
+import { orderTodos, getTodosListName } from '../../utils/helpers'
 
 const initialState = { todos: [], archive: [], pin: [] }
 
@@ -19,10 +19,8 @@ const todosReducer = createReducer(initialState, (builder) => {
     .addCase(switchItems, (state, action) => {
       const indexA = action.payload.indexA
       const indexB = action.payload.indexB
-      const listSelector = action.payload.list
 
-      const listChoice = { 1: 'pin', 0: 'todos', '-1': 'archive' }
-      const list = listChoice[listSelector]
+      const list = getTodosListName(action.payload.list)
 
       const itemA = state[list][indexA]
 
@@ -30,14 +28,27 @@ const todosReducer = createReducer(initialState, (builder) => {
       state[list].splice(indexB, 0, itemA)
     })
     .addCase(toggleArchiveItem, (state, action) => {
-      const index = action.payload
-      state.todos[index].status = state.todos[index].status === -1 ? 0 : -1
-      state.todos = orderTodos([...state.todos])
+      const index = action.payload.index
+      const oldList = getTodosListName(action.payload.list)
+
+      state[oldList][index].status =
+        state[oldList][index].status === -1 ? 0 : -1
+
+      const newList = getTodosListName(state[oldList][index].status)
+
+      state[newList].push({ ...state[oldList][index] })
+      state[oldList].splice(index, 1)
     })
     .addCase(togglePinItem, (state, action) => {
-      const index = action.payload
-      state.todos[index].status = state.todos[index].status === 1 ? 0 : 1
-      state.todos = orderTodos([...state.todos])
+      const index = action.payload.index
+      const oldList = getTodosListName(action.payload.list)
+
+      state[oldList][index].status = state[oldList][index].status === 1 ? 0 : 1
+
+      const newList = getTodosListName(state[oldList][index].status)
+
+      state[newList].push({ ...state[oldList][index] })
+      state[oldList].splice(index, 1)
     })
 })
 

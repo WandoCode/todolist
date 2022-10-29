@@ -46,11 +46,11 @@ function TodoItem({
   }
 
   const handleToggleArchive = (e) => {
-    dispatch(toggleArchiveItem(tempOrder))
+    dispatch(toggleArchiveItem(tempOrder, todo.status))
   }
 
   const handleTogglePin = (e) => {
-    dispatch(togglePinItem(tempOrder))
+    dispatch(togglePinItem(tempOrder, todo.status))
 
     return
   }

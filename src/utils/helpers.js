@@ -13,4 +13,12 @@ const orderTodos = (todosArray) => {
   return arrayCopy
 }
 
-export { orderTodos }
+const getTodosListName = (status) => {
+  const listSelector = status
+  const listChoice = { 1: 'pin', 0: 'todos', '-1': 'archive' }
+  const list = listChoice[listSelector]
+
+  return list
+}
+
+export { orderTodos, getTodosListName }
