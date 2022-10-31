@@ -57,10 +57,10 @@ function List() {
         switchItems(draggedItem.index, droppedItem.index, draggedItem.list)
       )
       dispatch(normalizeList(draggedItem.list))
+      dispatch(synchronize([draggedItem.list]))
     }
 
     setDoSwitchItems(false)
-    dispatch(synchronize([draggedItem.list]))
   }, [doSwitchItems])
 
   return (
