@@ -31,12 +31,12 @@ function TodoItem({ todo, tempOrder, onHandleDragStart, onHandleDrop }) {
 
   const handleToggleArchive = () => {
     dispatch(toggleArchiveItem(tempOrder, todo.status))
-    dispatch(synchronize([todo.status]))
+    dispatch(synchronize())
   }
 
   const handleTogglePin = () => {
     dispatch(togglePinItem(tempOrder, todo.status))
-    dispatch(synchronize([todo.status]))
+    dispatch(synchronize())
   }
 
   const handleDelete = () => {

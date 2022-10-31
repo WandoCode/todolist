@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useRef } from 'react'
 import { useDispatch } from 'react-redux'
 import { synchronize } from '../redux/todos/todos.middleware'
 import { validateForm } from '../utils/formValidation'
@@ -7,18 +7,17 @@ import { addTodo, normalizeList } from '../redux/todos/todos.action'
 
 function AddTodoForm() {
   const dispatch = useDispatch()
-  const [inputValue, setInputValue] = useState('')
+  const inputRef = useRef()
   const handleSubmit = (e) => {
     e.preventDefault()
 
-    const formDatas = new FormData()
-    formDatas.append('message', inputValue)
+    const formDatas = { message: inputRef.current.value }
 
     const formIsValid = validateForm(formDatas)
 
     if (formIsValid) {
       const newTodo = {
-        message: formDatas.get('message'),
+        message: formDatas.message,
         status: 0,
         creationDate: new Date().toString(),
         id: uniqid(),
@@ -39,8 +38,7 @@ function AddTodoForm() {
         name="new-todo"
         id="new-todo"
         className="add-todo__input"
-        value={inputValue}
-        onChange={(e) => setInputValue(e.target.value)}
+        ref={inputRef}
       />
       <button type="submit" className="add-todo__sumbit" onClick={handleSubmit}>
         Ajouter

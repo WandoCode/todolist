@@ -10,7 +10,6 @@ function List() {
   const [draggedItem, setDraggedItem] = useState({ index: null, list: null })
   const [droppedItem, setDroppedItem] = useState({ index: null, list: null })
   const [itemListDOM, setItemListDOM] = useState([])
-  const [doSwitchItems, setDoSwitchItems] = useState(false)
 
   const { todos, archive, pin } = useSelector((state) => state.todos)
 
@@ -19,7 +18,6 @@ function List() {
   }
 
   const handleDrop = (elIndex, status) => {
-    setDoSwitchItems(true)
     setDroppedItem({ index: elIndex, list: status })
   }
 
@@ -49,7 +47,7 @@ function List() {
   }, [todos, archive, pin])
 
   useEffect(() => {
-    if (!doSwitchItems) return
+    if (draggedItem.index === null || droppedItem.index === null) return
     if (todos.length === 0) return
 
     if (draggedItem.list === droppedItem.list) {
@@ -59,9 +57,7 @@ function List() {
       dispatch(normalizeList(draggedItem.list))
       dispatch(synchronize([draggedItem.list]))
     }
-
-    setDoSwitchItems(false)
-  }, [doSwitchItems])
+  }, [droppedItem])
 
   return (
     <div className="list">
