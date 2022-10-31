@@ -72,12 +72,13 @@ const todosStore = () => {
       const currentTodos = await getTodos()
 
       const list = currentTodos.find((el) => el[listName])
+
       list[listName].push(todoObject)
 
       // TODO: mettre l'id de l'utilisateur au lieu de 'todos'
       const todoDoc = doc(db, `todos/${listName}`)
 
-      await setDoc(todoDoc, list)
+      await updateDoc(todoDoc, list)
     } catch (err) {
       console.error('Error adding todo: ', err)
     }
@@ -93,20 +94,42 @@ const todosStore = () => {
     }
   }
 
-  const updateTodo = async (id, payload) => {
+  const updateTodo = async (modifiedTodoObject) => {
     try {
-      const docRef = doc(db, collectionName, id)
-      await updateDoc(docRef, payload)
+      const listName = getTodosListName(modifiedTodoObject.status)
+
+      const currentTodos = await getTodos()
+
+      const list = currentTodos.find((el) => el[listName])
+
+      const oldTodoIndex = list[listName].findIndex(
+        (el) => el.id === modifiedTodoObject.id
+      )
+      console.log(list[listName])
+
+      list[listName].splice(oldTodoIndex, 1, modifiedTodoObject)
+      console.log(list[listName])
+      // TODO: mettre l'id de l'utilisateur au lieu de 'todos'
+      const todoDoc = doc(db, `todos/${listName}`)
+
+      await updateDoc(todoDoc, list)
     } catch (err) {
       console.error('Error updating todos: ', err)
     }
   }
 
-  const saveAll = async (todosArray) => {
+  const saveAllCollection = async (newTodosArray, status) => {
     try {
-      await todosArray.forEach(async (todo) => {
-        await updateTodo(todo.id, todo)
-      })
+      const listName = getTodosListName(status)
+
+      // TODO: mettre l'id de l'utilisateur au lieu de 'todos'
+      const todoDoc = doc(db, `todos/${listName}`)
+
+      const documentDatas = {}
+      documentDatas[listName] = newTodosArray
+
+      console.log(documentDatas)
+      await updateDoc(todoDoc, documentDatas)
     } catch (err) {
       console.error('Error saving changed todos: ', err)
     }
@@ -118,7 +141,7 @@ const todosStore = () => {
     getTodos,
     delTodo,
     updateTodo,
-    saveAll,
+    saveAllCollection,
     addCollection,
   }
 }
