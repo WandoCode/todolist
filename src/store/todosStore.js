@@ -7,7 +7,6 @@ import {
   deleteDoc,
   updateDoc,
   connectFirestoreEmulator,
-  addDoc,
 } from 'firebase/firestore/lite'
 
 import uniqid from 'uniqid'
@@ -42,7 +41,6 @@ const todosStore = () => {
       const todos = rep.docs.map((doc) => {
         return { ...doc.data() }
       })
-      console.log(todos)
       return todos
     } catch (err) {
       console.error('Error retreiving todos: ', err)
@@ -69,9 +67,6 @@ const todosStore = () => {
 
   const addTodo = async (todoObject) => {
     try {
-      let id = todoObject.id
-      if (!id) todoObject.id = uniqid()
-
       const listName = getTodosListName(todoObject.status)
 
       const currentTodos = await getTodos()
@@ -79,11 +74,10 @@ const todosStore = () => {
       const list = currentTodos.find((el) => el[listName])
       list[listName].push(todoObject)
 
+      // TODO: mettre l'id de l'utilisateur au lieu de 'todos'
       const todoDoc = doc(db, `todos/${listName}`)
 
       await setDoc(todoDoc, list)
-
-      return currentTodos
     } catch (err) {
       console.error('Error adding todo: ', err)
     }

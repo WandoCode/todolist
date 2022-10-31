@@ -46,6 +46,10 @@ function List() {
       ...makeItemListDOM(archive),
     ]
     setItemListDOM(allItemsDOM)
+    console.log(todos)
+    console.log(archive)
+    console.log(pin)
+    console.log('==============')
   }, [todos, archive, pin])
 
   useEffect(() => {

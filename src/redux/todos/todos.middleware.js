@@ -2,6 +2,8 @@ import todosStore from '../../store/todosStore'
 import { getTodosListName, orderTodos } from '../../utils/helpers'
 import { addTodo, delTodo, getTodos, normalizeList } from './todos.action'
 import mockDatas from '../../mock/todos.json'
+import uniqid from 'uniqid'
+
 const testWithLocalEnv = process.env.REACT_APP_LOCAL === 'true'
 
 const storeInstance = todosStore()
@@ -22,7 +24,6 @@ const getTodosMiddleware = () => {
     const pin = allTodos.find((el) => el.pin)
     const archive = allTodos.find((el) => el.archive)
 
-    console.log(todos)
     const sortedTodos = orderTodos(todos.todos)
     const sortedArchive = orderTodos(archive.archive)
     const sortedPin = orderTodos(pin.pin)
@@ -37,11 +38,12 @@ const addTodoMiddleware = (todoObject) => {
       ...todoObject,
       status: 0,
       creationDate: new Date().toString(),
+      id: uniqid(),
     }
 
-    const addedTodo = await storeInstance.addTodo(newTodo)
+    await storeInstance.addTodo(newTodo)
 
-    dispatch(addTodo(addedTodo))
+    dispatch(addTodo(newTodo))
     dispatch(normalizeList(0))
   }
 }
