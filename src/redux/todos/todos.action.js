@@ -29,12 +29,16 @@ const normalizeList = createAction('todos/normalizeList', (list) => ({
 const addTodo = createAction('todos/addTodo', (todoObject) => ({
   payload: { todo: todoObject },
 }))
+const delTodo = createAction('todos/delTodo', (todoIndex, list) => ({
+  payload: { todoIndex, list },
+}))
 
 export {
   getTodos,
+  addTodo,
+  delTodo,
   switchItems,
   toggleArchiveItem,
   togglePinItem,
   normalizeList,
-  addTodo,
 }

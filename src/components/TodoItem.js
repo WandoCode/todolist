@@ -1,6 +1,10 @@
 import { useDispatch } from 'react-redux'
-import { toggleArchiveItem, togglePinItem } from '../redux/todos/todos.action'
-import { synchronize } from '../redux/todos/todos.middleware'
+import {
+  delTodo,
+  toggleArchiveItem,
+  togglePinItem,
+} from '../redux/todos/todos.action'
+import { delTodoMiddleware, synchronize } from '../redux/todos/todos.middleware'
 
 function TodoItem({ todo, tempOrder, onHandleDragStart, onHandleDrop }) {
   const dispatch = useDispatch()
@@ -35,6 +39,10 @@ function TodoItem({ todo, tempOrder, onHandleDragStart, onHandleDrop }) {
     dispatch(synchronize())
   }
 
+  const handleDelete = () => {
+    dispatch(delTodoMiddleware(todo.id, tempOrder, todo.status))
+  }
+
   return (
     <li
       draggable="true"
@@ -51,6 +59,7 @@ function TodoItem({ todo, tempOrder, onHandleDragStart, onHandleDrop }) {
         <button onClick={handleTogglePin}>
           {todo.status !== 1 ? 'Pin' : 'Unpin'}
         </button>
+        <button onClick={handleDelete}>Delete</button>
       </div>
     </li>
   )

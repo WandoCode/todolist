@@ -1,7 +1,13 @@
 import { useSelector } from 'react-redux'
 import todosStore from '../../store/todosStore'
 import { getTodosListName, orderTodos } from '../../utils/helpers'
-import { addTodo, getTodos, normalizeList, switchItems } from './todos.action'
+import {
+  addTodo,
+  delTodo,
+  getTodos,
+  normalizeList,
+  switchItems,
+} from './todos.action'
 
 const storeInstance = todosStore()
 
@@ -35,7 +41,13 @@ const addTodoMiddleware = (todoObject) => {
     dispatch(normalizeList(0))
   }
 }
+const delTodoMiddleware = (todoId, tempOrder, status) => {
+  return async (dispatch) => {
+    await storeInstance.delTodo(todoId)
 
+    dispatch(delTodo(tempOrder, status))
+  }
+}
 const synchronize = (listArray) => {
   return async (dispatch, getState) => {
     if (!listArray) listArray = [-1, 0, 1]
@@ -47,4 +59,4 @@ const synchronize = (listArray) => {
     })
   }
 }
-export { getTodosMiddleware, addTodoMiddleware, synchronize }
+export { getTodosMiddleware, addTodoMiddleware, synchronize, delTodoMiddleware }
