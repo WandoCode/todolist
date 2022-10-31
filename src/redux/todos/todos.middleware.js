@@ -1,8 +1,7 @@
 import todosStore from '../../store/todosStore'
 import { getTodosListName, orderTodos } from '../../utils/helpers'
-import { addTodo, delTodo, getTodos, normalizeList } from './todos.action'
+import { getTodos } from './todos.action'
 import mockDatas from '../../mock/todos.json'
-import uniqid from 'uniqid'
 
 const testWithLocalEnv = process.env.REACT_APP_LOCAL === 'true'
 
@@ -20,6 +19,8 @@ const getTodosMiddleware = () => {
       }
     }
 
+    if (allTodos.length === 0) await populateDB()
+
     const todos = allTodos.find((el) => el.todos)
     const pin = allTodos.find((el) => el.pin)
     const archive = allTodos.find((el) => el.archive)
@@ -29,30 +30,6 @@ const getTodosMiddleware = () => {
     const sortedPin = orderTodos(pin.pin)
 
     dispatch(getTodos(sortedTodos, sortedArchive, sortedPin))
-  }
-}
-
-const addTodoMiddleware = (todoObject) => {
-  return async (dispatch) => {
-    const newTodo = {
-      ...todoObject,
-      status: 0,
-      creationDate: new Date().toString(),
-      id: uniqid(),
-    }
-
-    await storeInstance.addTodo(newTodo)
-
-    dispatch(addTodo(newTodo))
-    dispatch(normalizeList(0))
-  }
-}
-
-const delTodoMiddleware = (todoId, tempOrder, status) => {
-  return async (dispatch) => {
-    await storeInstance.delTodo(todoId)
-
-    dispatch(delTodo(tempOrder, status))
   }
 }
 
@@ -69,10 +46,19 @@ const synchronize = (listArray) => {
 }
 
 const populateDB = async (datas) => {
-  const todos = {
-    todos: datas.todos,
-    archive: datas.archive,
-    pin: datas.pin,
+  let todos
+  if (datas) {
+    todos = {
+      todos: datas.todos,
+      archive: datas.archive,
+      pin: datas.pin,
+    }
+  } else {
+    todos = {
+      todos: [],
+      archive: [],
+      pin: [],
+    }
   }
 
   await storeInstance.addCollection('pin', todos.pin)
@@ -80,4 +66,4 @@ const populateDB = async (datas) => {
   await storeInstance.addCollection('archive', todos.archive)
 }
 
-export { getTodosMiddleware, addTodoMiddleware, synchronize, delTodoMiddleware }
+export { getTodosMiddleware, synchronize }

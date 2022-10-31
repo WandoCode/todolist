@@ -1,7 +1,9 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { addTodoMiddleware } from '../redux/todos/todos.middleware'
+import { synchronize } from '../redux/todos/todos.middleware'
 import { validateForm } from '../utils/formValidation'
+import uniqid from 'uniqid'
+import { addTodo, normalizeList } from '../redux/todos/todos.action'
 
 function AddTodoForm() {
   const dispatch = useDispatch()
@@ -15,8 +17,15 @@ function AddTodoForm() {
     const formIsValid = validateForm(formDatas)
 
     if (formIsValid) {
-      const newTodo = { message: formDatas.get('message') }
-      dispatch(addTodoMiddleware(newTodo))
+      const newTodo = {
+        message: formDatas.get('message'),
+        status: 0,
+        creationDate: new Date().toString(),
+        id: uniqid(),
+      }
+      dispatch(addTodo(newTodo))
+      dispatch(normalizeList(0))
+      dispatch(synchronize(0))
     }
   }
 

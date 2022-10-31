@@ -4,18 +4,13 @@ import {
   getDocs,
   setDoc,
   doc,
-  deleteDoc,
   updateDoc,
   connectFirestoreEmulator,
 } from 'firebase/firestore/lite'
 
-import uniqid from 'uniqid'
 import { getTodosListName } from '../utils/helpers'
 
 import app from './config'
-
-// To test app with a real firestore
-let collectionName = 'todos'
 
 const testWithLocalEnv = process.env.REACT_APP_LOCAL === 'true'
 
@@ -84,16 +79,6 @@ const todosStore = () => {
     }
   }
 
-  const delTodo = async (id) => {
-    try {
-      const docRef = doc(db, collectionName, id)
-
-      await deleteDoc(docRef)
-    } catch (err) {
-      console.error('Error erasing todo: ', err)
-    }
-  }
-
   const updateTodo = async (modifiedTodoObject) => {
     try {
       const listName = getTodosListName(modifiedTodoObject.status)
@@ -138,7 +123,6 @@ const todosStore = () => {
     addTodo,
     getTodo,
     getTodos,
-    delTodo,
     updateTodo,
     saveCollection,
     addCollection,
@@ -146,3 +130,4 @@ const todosStore = () => {
 }
 
 export default todosStore
+// TODO: nettoyer le code...
