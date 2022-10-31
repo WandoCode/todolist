@@ -10,6 +10,7 @@ import {
 } from 'firebase/firestore/lite'
 
 import uniqid from 'uniqid'
+import { getTodosListName } from '../utils/helpers'
 
 import app from './config'
 
@@ -31,17 +32,17 @@ if (testWithLocalEnv) {
   db = getFirestore(app)
 }
 
-const todosStore = (userID) => {
-  const getTodos = async () => {
+const todosStore = () => {
+  const getTodos = async (list) => {
     try {
-      const todosCol = collection(db, collectionName)
+      const listName = getTodosListName(list)
+      const todosCol = collection(db, `$${listName}/`)
       const rep = await getDocs(todosCol)
 
       const todos = rep.docs.map((doc) => {
         return { ...doc.data() }
       })
 
-      console.log(todos)
       return todos
     } catch (err) {
       console.error('Error retreiving todos: ', err)
@@ -56,7 +57,9 @@ const todosStore = (userID) => {
     try {
       let id = todoObject.id
       if (!id) id = uniqid()
-      const todoDoc = doc(db, collectionName, id)
+
+      const listName = getTodosListName(todoObject.status)
+      const todoDoc = doc(db, `${listName}`, id)
 
       const addedTodo = { ...todoObject, id }
 
