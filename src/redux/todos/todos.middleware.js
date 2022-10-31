@@ -6,46 +6,26 @@ const testWithLocalEnv = process.env.REACT_APP_LOCAL === 'true'
 
 const storeInstance = todosStore()
 
-const populateDB = async (datas) => {
-  const todos = { todos: [], archive: [], pin: [] }
-
-  const mockTodos = datas.todos
-
-  for (let i = 0; i < mockTodos.length; i++) {
-    const todo = mockTodos[i]
-
-    await storeInstance.addTodo(todo)
-
-    const listName = getTodosListName(todo.status)
-
-    todos[listName].push(todo)
-  }
-  return todos
-}
-
 const getTodosMiddleware = () => {
   return async (dispatch) => {
-    let todosRaw = await storeInstance.getTodos(0)
-    let archiveRaw = await storeInstance.getTodos(-1)
-    let pinRaw = await storeInstance.getTodos(1)
+    let allTodos = await storeInstance.getTodos()
 
     if (testWithLocalEnv) {
-      if (
-        todosRaw.length === 0 &&
-        archiveRaw.length === 0 &&
-        pinRaw.length === 0
-      ) {
-        const todos = await populateDB(mockDatas)
+      if (allTodos.length === 0) {
+        await populateDB(mockDatas)
 
-        todosRaw = todos.todos
-        archiveRaw = todos.archive
-        pinRaw = todos.pin
+        allTodos = await storeInstance.getTodos()
       }
     }
 
-    const sortedTodos = orderTodos(todosRaw)
-    const sortedArchive = orderTodos(archiveRaw)
-    const sortedPin = orderTodos(pinRaw)
+    const todos = allTodos.find((el) => el.todos)
+    const pin = allTodos.find((el) => el.pin)
+    const archive = allTodos.find((el) => el.archive)
+
+    console.log(todos)
+    const sortedTodos = orderTodos(todos.todos)
+    const sortedArchive = orderTodos(archive.archive)
+    const sortedPin = orderTodos(pin.pin)
 
     dispatch(getTodos(sortedTodos, sortedArchive, sortedPin))
   }
@@ -84,4 +64,17 @@ const synchronize = (listArray) => {
     })
   }
 }
+
+const populateDB = async (datas) => {
+  const todos = {
+    todos: datas.todos,
+    archive: datas.archive,
+    pin: datas.pin,
+  }
+
+  await storeInstance.addCollection('pin', todos.pin)
+  await storeInstance.addCollection('todos', todos.todos)
+  await storeInstance.addCollection('archive', todos.archive)
+}
+
 export { getTodosMiddleware, addTodoMiddleware, synchronize, delTodoMiddleware }

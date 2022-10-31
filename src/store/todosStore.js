@@ -7,6 +7,7 @@ import {
   deleteDoc,
   updateDoc,
   connectFirestoreEmulator,
+  addDoc,
 } from 'firebase/firestore/lite'
 
 import uniqid from 'uniqid'
@@ -33,16 +34,15 @@ if (testWithLocalEnv) {
 }
 
 const todosStore = () => {
-  const getTodos = async (list) => {
+  const getTodos = async () => {
     try {
-      const listName = getTodosListName(list)
-      const todosCol = collection(db, `$${listName}/`)
+      const todosCol = collection(db, `todos`)
       const rep = await getDocs(todosCol)
 
       const todos = rep.docs.map((doc) => {
         return { ...doc.data() }
       })
-
+      console.log(todos)
       return todos
     } catch (err) {
       console.error('Error retreiving todos: ', err)
@@ -53,19 +53,36 @@ const todosStore = () => {
     return
   }
 
+  const addCollection = async (listName, datas) => {
+    try {
+      // TODO: mettre l'id de l'utilisateur au lieu de 'todos'
+      const todoDoc = doc(db, `todos/${listName}`)
+
+      const documentDatas = {}
+      documentDatas[listName] = datas
+
+      await setDoc(todoDoc, documentDatas)
+    } catch (err) {
+      console.error('Error creating collection: ', err)
+    }
+  }
+
   const addTodo = async (todoObject) => {
     try {
       let id = todoObject.id
-      if (!id) id = uniqid()
+      if (!id) todoObject.id = uniqid()
 
       const listName = getTodosListName(todoObject.status)
-      const todoDoc = doc(db, `${listName}`, id)
 
-      const addedTodo = { ...todoObject, id }
+      const currentTodos = await getTodos(todoObject.status)
 
-      await setDoc(todoDoc, addedTodo)
+      currentTodos.push(todoObject)
 
-      return addedTodo
+      const todoDoc = doc(db, `${listName}`)
+
+      await setDoc(todoDoc, currentTodos)
+
+      return currentTodos
     } catch (err) {
       console.error('Error adding todo: ', err)
     }
@@ -107,6 +124,7 @@ const todosStore = () => {
     delTodo,
     updateTodo,
     saveAll,
+    addCollection,
   }
 }
 

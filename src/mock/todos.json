@@ -1,5 +1,5 @@
 {
-  "todos": [
+  "pin": [
     {
       "id": "635ac8e21d5360ff91a8eec8",
       "author": "Charles",
@@ -47,7 +47,9 @@
       "status": 1,
       "message": "aute deserunt ex minim id nisi amet ad dolor est nulla nostrud",
       "order": 6
-    },
+    }
+  ],
+  "todos": [
     {
       "id": "635ac8e2a1dc4b0053b26d88",
       "author": "Marissa",
@@ -79,7 +81,9 @@
       "status": 0,
       "message": "dolore laborum magna nisi ad id occaecat commodo aliquip amet excepteur sunt",
       "order": 4
-    },
+    }
+  ],
+  "archive": [
     {
       "id": "635ac8e2237c546b18d2a8f7",
       "author": "Elena",
