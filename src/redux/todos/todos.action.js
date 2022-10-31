@@ -26,10 +26,15 @@ const normalizeList = createAction('todos/normalizeList', (list) => ({
   payload: { list },
 }))
 
+const addTodo = createAction('todos/addTodo', (todoObject) => ({
+  payload: { todo: todoObject },
+}))
+
 export {
   getTodos,
   switchItems,
   toggleArchiveItem,
   togglePinItem,
   normalizeList,
+  addTodo,
 }

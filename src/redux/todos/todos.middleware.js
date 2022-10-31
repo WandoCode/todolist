@@ -1,10 +1,11 @@
 import todosStore from '../../store/todosStore'
 import { orderTodos } from '../../utils/helpers'
-import { getTodos } from './todos.action'
+import { addTodo, getTodos, normalizeList } from './todos.action'
+
+const storeInstance = todosStore()
 
 const getTodosMiddleware = () => {
   return async (dispatch) => {
-    const storeInstance = todosStore()
     const todosRaw = await storeInstance.getTodos()
 
     const todos = todosRaw.filter((el) => el.status === 0)
@@ -19,4 +20,19 @@ const getTodosMiddleware = () => {
   }
 }
 
-export { getTodosMiddleware }
+const addTodoMiddleware = (todoObject) => {
+  return async (dispatch) => {
+    const newTodo = {
+      ...todoObject,
+      status: 0,
+      creationDate: new Date().toString(),
+    }
+
+    const addedTodo = await storeInstance.addTodo(newTodo)
+
+    dispatch(addTodo(addedTodo))
+    dispatch(normalizeList(0))
+  }
+}
+
+export { getTodosMiddleware, addTodoMiddleware }

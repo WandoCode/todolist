@@ -61,13 +61,17 @@ const todosStore = (name) => {
       if (useMockDatas) {
         const newTodo = { id: uniqid(), ...todoObject }
         currentTodos.push(newTodo)
-        return
+        return newTodo
       }
 
       const todosCol = collection(db, collectionName)
       const rep = await addDoc(todosCol, todoObject)
 
-      currentTodos.push({ id: rep.id, ...todoObject })
+      const addedTodo = { id: rep.id, ...todoObject }
+
+      currentTodos.push(addedTodo)
+
+      return addedTodo
     } catch (err) {
       console.error('Error adding todo: ', err)
     }

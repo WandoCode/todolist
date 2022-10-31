@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import TodoItem from './TodoItem'
 import { useDispatch, useSelector } from 'react-redux'
 import { normalizeList, switchItems } from '../redux/todos/todos.action'
+import AddTodoForm from './AddTodoForm'
 
 function List() {
   const dispatch = useDispatch()
@@ -44,7 +45,6 @@ function List() {
       ...makeItemListDOM(archive),
     ]
     setItemListDOM(allItemsDOM)
-    console.log(todos.map((el) => el.order))
   }, [todos, archive, pin])
 
   useEffect(() => {
@@ -65,6 +65,7 @@ function List() {
   return (
     <div className="list">
       <ul>{itemListDOM}</ul>
+      <AddTodoForm />
     </div>
   )
 }
