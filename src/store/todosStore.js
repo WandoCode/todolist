@@ -15,8 +15,7 @@ import app from './config'
 const testWithLocalEnv = process.env.REACT_APP_LOCAL === 'true'
 
 let db
-// Use the development environement
-// !!!! The firestore emulator have to run: 'firebase emulators:start' !!!!
+
 if (testWithLocalEnv) {
   console.warn(
     '!! You are in a local development environement, be sure to have launch firebase emulators to continue !! (firebase emulators:start)'
@@ -36,14 +35,12 @@ const todosStore = () => {
       const todos = rep.docs.map((doc) => {
         return { ...doc.data() }
       })
+
       return todos
     } catch (err) {
       console.error('Error retreiving todos: ', err)
+      //TODO: faire un message en fct du status http? (200ok, 404, etc)???
     }
-  }
-
-  const getTodo = async (id) => {
-    return
   }
 
   const addCollection = async (listName, datas) => {
@@ -57,6 +54,20 @@ const todosStore = () => {
       await setDoc(todoDoc, documentDatas)
     } catch (err) {
       console.error('Error creating collection: ', err)
+    }
+  }
+
+  const saveCollection = async (newTodosArray, listName) => {
+    try {
+      // TODO: mettre l'id de l'utilisateur au lieu de 'todos'
+      const todoDoc = doc(db, `todos/${listName}`)
+
+      const documentDatas = {}
+      documentDatas[listName] = newTodosArray
+
+      await updateDoc(todoDoc, documentDatas)
+    } catch (err) {
+      console.error('Error saving changed todos: ', err)
     }
   }
 
@@ -90,10 +101,9 @@ const todosStore = () => {
       const oldTodoIndex = list[listName].findIndex(
         (el) => el.id === modifiedTodoObject.id
       )
-      console.log(list[listName])
 
       list[listName].splice(oldTodoIndex, 1, modifiedTodoObject)
-      console.log(list[listName])
+
       // TODO: mettre l'id de l'utilisateur au lieu de 'todos'
       const todoDoc = doc(db, `todos/${listName}`)
 
@@ -103,25 +113,8 @@ const todosStore = () => {
     }
   }
 
-  const saveCollection = async (newTodosArray, status) => {
-    try {
-      const listName = getTodosListName(status)
-
-      // TODO: mettre l'id de l'utilisateur au lieu de 'todos'
-      const todoDoc = doc(db, `todos/${listName}`)
-
-      const documentDatas = {}
-      documentDatas[listName] = newTodosArray
-
-      await updateDoc(todoDoc, documentDatas)
-    } catch (err) {
-      console.error('Error saving changed todos: ', err)
-    }
-  }
-
   return {
     addTodo,
-    getTodo,
     getTodos,
     updateTodo,
     saveCollection,

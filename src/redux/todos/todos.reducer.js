@@ -20,8 +20,7 @@ const todosReducer = createReducer(initialState, (builder) => {
       state.pin = action.payload.pin
     })
     .addCase(switchItems, (state, action) => {
-      const indexA = action.payload.indexA
-      const indexB = action.payload.indexB
+      const { indexA, indexB } = action.payload
 
       const list = getTodosListName(action.payload.list)
 
@@ -32,26 +31,15 @@ const todosReducer = createReducer(initialState, (builder) => {
     })
     .addCase(toggleArchiveItem, (state, action) => {
       const index = action.payload.index
-      const oldList = getTodosListName(action.payload.list)
+      const oldListInt = action.payload.list
 
-      state[oldList][index].status =
-        state[oldList][index].status === -1 ? 0 : -1
-
-      const newList = getTodosListName(state[oldList][index].status)
-
-      state[newList].push({ ...state[oldList][index] })
-      state[oldList].splice(index, 1)
+      toogleStatus(index, oldListInt, state, -1)
     })
     .addCase(togglePinItem, (state, action) => {
       const index = action.payload.index
-      const oldList = getTodosListName(action.payload.list)
+      const oldListInt = action.payload.list
 
-      state[oldList][index].status = state[oldList][index].status === 1 ? 0 : 1
-
-      const newList = getTodosListName(state[oldList][index].status)
-
-      state[newList].push({ ...state[oldList][index] })
-      state[oldList].splice(index, 1)
+      toogleStatus(index, oldListInt, state, 1)
     })
     .addCase(normalizeList, (state, action) => {
       const list = getTodosListName(action.payload.list)
@@ -63,8 +51,24 @@ const todosReducer = createReducer(initialState, (builder) => {
     })
     .addCase(delTodo, (state, action) => {
       const list = getTodosListName(action.payload.list)
+
       state[list].splice(action.payload.todoIndex, 1)
     })
 })
+
+const toogleStatus = (index, oldListInt, state, toogleInt) => {
+  const oldList = getTodosListName(oldListInt)
+
+  state[oldList][index].status =
+    state[oldList][index].status === toogleInt ? 0 : toogleInt
+
+  const newList = getTodosListName(state[oldList][index].status)
+
+  state[newList].push({
+    ...state[oldList][index],
+    order: state[newList].length + 1,
+  })
+  state[oldList].splice(index, 1)
+}
 
 export default todosReducer

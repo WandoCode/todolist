@@ -1,6 +1,7 @@
 import { useDispatch } from 'react-redux'
 import {
   delTodo,
+  normalizeList,
   toggleArchiveItem,
   togglePinItem,
 } from '../redux/todos/todos.action'

@@ -8,6 +8,7 @@ import { addTodo, normalizeList } from '../redux/todos/todos.action'
 function AddTodoForm() {
   const dispatch = useDispatch()
   const inputRef = useRef()
+
   const handleSubmit = (e) => {
     e.preventDefault()
 

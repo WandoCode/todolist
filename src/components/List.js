@@ -48,15 +48,14 @@ function List() {
 
   useEffect(() => {
     if (draggedItem.index === null || droppedItem.index === null) return
-    if (todos.length === 0) return
+    if (draggedItem.list !== droppedItem.list) return
+    if (draggedItem.index === droppedItem.index) return
 
-    if (draggedItem.list === droppedItem.list) {
-      dispatch(
-        switchItems(draggedItem.index, droppedItem.index, draggedItem.list)
-      )
-      dispatch(normalizeList(draggedItem.list))
-      dispatch(synchronize([draggedItem.list]))
-    }
+    dispatch(
+      switchItems(draggedItem.index, droppedItem.index, draggedItem.list)
+    )
+    dispatch(normalizeList(draggedItem.list))
+    dispatch(synchronize([draggedItem.list]))
   }, [droppedItem])
 
   return (
