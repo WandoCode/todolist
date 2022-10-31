@@ -1,10 +1,5 @@
 import { useDispatch } from 'react-redux'
-import {
-  toggleArchiveItem,
-  togglePinItem,
-  switchItems,
-} from '../redux/todos/todos.action'
-import { useState } from 'react'
+import { toggleArchiveItem, togglePinItem } from '../redux/todos/todos.action'
 
 function TodoItem({ todo, tempOrder, onHandleDragStart, onHandleDrop }) {
   const dispatch = useDispatch()
@@ -16,11 +11,12 @@ function TodoItem({ todo, tempOrder, onHandleDragStart, onHandleDrop }) {
 
     return itemClass
   }
-  const handleDragStart = (e) => {
+
+  const handleDragStart = () => {
     onHandleDragStart(tempOrder, todo.status)
   }
 
-  const handleDrop = (e) => {
+  const handleDrop = () => {
     onHandleDrop(tempOrder, todo.status)
   }
 
@@ -28,15 +24,14 @@ function TodoItem({ todo, tempOrder, onHandleDragStart, onHandleDrop }) {
     e.preventDefault() // Important for onDrop to work
   }
 
-  const handleToggleArchive = (e) => {
+  const handleToggleArchive = () => {
     dispatch(toggleArchiveItem(tempOrder, todo.status))
   }
 
-  const handleTogglePin = (e) => {
+  const handleTogglePin = () => {
     dispatch(togglePinItem(tempOrder, todo.status))
-
-    return
   }
+
   return (
     <li
       draggable="true"
@@ -48,10 +43,10 @@ function TodoItem({ todo, tempOrder, onHandleDragStart, onHandleDrop }) {
       {todo.message}
       <div className="btns">
         <button onClick={handleToggleArchive}>
-          {todo.status !== -1 ? 'x' : 'rx'}
+          {todo.status !== -1 ? 'Done' : 'Undone'}
         </button>
         <button onClick={handleTogglePin}>
-          {todo.status !== 1 ? 'p' : 'rp'}
+          {todo.status !== 1 ? 'Pin' : 'Unpin'}
         </button>
       </div>
     </li>
