@@ -74,13 +74,14 @@ const todosStore = () => {
 
       const listName = getTodosListName(todoObject.status)
 
-      const currentTodos = await getTodos(todoObject.status)
+      const currentTodos = await getTodos()
 
-      currentTodos.push(todoObject)
+      const list = currentTodos.find((el) => el[listName])
+      list[listName].push(todoObject)
 
-      const todoDoc = doc(db, `${listName}`)
+      const todoDoc = doc(db, `todos/${listName}`)
 
-      await setDoc(todoDoc, currentTodos)
+      await setDoc(todoDoc, list)
 
       return currentTodos
     } catch (err) {

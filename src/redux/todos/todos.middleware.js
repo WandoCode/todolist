@@ -45,6 +45,7 @@ const addTodoMiddleware = (todoObject) => {
     dispatch(normalizeList(0))
   }
 }
+
 const delTodoMiddleware = (todoId, tempOrder, status) => {
   return async (dispatch) => {
     await storeInstance.delTodo(todoId)
