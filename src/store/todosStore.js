@@ -118,7 +118,7 @@ const todosStore = () => {
     }
   }
 
-  const saveAllCollection = async (newTodosArray, status) => {
+  const saveCollection = async (newTodosArray, status) => {
     try {
       const listName = getTodosListName(status)
 
@@ -128,7 +128,6 @@ const todosStore = () => {
       const documentDatas = {}
       documentDatas[listName] = newTodosArray
 
-      console.log(documentDatas)
       await updateDoc(todoDoc, documentDatas)
     } catch (err) {
       console.error('Error saving changed todos: ', err)
@@ -141,7 +140,7 @@ const todosStore = () => {
     getTodos,
     delTodo,
     updateTodo,
-    saveAllCollection,
+    saveCollection,
     addCollection,
   }
 }

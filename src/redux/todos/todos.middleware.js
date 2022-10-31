@@ -63,7 +63,7 @@ const synchronize = (listArray) => {
     const { todos } = getState()
     listArray.forEach(async (list) => {
       const listName = getTodosListName(list)
-      await storeInstance.saveAllCollection([...todos[listName]], list)
+      await storeInstance.saveCollection([...todos[listName]], list)
     })
   }
 }
