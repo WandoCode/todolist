@@ -1,9 +1,5 @@
 import { useDispatch } from 'react-redux'
-import {
-  delTodo,
-  toggleArchiveItem,
-  togglePinItem,
-} from '../redux/todos/todos.action'
+import { toggleArchiveItem, togglePinItem } from '../redux/todos/todos.action'
 import { delTodoMiddleware, synchronize } from '../redux/todos/todos.middleware'
 
 function TodoItem({ todo, tempOrder, onHandleDragStart, onHandleDrop }) {

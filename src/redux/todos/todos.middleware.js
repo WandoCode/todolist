@@ -1,19 +1,24 @@
-import { useSelector } from 'react-redux'
 import todosStore from '../../store/todosStore'
 import { getTodosListName, orderTodos } from '../../utils/helpers'
-import {
-  addTodo,
-  delTodo,
-  getTodos,
-  normalizeList,
-  switchItems,
-} from './todos.action'
+import { addTodo, delTodo, getTodos, normalizeList } from './todos.action'
+import mockTodos from '../../mock/todos.json'
+const testWithLocalEnv = process.env.REACT_APP_LOCAL === 'true'
 
 const storeInstance = todosStore()
 
 const getTodosMiddleware = () => {
   return async (dispatch) => {
-    const todosRaw = await storeInstance.getTodos()
+    let todosRaw = await storeInstance.getTodos()
+
+    if (testWithLocalEnv) {
+      if (todosRaw.length === 0) {
+        todosRaw = mockTodos.todos
+        for (let i = 0; i < todosRaw.length; i++) {
+          const todo = todosRaw[i]
+          await storeInstance.addTodo(todo)
+        }
+      }
+    }
 
     const todos = todosRaw.filter((el) => el.status === 0)
     const archive = todosRaw.filter((el) => el.status === -1)
@@ -48,6 +53,7 @@ const delTodoMiddleware = (todoId, tempOrder, status) => {
     dispatch(delTodo(tempOrder, status))
   }
 }
+
 const synchronize = (listArray) => {
   return async (dispatch, getState) => {
     if (!listArray) listArray = [-1, 0, 1]

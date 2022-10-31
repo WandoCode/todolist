@@ -2,30 +2,46 @@ import {
   getFirestore,
   collection,
   getDocs,
-  addDoc,
+  setDoc,
   doc,
   deleteDoc,
   updateDoc,
+  connectFirestoreEmulator,
 } from 'firebase/firestore/lite'
+
+import uniqid from 'uniqid'
 
 import app from './config'
 
 // To test app with a real firestore
-let collectionName =
-  process.env.REACT_APP_LOCAL === 'false' ? 'todosTest' : 'todos'
+let collectionName = 'todos'
 
-const db = getFirestore(app)
+const testWithLocalEnv = process.env.REACT_APP_LOCAL === 'true'
 
-const todosStore = (name) => {
+let db
+// Use the development environement
+// !!!! The firestore emulator have to run: 'firebase emulators:start' !!!!
+if (testWithLocalEnv) {
+  console.warn(
+    '!! You are in a local development environement, be sure to have launch firebase emulators to continue !! (firebase emulators:start)'
+  )
+  db = getFirestore()
+  connectFirestoreEmulator(db, 'localhost', 8080)
+} else {
+  db = getFirestore(app)
+}
+
+const todosStore = (userID) => {
   const getTodos = async () => {
     try {
       const todosCol = collection(db, collectionName)
       const rep = await getDocs(todosCol)
 
       const todos = rep.docs.map((doc) => {
-        return { id: doc.id, ...doc.data() }
+        return { ...doc.data() }
       })
 
+      console.log(todos)
       return todos
     } catch (err) {
       console.error('Error retreiving todos: ', err)
@@ -38,10 +54,13 @@ const todosStore = (name) => {
 
   const addTodo = async (todoObject) => {
     try {
-      const todosCol = collection(db, collectionName)
-      const rep = await addDoc(todosCol, todoObject)
+      let id = todoObject.id
+      if (!id) id = uniqid()
+      const todoDoc = doc(db, collectionName, id)
 
-      const addedTodo = { id: rep.id, ...todoObject }
+      const addedTodo = { ...todoObject, id }
+
+      await setDoc(todoDoc, addedTodo)
 
       return addedTodo
     } catch (err) {
@@ -55,7 +74,7 @@ const todosStore = (name) => {
 
       await deleteDoc(docRef)
     } catch (err) {
-      console.error('Error erasing todos: ', err)
+      console.error('Error erasing todo: ', err)
     }
   }
 
