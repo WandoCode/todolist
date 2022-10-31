@@ -36,12 +36,15 @@ const addTodoMiddleware = (todoObject) => {
   }
 }
 
-const synchronize = (list) => {
+const synchronize = (listArray) => {
   return async (dispatch, getState) => {
+    if (!listArray) listArray = [-1, 0, 1]
+
     const { todos } = getState()
-    const listName = getTodosListName(list)
-    console.log(todos[listName])
-    await storeInstance.saveAll([...todos[listName]])
+    listArray.forEach(async (list) => {
+      const listName = getTodosListName(list)
+      await storeInstance.saveAll([...todos[listName]])
+    })
   }
 }
 export { getTodosMiddleware, addTodoMiddleware, synchronize }

@@ -1,5 +1,6 @@
 import { useDispatch } from 'react-redux'
 import { toggleArchiveItem, togglePinItem } from '../redux/todos/todos.action'
+import { synchronize } from '../redux/todos/todos.middleware'
 
 function TodoItem({ todo, tempOrder, onHandleDragStart, onHandleDrop }) {
   const dispatch = useDispatch()
@@ -26,10 +27,12 @@ function TodoItem({ todo, tempOrder, onHandleDragStart, onHandleDrop }) {
 
   const handleToggleArchive = () => {
     dispatch(toggleArchiveItem(tempOrder, todo.status))
+    dispatch(synchronize())
   }
 
   const handleTogglePin = () => {
     dispatch(togglePinItem(tempOrder, todo.status))
+    dispatch(synchronize())
   }
 
   return (
