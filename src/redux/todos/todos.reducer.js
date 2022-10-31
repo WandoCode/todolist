@@ -59,15 +59,18 @@ const todosReducer = createReducer(initialState, (builder) => {
 const toogleStatus = (index, oldListInt, state, toogleInt) => {
   const oldList = getTodosListName(oldListInt)
 
-  state[oldList][index].status =
+  const newStatusInt =
     state[oldList][index].status === toogleInt ? 0 : toogleInt
+  const newList = getTodosListName(newStatusInt)
 
-  const newList = getTodosListName(state[oldList][index].status)
+  state[oldList][index].status = newStatusInt
 
-  state[newList].push({
+  const newTodoObject = {
     ...state[oldList][index],
     order: state[newList].length + 1,
-  })
+  }
+
+  state[newList].push(newTodoObject)
   state[oldList].splice(index, 1)
 }
 
