@@ -3,6 +3,7 @@ import TodoItem from './TodoItem'
 import { useDispatch, useSelector } from 'react-redux'
 import { normalizeList, switchItems } from '../redux/todos/todos.action'
 import AddTodoForm from './AddTodoForm'
+import { synchronize } from '../redux/todos/todos.middleware'
 
 function List() {
   const dispatch = useDispatch()
@@ -52,7 +53,6 @@ function List() {
     if (todos.length === 0) return
 
     if (draggedItem.list === droppedItem.list) {
-      console.log(1)
       dispatch(
         switchItems(draggedItem.index, droppedItem.index, draggedItem.list)
       )
@@ -60,6 +60,7 @@ function List() {
     }
 
     setDoSwitchItems(false)
+    dispatch(synchronize(draggedItem.list))
   }, [doSwitchItems])
 
   return (

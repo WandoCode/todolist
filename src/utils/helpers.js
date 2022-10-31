@@ -13,11 +13,10 @@ const orderTodos = (todosArray) => {
 
 const normalizeOrder = (todosArray) => {
   const arrayCopy = [...todosArray]
-  const a = arrayCopy.map((el, index) => {
+
+  return arrayCopy.map((el, index) => {
     return { ...el, order: index }
   })
-  console.log(a)
-  return a
 }
 
 const getTodosListName = (status) => {

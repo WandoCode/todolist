@@ -7,14 +7,8 @@ import {
   deleteDoc,
   updateDoc,
 } from 'firebase/firestore/lite'
-import uniqid from 'uniqid'
-
-import todosMock from '../mocks/todos.json'
 
 import app from './config'
-
-// To test app locally
-let useMockDatas = process.env.REACT_APP_LOCAL === 'true'
 
 // To test app with a real firestore
 let collectionName =
@@ -22,22 +16,9 @@ let collectionName =
 
 const db = getFirestore(app)
 
-let mockDatas
-if (useMockDatas) mockDatas = todosMock
-
 const todosStore = (name) => {
-  let currentTodos = []
-
-  const getCurrentTodos = () => {
-    return currentTodos
-  }
-
   const getTodos = async () => {
     try {
-      if (useMockDatas) {
-        currentTodos = [...mockDatas.todos]
-        return mockDatas.todos
-      }
       const todosCol = collection(db, collectionName)
       const rep = await getDocs(todosCol)
 
@@ -45,7 +26,6 @@ const todosStore = (name) => {
         return { id: doc.id, ...doc.data() }
       })
 
-      currentTodos = todos
       return todos
     } catch (err) {
       console.error('Error retreiving todos: ', err)
@@ -53,23 +33,15 @@ const todosStore = (name) => {
   }
 
   const getTodo = async (id) => {
-    return currentTodos.find((el) => el.id === id)
+    return
   }
 
   const addTodo = async (todoObject) => {
     try {
-      if (useMockDatas) {
-        const newTodo = { id: uniqid(), ...todoObject }
-        currentTodos.push(newTodo)
-        return newTodo
-      }
-
       const todosCol = collection(db, collectionName)
       const rep = await addDoc(todosCol, todoObject)
 
       const addedTodo = { id: rep.id, ...todoObject }
-
-      currentTodos.push(addedTodo)
 
       return addedTodo
     } catch (err) {
@@ -79,11 +51,6 @@ const todosStore = (name) => {
 
   const delTodo = async (id) => {
     try {
-      if (useMockDatas) {
-        currentTodos = currentTodos.filter((el) => el.id !== id)
-        return
-      }
-
       const docRef = doc(db, collectionName, id)
 
       await deleteDoc(docRef)
@@ -94,16 +61,6 @@ const todosStore = (name) => {
 
   const updateTodo = async (id, payload) => {
     try {
-      if (useMockDatas) {
-        currentTodos = currentTodos.map((el) => {
-          if (el.id === id) {
-            return { ...el, ...payload }
-          } else return el
-        })
-
-        return
-      }
-
       const docRef = doc(db, collectionName, id)
       await updateDoc(docRef, payload)
     } catch (err) {
@@ -111,7 +68,24 @@ const todosStore = (name) => {
     }
   }
 
-  return { addTodo, getTodo, getTodos, delTodo, updateTodo, getCurrentTodos }
+  const saveAll = async (todosArray) => {
+    try {
+      await todosArray.forEach(async (todo) => {
+        await updateTodo(todo.id, todo)
+      })
+    } catch (err) {
+      console.error('Error saving changed todos: ', err)
+    }
+  }
+
+  return {
+    addTodo,
+    getTodo,
+    getTodos,
+    delTodo,
+    updateTodo,
+    saveAll,
+  }
 }
 
 export default todosStore

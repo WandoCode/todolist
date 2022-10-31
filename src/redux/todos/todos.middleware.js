@@ -1,6 +1,7 @@
+import { useSelector } from 'react-redux'
 import todosStore from '../../store/todosStore'
-import { orderTodos } from '../../utils/helpers'
-import { addTodo, getTodos, normalizeList } from './todos.action'
+import { getTodosListName, orderTodos } from '../../utils/helpers'
+import { addTodo, getTodos, normalizeList, switchItems } from './todos.action'
 
 const storeInstance = todosStore()
 
@@ -35,4 +36,12 @@ const addTodoMiddleware = (todoObject) => {
   }
 }
 
-export { getTodosMiddleware, addTodoMiddleware }
+const synchronize = (list) => {
+  return async (dispatch, getState) => {
+    const { todos } = getState()
+    const listName = getTodosListName(list)
+    console.log(todos[listName])
+    await storeInstance.saveAll([...todos[listName]])
+  }
+}
+export { getTodosMiddleware, addTodoMiddleware, synchronize }

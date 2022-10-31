@@ -40,7 +40,7 @@ function TodoItem({ todo, tempOrder, onHandleDragStart, onHandleDrop }) {
       onDrop={handleDrop}
       className={buildItemClass()}
     >
-      {todo.message}
+      {todo.message}" order: "{todo.order}
       <div className="btns">
         <button onClick={handleToggleArchive}>
           {todo.status !== -1 ? 'Done' : 'Undone'}
