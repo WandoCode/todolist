@@ -26,7 +26,7 @@ function SignIn() {
   }, [userConnected])
 
   return (
-    <div className="signup">
+    <div className="signin">
       <h1>Sign In</h1>
       <form action="" onSubmit={handleSubmit}>
         <label htmlFor="email">Email</label>
