@@ -9,11 +9,12 @@ function SignIn() {
   const dispatch = useDispatch()
 
   const userConnected = useSelector((state) => state.auth.isConnected)
+  const loading = useSelector((state) => state.auth.loading)
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault()
 
     dispatch(signInMiddleware(email, password))
@@ -26,7 +27,7 @@ function SignIn() {
   }, [userConnected])
 
   return (
-    <div className="signin">
+    <div className="signi">
       <h1>Sign In</h1>
       <form action="" onSubmit={handleSubmit}>
         <label htmlFor="email">Email</label>
@@ -45,7 +46,9 @@ function SignIn() {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <button type="submit">Create user</button>
+        <button type="submit" disabled={loading}>
+          Create user
+        </button>
       </form>
     </div>
   )

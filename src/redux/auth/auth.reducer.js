@@ -1,7 +1,8 @@
 import { createReducer } from '@reduxjs/toolkit'
-import { connectUser } from './auth.actions'
+import { connectUser, loading } from './auth.actions'
 const initialState = {
   isConnected: false,
+  loading: false,
   currentUser: {
     email: undefined,
     id: undefined,
@@ -9,13 +10,17 @@ const initialState = {
   },
 }
 const authReducer = createReducer(initialState, (builder) => {
-  builder.addCase(connectUser, (state, action) => {
-    const { email, id, name } = action.payload
-    state.isConnected = true
-    state.currentUser.email = email
-    state.currentUser.id = id
-    state.currentUser.name = name
-  })
+  builder
+    .addCase(connectUser, (state, action) => {
+      const { email, id, name } = action.payload
+      state.isConnected = true
+      state.currentUser.email = email
+      state.currentUser.id = id
+      state.currentUser.name = name
+    })
+    .addCase(loading, (state, action) => {
+      state.loading = action.payload.isLoading
+    })
 })
 
 export default authReducer

@@ -8,4 +8,7 @@ const disconnectUser = createAction('auth/disconnectUser', (id) => ({
   payload: { id },
 }))
 
-export { connectUser, disconnectUser }
+const loading = createAction('auth/loading', (isLoading) => ({
+  payload: { isLoading },
+}))
+export { connectUser, disconnectUser, loading }

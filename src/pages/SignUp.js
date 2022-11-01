@@ -9,13 +9,13 @@ function SignUp() {
   const dispatch = useDispatch()
 
   const userConnected = useSelector((state) => state.auth.isConnected)
+  const loading = useSelector((state) => state.auth.loading)
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault()
-
     dispatch(signUpMiddleware(email, password))
   }
 
@@ -46,7 +46,9 @@ function SignUp() {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <button type="submit">Create user</button>
+        <button type="submit" disabled={loading}>
+          Create user
+        </button>
       </form>
     </div>
   )
