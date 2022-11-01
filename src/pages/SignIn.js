@@ -1,24 +1,29 @@
-import { useState } from 'react'
-import { useDispatch } from 'react-redux'
-import { connectUser } from '../redux/auth/auth.actions'
-import { signIn } from '../store/authenticationStore'
+import { useState, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+
 import { useNavigate } from 'react-router-dom'
+import { signInMiddleware } from '../redux/auth/auth.middlewares'
 
 function SignIn() {
   const navigate = useNavigate()
   const dispatch = useDispatch()
+
+  const userConnected = useSelector((state) => state.auth.isConnected)
+
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    const user = await signIn(email, password)
 
-    if (user) {
-      dispatch(connectUser(user.email, user.uid, user.displayName))
+    dispatch(signInMiddleware(email, password))
+  }
+
+  useEffect(() => {
+    if (userConnected) {
       navigate('/')
     }
-  }
+  }, [userConnected])
 
   return (
     <div className="signup">
