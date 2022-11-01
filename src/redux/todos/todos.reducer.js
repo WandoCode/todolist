@@ -63,13 +63,13 @@ const toogleStatus = (index, oldListInt, state, toogleInt) => {
     state[oldList][index].status === toogleInt ? 0 : toogleInt
   const newList = getTodosListName(newStatusInt)
 
-  const lastElementOrder = state[newList].at(-1).order
+  const lastElementOrder = state[newList].at(-1)?.order
 
   state[oldList][index].status = newStatusInt
 
   const newTodoObject = {
     ...state[oldList][index],
-    order: lastElementOrder + 1,
+    order: lastElementOrder + 1 || 0,
   }
 
   state[newList].push(newTodoObject)
