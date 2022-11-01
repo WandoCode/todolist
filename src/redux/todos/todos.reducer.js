@@ -7,10 +7,11 @@ import {
   normalizeList,
   addTodo,
   delTodo,
+  loadingTodos,
 } from './todos.action'
 import { getTodosListName, normalizeOrder } from '../../utils/helpers'
 
-const initialState = { todos: [], archive: [], pin: [] }
+const initialState = { todos: [], archive: [], pin: [], loading: false }
 
 const todosReducer = createReducer(initialState, (builder) => {
   builder
@@ -53,6 +54,9 @@ const todosReducer = createReducer(initialState, (builder) => {
       const list = getTodosListName(action.payload.list)
 
       state[list].splice(action.payload.todoIndex, 1)
+    })
+    .addCase(loadingTodos, (state, action) => {
+      state.loading = action.payload.isLoading
     })
 })
 

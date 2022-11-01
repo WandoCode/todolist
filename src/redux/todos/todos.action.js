@@ -29,8 +29,13 @@ const normalizeList = createAction('todos/normalizeList', (list) => ({
 const addTodo = createAction('todos/addTodo', (todoObject) => ({
   payload: { todo: todoObject },
 }))
+
 const delTodo = createAction('todos/delTodo', (todoIndex, list) => ({
   payload: { todoIndex, list },
+}))
+
+const loadingTodos = createAction('todos/loadingTodos', (isLoading) => ({
+  payload: { isLoading },
 }))
 
 export {
@@ -41,4 +46,5 @@ export {
   toggleArchiveItem,
   togglePinItem,
   normalizeList,
+  loadingTodos,
 }

@@ -1,6 +1,6 @@
 import todosStore from '../../store/todosStore'
 import { getTodosListName, orderTodos } from '../../utils/helpers'
-import { getTodos } from './todos.action'
+import { getTodos, loadingTodos } from './todos.action'
 import mockDatas from '../../mock/todos.json'
 
 const testWithLocalEnv = process.env.REACT_APP_LOCAL === 'true'
@@ -9,6 +9,7 @@ const storeInstance = todosStore()
 
 const getTodosMiddleware = (userID) => {
   return async (dispatch) => {
+    dispatch(loadingTodos(true))
     let allTodos = await storeInstance.getTodos(userID)
 
     if (testWithLocalEnv && allTodos.length === 0) {
@@ -27,6 +28,7 @@ const getTodosMiddleware = (userID) => {
     const sortedPin = orderTodos(pin.pin)
 
     dispatch(getTodos(sortedTodos, sortedArchive, sortedPin))
+    dispatch(loadingTodos(false))
   }
 }
 
