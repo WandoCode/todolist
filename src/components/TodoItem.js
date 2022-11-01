@@ -1,4 +1,4 @@
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import {
   delTodo,
   toggleArchiveItem,
@@ -8,6 +8,7 @@ import { synchronize } from '../redux/todos/todos.middleware'
 
 function TodoItem({ todo, tempOrder, onHandleDragStart, onHandleDrop }) {
   const dispatch = useDispatch()
+  const userID = useSelector((state) => state.auth.currentUser.id)
 
   const buildItemClass = () => {
     let itemClass = 'todo-item '
@@ -31,17 +32,17 @@ function TodoItem({ todo, tempOrder, onHandleDragStart, onHandleDrop }) {
 
   const handleToggleArchive = () => {
     dispatch(toggleArchiveItem(tempOrder, todo.status))
-    dispatch(synchronize())
+    dispatch(synchronize(userID))
   }
 
   const handleTogglePin = () => {
     dispatch(togglePinItem(tempOrder, todo.status))
-    dispatch(synchronize())
+    dispatch(synchronize(userID))
   }
 
   const handleDelete = () => {
     dispatch(delTodo(tempOrder, todo.status))
-    dispatch(synchronize([todo.status]))
+    dispatch(synchronize(userID, [todo.status]))
   }
 
   return (

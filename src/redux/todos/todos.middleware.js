@@ -7,16 +7,16 @@ const testWithLocalEnv = process.env.REACT_APP_LOCAL === 'true'
 
 const storeInstance = todosStore()
 
-const getTodosMiddleware = () => {
+const getTodosMiddleware = (userID) => {
   return async (dispatch) => {
-    let allTodos = await storeInstance.getTodos()
+    let allTodos = await storeInstance.getTodos(userID)
 
     if (testWithLocalEnv && allTodos.length === 0) {
-      await initDB(mockDatas)
-      allTodos = await storeInstance.getTodos()
+      await initDB(userID, mockDatas)
+      allTodos = await storeInstance.getTodos(userID)
     }
 
-    if (allTodos.length === 0) await initDB()
+    if (allTodos.length === 0) await initDB(userID)
 
     const todos = allTodos.find((el) => el.todos)
     const pin = allTodos.find((el) => el.pin)
@@ -30,7 +30,7 @@ const getTodosMiddleware = () => {
   }
 }
 
-const synchronize = (listArray) => {
+const synchronize = (userID, listArray) => {
   return async (dispatch, getState) => {
     if (!listArray) listArray = [-1, 0, 1]
 
@@ -38,12 +38,12 @@ const synchronize = (listArray) => {
 
     listArray.forEach(async (list) => {
       const listName = getTodosListName(list)
-      await storeInstance.saveCollection([...todos[listName]], listName)
+      await storeInstance.saveCollection([...todos[listName]], listName, userID)
     })
   }
 }
 
-const initDB = async (datas) => {
+const initDB = async (userID, datas) => {
   let todos
   if (datas) {
     todos = {
@@ -60,7 +60,7 @@ const initDB = async (datas) => {
   }
 
   for (const key in todos) {
-    await storeInstance.addCollection(key, todos[key])
+    await storeInstance.addCollection(key, todos[key], userID)
   }
 }
 

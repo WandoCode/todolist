@@ -27,9 +27,9 @@ if (testWithLocalEnv) {
 }
 
 const todosStore = () => {
-  const getTodos = async () => {
+  const getTodos = async (userID) => {
     try {
-      const todosCol = collection(db, `todos`)
+      const todosCol = collection(db, `${userID}`)
       const rep = await getDocs(todosCol)
 
       const todos = rep.docs.map((doc) => {
@@ -43,10 +43,10 @@ const todosStore = () => {
     }
   }
 
-  const addCollection = async (listName, datas) => {
+  const addCollection = async (listName, datas, userID) => {
     try {
       // TODO: mettre l'id de l'utilisateur au lieu de 'todos'
-      const todoDoc = doc(db, `todos/${listName}`)
+      const todoDoc = doc(db, `${userID}/${listName}`)
 
       const documentDatas = {}
       documentDatas[listName] = datas
@@ -57,10 +57,10 @@ const todosStore = () => {
     }
   }
 
-  const saveCollection = async (newTodosArray, listName) => {
+  const saveCollection = async (newTodosArray, listName, userID) => {
     try {
       // TODO: mettre l'id de l'utilisateur au lieu de 'todos'
-      const todoDoc = doc(db, `todos/${listName}`)
+      const todoDoc = doc(db, `${userID}/${listName}`)
 
       const documentDatas = {}
       documentDatas[listName] = newTodosArray
@@ -71,7 +71,7 @@ const todosStore = () => {
     }
   }
 
-  const addTodo = async (todoObject) => {
+  const addTodo = async (todoObject, userID) => {
     try {
       const listName = getTodosListName(todoObject.status)
 
@@ -82,7 +82,7 @@ const todosStore = () => {
       list[listName].push(todoObject)
 
       // TODO: mettre l'id de l'utilisateur au lieu de 'todos'
-      const todoDoc = doc(db, `todos/${listName}`)
+      const todoDoc = doc(db, `${userID}/${listName}`)
 
       await updateDoc(todoDoc, list)
     } catch (err) {
@@ -90,7 +90,7 @@ const todosStore = () => {
     }
   }
 
-  const updateTodo = async (modifiedTodoObject) => {
+  const updateTodo = async (modifiedTodoObject, userID) => {
     try {
       const listName = getTodosListName(modifiedTodoObject.status)
 
@@ -105,7 +105,7 @@ const todosStore = () => {
       list[listName].splice(oldTodoIndex, 1, modifiedTodoObject)
 
       // TODO: mettre l'id de l'utilisateur au lieu de 'todos'
-      const todoDoc = doc(db, `todos/${listName}`)
+      const todoDoc = doc(db, `${userID}/${listName}`)
 
       await updateDoc(todoDoc, list)
     } catch (err) {

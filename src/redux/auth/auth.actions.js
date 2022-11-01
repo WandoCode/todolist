@@ -11,4 +11,7 @@ const disconnectUser = createAction('auth/disconnectUser', (id) => ({
 const loading = createAction('auth/loading', (isLoading) => ({
   payload: { isLoading },
 }))
-export { connectUser, disconnectUser, loading }
+
+const logoutUser = createAction('auth/logoutUser')
+
+export { connectUser, disconnectUser, loading, logoutUser }

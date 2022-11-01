@@ -47,7 +47,7 @@ function SignIn() {
           onChange={(e) => setPassword(e.target.value)}
         />
         <button type="submit" disabled={loading}>
-          Create user
+          Login
         </button>
       </form>
     </div>

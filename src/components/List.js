@@ -11,6 +11,7 @@ function List() {
   const [droppedItem, setDroppedItem] = useState({ index: null, list: null })
 
   const { todos, archive, pin } = useSelector((state) => state.todos)
+  const userID = useSelector((state) => state.auth.currentUser.id)
 
   const handleDragStart = (elIndex, status) => {
     setDraggedItem({ index: elIndex, list: status })
@@ -54,7 +55,7 @@ function List() {
       switchItems(draggedItem.index, droppedItem.index, draggedItem.list)
     )
     dispatch(normalizeList(draggedItem.list))
-    dispatch(synchronize([draggedItem.list]))
+    dispatch(synchronize(userID, [draggedItem.list]))
   }, [droppedItem])
 
   return (

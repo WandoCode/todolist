@@ -1,5 +1,5 @@
 import { createReducer } from '@reduxjs/toolkit'
-import { connectUser, loading } from './auth.actions'
+import { connectUser, loading, logoutUser } from './auth.actions'
 const initialState = {
   isConnected: false,
   loading: false,
@@ -21,6 +21,7 @@ const authReducer = createReducer(initialState, (builder) => {
     .addCase(loading, (state, action) => {
       state.loading = action.payload.isLoading
     })
+    .addCase(logoutUser, () => initialState)
 })
 
 export default authReducer

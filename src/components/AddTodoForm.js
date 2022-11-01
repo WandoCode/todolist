@@ -1,5 +1,5 @@
 import { useRef } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { synchronize } from '../redux/todos/todos.middleware'
 import { validateForm } from '../utils/formValidation'
 import uniqid from 'uniqid'
@@ -8,6 +8,7 @@ import { addTodo, normalizeList } from '../redux/todos/todos.action'
 function AddTodoForm() {
   const dispatch = useDispatch()
   const inputRef = useRef()
+  const userID = useSelector((state) => state.auth.currentUser.id)
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -25,7 +26,7 @@ function AddTodoForm() {
       }
       dispatch(addTodo(newTodo))
       dispatch(normalizeList(0))
-      dispatch(synchronize(0))
+      dispatch(synchronize(userID, 0))
     }
   }
 
