@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import TodoItem from './TodoItem'
 import { useDispatch, useSelector } from 'react-redux'
 import { normalizeList, switchItems } from '../redux/todos/todos.action'
@@ -9,7 +9,6 @@ function List() {
   const dispatch = useDispatch()
   const [draggedItem, setDraggedItem] = useState({ index: null, list: null })
   const [droppedItem, setDroppedItem] = useState({ index: null, list: null })
-  const [itemListDOM, setItemListDOM] = useState([])
 
   const { todos, archive, pin } = useSelector((state) => state.todos)
 
@@ -37,13 +36,13 @@ function List() {
     return todosDOM
   }
 
-  useEffect(() => {
+  const itemListDOM = useMemo(() => {
     const allItemsDOM = [
       ...makeItemListDOM(pin),
       ...makeItemListDOM(todos),
       ...makeItemListDOM(archive),
     ]
-    setItemListDOM(allItemsDOM)
+    return allItemsDOM
   }, [todos, archive, pin])
 
   useEffect(() => {
