@@ -9,6 +9,7 @@ const initialState = {
     name: undefined,
   },
 }
+
 const authReducer = createReducer(initialState, (builder) => {
   builder
     .addCase(connectUser, (state, action) => {

@@ -1,4 +1,6 @@
 import { initializeApp } from 'firebase/app'
+import { connectAuthEmulator, getAuth } from 'firebase/auth'
+import { connectFirestoreEmulator, getFirestore } from 'firebase/firestore/lite'
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -14,7 +16,17 @@ const firebaseConfig = {
   measurementId: 'G-C4EMDQHMKM',
 }
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig)
+const auth = getAuth(app)
+const db = getFirestore(app)
 
-export default app
+const testWithLocalEnv = process.env.REACT_APP_LOCAL === 'true'
+if (testWithLocalEnv) {
+  console.warn(
+    '!! You are in a local development environement, be sure to have launch firebase emulators to continue !! (firebase emulators:start)'
+  )
+  connectAuthEmulator(auth, 'http://localhost:9099')
+  connectFirestoreEmulator(db, 'localhost', 8080)
+}
+
+export { app, auth, db }

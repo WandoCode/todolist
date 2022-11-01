@@ -1,30 +1,14 @@
 import {
-  getFirestore,
   collection,
   getDocs,
   setDoc,
   doc,
   updateDoc,
-  connectFirestoreEmulator,
 } from 'firebase/firestore/lite'
 
 import { getTodosListName } from '../utils/helpers'
 
-import app from './config'
-
-const testWithLocalEnv = process.env.REACT_APP_LOCAL === 'true'
-
-let db
-
-if (testWithLocalEnv) {
-  console.warn(
-    '!! You are in a local development environement, be sure to have launch firebase emulators to continue !! (firebase emulators:start)'
-  )
-  db = getFirestore()
-  connectFirestoreEmulator(db, 'localhost', 8080)
-} else {
-  db = getFirestore(app)
-}
+import { db } from './firebase.config'
 
 const todosStore = () => {
   const getTodos = async (userID) => {

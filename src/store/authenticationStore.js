@@ -1,16 +1,8 @@
-import app from './config'
+import { auth } from './firebase.config'
 import {
-  getAuth,
-  connectAuthEmulator,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
 } from 'firebase/auth'
-
-const testWithLocalEnv = process.env.REACT_APP_LOCAL === 'true'
-
-const auth = getAuth(app)
-
-if (testWithLocalEnv) connectAuthEmulator(auth, 'http://localhost:9099')
 
 const createUser = async (email, password) => {
   try {
