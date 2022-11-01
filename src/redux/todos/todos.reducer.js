@@ -8,6 +8,7 @@ import {
   addTodo,
   delTodo,
   loadingTodos,
+  updateTodo,
 } from './todos.action'
 import { getTodosListName, normalizeOrder } from '../../utils/helpers'
 
@@ -57,6 +58,13 @@ const todosReducer = createReducer(initialState, (builder) => {
     })
     .addCase(loadingTodos, (state, action) => {
       state.loading = action.payload.isLoading
+    })
+    .addCase(updateTodo, (state, action) => {
+      const { todoText, todoListInt, todoIndex } = action.payload
+
+      const listName = getTodosListName(todoListInt)
+
+      state[listName][todoIndex].message = todoText
     })
 })
 

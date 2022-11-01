@@ -38,6 +38,13 @@ const loadingTodos = createAction('todos/loadingTodos', (isLoading) => ({
   payload: { isLoading },
 }))
 
+const updateTodo = createAction(
+  'todos/updateTodo',
+  (todoText, todoListInt, todoIndex) => ({
+    payload: { todoText, todoListInt, todoIndex },
+  })
+)
+
 export {
   getTodos,
   addTodo,
@@ -47,4 +54,5 @@ export {
   togglePinItem,
   normalizeList,
   loadingTodos,
+  updateTodo,
 }

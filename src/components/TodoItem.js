@@ -5,10 +5,13 @@ import {
   togglePinItem,
 } from '../redux/todos/todos.action'
 import { synchronize } from '../redux/todos/todos.middleware'
+import { useState } from 'react'
+import UpdateTodoForm from './UpdateTodoForm'
 
 function TodoItem({ todo, tempOrder, onHandleDragStart, onHandleDrop }) {
   const dispatch = useDispatch()
   const userID = useSelector((state) => state.auth.currentUser.id)
+  const [editMessage, setEditMessage] = useState(false)
 
   const buildItemClass = () => {
     let itemClass = 'todo-item '
@@ -18,7 +21,9 @@ function TodoItem({ todo, tempOrder, onHandleDragStart, onHandleDrop }) {
     return itemClass
   }
 
-  const handleDragStart = () => {
+  const handleDragStart = (e) => {
+    e.preventDefault()
+    e.stopPropagation()
     onHandleDragStart(tempOrder, todo.status)
   }
 
@@ -30,19 +35,28 @@ function TodoItem({ todo, tempOrder, onHandleDragStart, onHandleDrop }) {
     e.preventDefault() // Important for onDrop to work
   }
 
-  const handleToggleArchive = () => {
+  const handleToggleArchive = (e) => {
+    e.stopPropagation()
+
     dispatch(toggleArchiveItem(tempOrder, todo.status))
     dispatch(synchronize(userID))
   }
 
-  const handleTogglePin = () => {
+  const handleTogglePin = (e) => {
+    e.stopPropagation()
+
     dispatch(togglePinItem(tempOrder, todo.status))
     dispatch(synchronize(userID))
   }
 
-  const handleDelete = () => {
+  const handleDelete = (e) => {
+    e.stopPropagation()
     dispatch(delTodo(tempOrder, todo.status))
     dispatch(synchronize(userID, [todo.status]))
+  }
+
+  const handleClick = (e) => {
+    setEditMessage(editMessage ? false : true)
   }
 
   return (
@@ -52,17 +66,28 @@ function TodoItem({ todo, tempOrder, onHandleDragStart, onHandleDrop }) {
       onDragOver={handleDragOver}
       onDrop={handleDrop}
       className={buildItemClass()}
+      onClick={handleClick}
     >
-      {todo.message}" order: "{todo.order}
-      <div className="btns">
-        <button onClick={handleToggleArchive}>
-          {todo.status !== -1 ? 'Done' : 'Undone'}
-        </button>
-        <button onClick={handleTogglePin}>
-          {todo.status !== 1 ? 'Pin' : 'Unpin'}
-        </button>
-        <button onClick={handleDelete}>Delete</button>
-      </div>
+      {editMessage ? (
+        <UpdateTodoForm
+          message={todo.message}
+          todoIndex={tempOrder}
+          status={todo.status}
+        />
+      ) : (
+        <>
+          {todo.message}
+          <div className="btns">
+            <button onClick={handleToggleArchive}>
+              {todo.status !== -1 ? 'Done' : 'Undone'}
+            </button>
+            <button onClick={handleTogglePin}>
+              {todo.status !== 1 ? 'Pin' : 'Unpin'}
+            </button>
+            <button onClick={handleDelete}>Delete</button>
+          </div>
+        </>
+      )}
     </li>
   )
 }

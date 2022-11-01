@@ -23,8 +23,9 @@ const db = getFirestore(app)
 const testWithLocalEnv = process.env.REACT_APP_LOCAL === 'true'
 if (testWithLocalEnv) {
   console.warn(
-    '!! You are in a local development environement, be sure to have launch firebase emulators to continue !! (firebase emulators:start)'
+    '!! You are in a local development environement, be sure to have launched firebase emulators to continue !! (firebase emulators:start)'
   )
+
   connectAuthEmulator(auth, 'http://localhost:9099')
   connectFirestoreEmulator(db, 'localhost', 8080)
 }
