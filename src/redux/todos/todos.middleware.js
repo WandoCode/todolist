@@ -17,7 +17,10 @@ const getTodosMiddleware = (userID) => {
       allTodos = await storeInstance.getTodos(userID)
     }
 
-    if (allTodos.length === 0) await initDB(userID)
+    if (allTodos.length === 0) {
+      await initDB(userID)
+      allTodos = await storeInstance.getTodos(userID)
+    }
 
     const todos = allTodos.find((el) => el.todos)
     const pin = allTodos.find((el) => el.pin)

@@ -29,7 +29,6 @@ const todosStore = () => {
 
   const addCollection = async (listName, datas, userID) => {
     try {
-      // TODO: mettre l'id de l'utilisateur au lieu de 'todos'
       const todoDoc = doc(db, `${userID}/${listName}`)
 
       const documentDatas = {}
@@ -43,7 +42,6 @@ const todosStore = () => {
 
   const saveCollection = async (newTodosArray, listName, userID) => {
     try {
-      // TODO: mettre l'id de l'utilisateur au lieu de 'todos'
       const todoDoc = doc(db, `${userID}/${listName}`)
 
       const documentDatas = {}
@@ -65,7 +63,6 @@ const todosStore = () => {
 
       list[listName].push(todoObject)
 
-      // TODO: mettre l'id de l'utilisateur au lieu de 'todos'
       const todoDoc = doc(db, `${userID}/${listName}`)
 
       await updateDoc(todoDoc, list)
@@ -88,7 +85,6 @@ const todosStore = () => {
 
       list[listName].splice(oldTodoIndex, 1, modifiedTodoObject)
 
-      // TODO: mettre l'id de l'utilisateur au lieu de 'todos'
       const todoDoc = doc(db, `${userID}/${listName}`)
 
       await updateDoc(todoDoc, list)

@@ -26,7 +26,7 @@ function AddTodoForm() {
       }
       dispatch(addTodo(newTodo))
       dispatch(normalizeList(0))
-      dispatch(synchronize(userID, 0))
+      dispatch(synchronize(userID, [0]))
     }
   }
 
