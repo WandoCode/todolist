@@ -22,8 +22,6 @@ function TodoItem({ todo, tempOrder, onHandleDragStart, onHandleDrop }) {
   }
 
   const handleDragStart = (e) => {
-    e.preventDefault()
-    e.stopPropagation()
     onHandleDragStart(tempOrder, todo.status)
   }
 
@@ -61,8 +59,8 @@ function TodoItem({ todo, tempOrder, onHandleDragStart, onHandleDrop }) {
 
   return (
     <li
-      draggable="true"
-      onDragStart={handleDragStart}
+      draggable={editMessage ? false : true}
+      onDragStartCapture={handleDragStart}
       onDragOver={handleDragOver}
       onDrop={handleDrop}
       className={buildItemClass()}
