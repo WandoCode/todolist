@@ -15,12 +15,12 @@ body {
 }
 
 .btn {
-  font-size: 16px;
+  font-size: 15px;
   color: white;
   background-color: #4c60fc;
   border: none;
   border-radius: 8px;
-  padding: 0px 45px;
+  padding: 15px 45px;
   font-weight: 500;
   cursor: pointer;
   transition: 0.2s;
@@ -30,11 +30,15 @@ body {
   justify-content: center;
 }
 .btn img {
-  height: 40%;
+  height: 100%;
   filter: invert(100%);
   margin-left: 10px;
 }
 .btn:hover {
   background-color: #2941fb;
   translate: 0 -5%;
+}
+
+.sign-form {
+  background-color: white;
 }/*# sourceMappingURL=index.css.map */
