@@ -1,20 +1,18 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { signInMiddleware } from '../redux/auth/auth.middlewares'
+import { signUpMiddleware } from '../redux/auth/auth.middlewares'
+
 import Button from './Button'
-
-function SiginForm() {
+function SignupForm() {
   const dispatch = useDispatch()
-
   const loading = useSelector((state) => state.auth.loading)
-
   const [email, setEmail] = useState('')
+
   const [password, setPassword] = useState('')
 
   const handleSubmit = (e) => {
     e.preventDefault()
-
-    dispatch(signInMiddleware(email, password))
+    dispatch(signUpMiddleware(email, password))
   }
   return (
     <form action="">
@@ -34,9 +32,13 @@ function SiginForm() {
         value={password}
         onChange={(e) => setPassword(e.target.value)}
       />
-      <Button text="Login" onClickHandler={handleSubmit} disabled={loading} />
+      <Button
+        text="Create user"
+        onClickHandler={handleSubmit}
+        disabled={loading}
+      />
     </form>
   )
 }
 
-export default SiginForm
+export default SignupForm

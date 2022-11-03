@@ -4,6 +4,7 @@ import { synchronize } from '../redux/todos/todos.middleware'
 import { validateForm } from '../utils/formValidation'
 import uniqid from 'uniqid'
 import { addTodo, normalizeList } from '../redux/todos/todos.action'
+import Button from './Button'
 
 function AddTodoForm() {
   const dispatch = useDispatch()
@@ -42,9 +43,7 @@ function AddTodoForm() {
         className="add-todo__input"
         ref={inputRef}
       />
-      <button type="submit" className="add-todo__sumbit" onClick={handleSubmit}>
-        Ajouter
-      </button>
+      <Button text="Ajouter" onClickHandler={handleSubmit} />
     </form>
   )
 }
