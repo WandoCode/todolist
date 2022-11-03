@@ -7,6 +7,7 @@ import {
 import { synchronize } from '../redux/todos/todos.middleware'
 import { useState } from 'react'
 import UpdateTodoForm from './UpdateTodoForm'
+import Button from './Button'
 
 function TodoItem({ todo, tempOrder, onHandleDragStart, onHandleDrop }) {
   const dispatch = useDispatch()
@@ -76,13 +77,15 @@ function TodoItem({ todo, tempOrder, onHandleDragStart, onHandleDrop }) {
         <>
           {todo.message}
           <div className="btns">
-            <button onClick={handleToggleArchive}>
-              {todo.status !== -1 ? 'Done' : 'Undone'}
-            </button>
-            <button onClick={handleTogglePin}>
-              {todo.status !== 1 ? 'Pin' : 'Unpin'}
-            </button>
-            <button onClick={handleDelete}>Delete</button>
+            <Button
+              text={todo.status !== -1 ? 'Done' : 'Undone'}
+              onClickHandler={handleToggleArchive}
+            />
+            <Button
+              text={todo.status !== 1 ? 'Pin' : 'Unpin'}
+              onClickHandler={handleTogglePin}
+            />
+            <Button text="Delete" onClickHandler={handleDelete} />
           </div>
         </>
       )}

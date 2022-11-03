@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { updateTodo } from '../redux/todos/todos.action'
 import { synchronize } from '../redux/todos/todos.middleware'
+import Button from './Button'
 
 function UpdateTodoForm({ message, todoIndex, status }) {
   const dispatch = useDispatch()
@@ -22,6 +23,7 @@ function UpdateTodoForm({ message, todoIndex, status }) {
 
   const handleClick = (e) => {
     e.stopPropagation()
+    e.preventDefault()
   }
 
   return (
@@ -34,8 +36,8 @@ function UpdateTodoForm({ message, todoIndex, status }) {
         onChange={(e) => setInputValue(e.target.value)}
         onClick={handleClick}
       />
-      <button onClick={handleAccept}>Accept</button>
-      <button onClick={handleCancel}>Cancel</button>
+      <Button text="Accept" onClickHandler={handleAccept} />
+      <Button text="Cancel" onClickHandler={handleCancel} />
     </form>
   )
 }

@@ -23,7 +23,6 @@ const todosStore = () => {
       return todos
     } catch (err) {
       console.error('Error retreiving todos: ', err)
-      //TODO: faire un message en fct du status http? (200ok, 404, etc)???
     }
   }
 
