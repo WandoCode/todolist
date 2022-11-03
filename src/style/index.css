@@ -1,6 +1,10 @@
-.pinned {
-  background-color: rgb(252, 168, 168);
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+* {
+  margin: 0;
+  box-sizing: border-box;
 }
-.archived {
-  background-color: rgb(153, 155, 255);
-}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: #f1f0f0;
+}/*# sourceMappingURL=index.css.map */
