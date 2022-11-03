@@ -35,6 +35,7 @@ function SignupForm() {
       <Button
         text="Create user"
         onClickHandler={handleSubmit}
+        type={'main'}
         disabled={loading}
       />
     </form>

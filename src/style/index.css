@@ -4,7 +4,37 @@
   box-sizing: border-box;
 }
 
-body {
+body,
+input,
+button {
   font-family: "Poppins", sans-serif;
+}
+
+body {
   background-color: #f1f0f0;
+}
+
+.btn {
+  font-size: 16px;
+  color: white;
+  background-color: #4c60fc;
+  border: none;
+  border-radius: 8px;
+  padding: 0px 45px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.2s;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.btn img {
+  height: 40%;
+  filter: invert(100%);
+  margin-left: 10px;
+}
+.btn:hover {
+  background-color: #2941fb;
+  translate: 0 -5%;
 }/*# sourceMappingURL=index.css.map */

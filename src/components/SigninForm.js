@@ -34,7 +34,12 @@ function SiginForm() {
         value={password}
         onChange={(e) => setPassword(e.target.value)}
       />
-      <Button text="Login" onClickHandler={handleSubmit} disabled={loading} />
+      <Button
+        text="Login"
+        onClickHandler={handleSubmit}
+        disabled={loading}
+        type="main"
+      />
     </form>
   )
 }

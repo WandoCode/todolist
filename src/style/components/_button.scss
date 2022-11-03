@@ -1,0 +1,26 @@
+.btn {
+  font-size: 16px;
+  color: white;
+  background-color: $primary;
+  border: none;
+  border-radius: 8px;
+  padding: 0px 45px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.2s;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  & img {
+    height: 40%;
+    filter: invert(100%);
+    margin-left: 10px;
+  }
+
+  &:hover {
+    background-color: darken($primary, 7%);
+    translate: 0 -5%;
+  }
+}

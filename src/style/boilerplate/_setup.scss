@@ -1,4 +1,9 @@
-body {
+body,
+input,
+button {
   font-family: 'Poppins', sans-serif;
+}
+
+body {
   background-color: $main-bg;
 }
