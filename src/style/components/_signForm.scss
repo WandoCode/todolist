@@ -41,7 +41,8 @@
     border-bottom: 1px solid lighten($medium, 42%);
 
     &--error {
-      outline: 1px solid red;
+      background-color: rgba(255, 0, 0, 0.062);
+      border-radius: 3px;
     }
   }
   &__icon {
@@ -50,7 +51,7 @@
     height: 18px;
     right: 0;
     bottom: 0;
-    translate: 0 -100%;
+    translate: 0 -75%;
     filter: invert(97%) sepia(0%) saturate(1262%) hue-rotate(174deg)
       brightness(94%) contrast(84%);
   }
@@ -65,5 +66,13 @@
     &:hover {
       color: darken($primary, 10%);
     }
+  }
+
+  &__error {
+    font-size: 12px;
+    color: rgb(219, 0, 0);
+    align-self: flex-start;
+    margin-top: -12px;
+    margin-bottom: 12px;
   }
 }

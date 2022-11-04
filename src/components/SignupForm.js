@@ -11,9 +11,9 @@ import { validateForm } from '../utils/formValidation'
 function SignupForm() {
   const dispatch = useDispatch()
   const loading = useSelector((state) => state.auth.loading)
-  const [email, setEmail] = useState('')
   const [currentFocus, setCurrentFocus] = useState()
 
+  const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [confirmation, setConfirmation] = useState('')
   const [validationErrors, setValidationErrors] = useState([])
@@ -26,9 +26,8 @@ function SignupForm() {
     if (validationErrors.length > 0) {
       setValidationErrors(validationErrors)
     } else {
-      setValidationErrors([])
+      dispatch(signUpMiddleware(email, password))
     }
-    dispatch(signUpMiddleware(email, password))
   }
 
   return (
@@ -59,6 +58,9 @@ function SignupForm() {
         />
         <img src={userIcon} alt="User" className="sign-form__icon" />
       </div>
+      {validationErrors.includes('email') && (
+        <div className="sign-form__error">Invalid email</div>
+      )}
       <div
         className={
           currentFocus === 'password'
@@ -85,6 +87,9 @@ function SignupForm() {
         />
         <img src={eyeIcon} alt="Eye" className="sign-form__icon" />
       </div>
+      {validationErrors.includes('password') && (
+        <div className="sign-form__error">Invalid password</div>
+      )}
       <div
         className={
           currentFocus === 'confirmation'
@@ -111,6 +116,11 @@ function SignupForm() {
         />
         <img src={eyeIcon} alt="Eye" className="sign-form__icon" />
       </div>
+      {validationErrors.includes('confirmation') && (
+        <div className="sign-form__error">
+          Password and confirmation are different
+        </div>
+      )}
       <Link className="sign-form__link" to="/signin">
         You already have an account?
       </Link>

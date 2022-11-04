@@ -18,7 +18,6 @@ const signUpMiddleware = (email, password) => {
     dispatch(loading(true))
 
     const user = await createUser(email, password)
-
     if (user) {
       dispatch(connectUser(user.email, user.uid, user.displayName))
     }

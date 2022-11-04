@@ -115,7 +115,8 @@ h2 {
   border-bottom: 1px solid rgba(221, 220, 229, 0.8);
 }
 .sign-form__input--error {
-  outline: 1px solid red;
+  background-color: rgba(255, 0, 0, 0.062);
+  border-radius: 3px;
 }
 .sign-form__icon {
   position: absolute;
@@ -123,7 +124,7 @@ h2 {
   height: 18px;
   right: 0;
   bottom: 0;
-  translate: 0 -100%;
+  translate: 0 -75%;
   filter: invert(97%) sepia(0%) saturate(1262%) hue-rotate(174deg) brightness(94%) contrast(84%);
 }
 .sign-form__link {
@@ -135,4 +136,11 @@ h2 {
 }
 .sign-form__link:hover {
   color: #1a33fb;
+}
+.sign-form__error {
+  font-size: 12px;
+  color: rgb(219, 0, 0);
+  align-self: flex-start;
+  margin-top: -12px;
+  margin-bottom: 12px;
 }/*# sourceMappingURL=index.css.map */
