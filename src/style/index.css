@@ -14,6 +14,40 @@ body {
   background-color: #f1f0f0;
 }
 
+.App {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+h1 {
+  color: #3b3663;
+  font-size: 28px;
+}
+
+h2 {
+  color: hsla(245deg, 14%, 46%, 0.8);
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.sign-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: white;
+  width: 90%;
+  max-width: 400px;
+  padding: 45px 35px;
+  border-radius: 5px;
+}
+.sign-page__icon {
+  height: 30px;
+  width: 30px;
+  filter: invert(40%) sepia(91%) saturate(4054%) hue-rotate(224deg) brightness(98%) contrast(101%);
+}
+
 .btn {
   font-size: 15px;
   color: white;
@@ -28,11 +62,13 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-top: 15px;
 }
 .btn img {
   height: 100%;
   filter: invert(100%);
   margin-left: 10px;
+  margin-right: -10px;
 }
 .btn:hover {
   background-color: #2941fb;
@@ -40,5 +76,60 @@ body {
 }
 
 .sign-form {
-  background-color: white;
+  width: 100%;
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.sign-form__row {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  color: rgba(158, 156, 180, 0.8);
+  margin-bottom: 15px;
+  width: 100%;
+}
+.sign-form__row::after {
+  content: "";
+  border-top: 2px solid #4c60fc;
+  width: 100%;
+  translate: 0 -2px;
+  transition: 0.25s ease-in;
+  scale: 0 1;
+}
+.sign-form__row--focus::after {
+  width: 100%;
+  scale: 1 1;
+}
+.sign-form__label {
+  font-size: 16px;
+}
+.sign-form__input {
+  font-size: 16px;
+  height: 40px;
+  color: dark;
+  outline: none;
+  border: none;
+  padding-right: 25px;
+  border-bottom: 1px solid rgba(221, 220, 229, 0.8);
+}
+.sign-form__icon {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  right: 0;
+  bottom: 0;
+  translate: 0 -100%;
+  filter: invert(97%) sepia(0%) saturate(1262%) hue-rotate(174deg) brightness(94%) contrast(84%);
+}
+.sign-form__link {
+  display: inline-block;
+  font-size: 13px;
+  text-decoration: none;
+  color: #7e8dfd;
+  margin: 0 0 5px 0;
+}
+.sign-form__link:hover {
+  color: #1a33fb;
 }/*# sourceMappingURL=index.css.map */

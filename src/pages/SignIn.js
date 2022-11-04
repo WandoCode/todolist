@@ -1,6 +1,8 @@
 import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 
+import signinIcon from '../assets/signin.svg'
+
 import { useNavigate } from 'react-router-dom'
 import SiginForm from '../components/SigninForm'
 
@@ -16,8 +18,10 @@ function SignIn() {
   }, [userConnected])
 
   return (
-    <div className="signi">
-      <h1>Sign In</h1>
+    <div className="sign-page">
+      <img className="sign-page__icon" src={signinIcon} alt="User" />
+      <h1 className="h1 sign-page__title">Welcome!</h1>
+      <h2 className="h2 sign-page__subtitle">Sign in to your account</h2>
       <SiginForm />
     </div>
   )

@@ -2,7 +2,7 @@ import { useMemo } from 'react'
 import rightArrow from '../assets/arrow_right.svg'
 function Button({ text, onClickHandler, type, ...rest }) {
   const classBtn = useMemo(() => {
-    return type ? `btn btn__${type}` : 'btn'
+    return type ? `btn btn--${type}` : 'btn'
   }, [type])
 
   return (

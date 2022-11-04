@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
+import signupIcon from '../assets/circle-user-solid.svg'
 
 import { useNavigate } from 'react-router-dom'
 import SignupForm from '../components/SignupForm'
@@ -16,8 +17,10 @@ function SignUp() {
   }, [userConnected])
 
   return (
-    <div className="signup">
-      <h1>Sign UP</h1>
+    <div className="sign-page">
+      <img className="sign-page__icon" src={signupIcon} alt="User" />
+
+      <h1 className="h1 sign-page__title">Create account!</h1>
       <SignupForm />
     </div>
   )
