@@ -114,6 +114,9 @@ h2 {
   padding-right: 25px;
   border-bottom: 1px solid rgba(221, 220, 229, 0.8);
 }
+.sign-form__input--error {
+  outline: 1px solid red;
+}
 .sign-form__icon {
   position: absolute;
   width: 18px;
