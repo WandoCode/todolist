@@ -14,13 +14,17 @@ function AddTodoForm() {
   const handleSubmit = (e) => {
     e.preventDefault()
 
-    const formDatas = { message: inputRef.current.value }
+    const message = inputRef.current.value
 
-    const formIsValid = validation(formDatas).validateForm()
+    const validator = validation({
+      message,
+    })
 
-    if (formIsValid) {
+    const validationErrors = validator.validateForm()
+
+    if (validationErrors.length === 0) {
       const newTodo = {
-        message: formDatas.message,
+        message,
         status: 0,
         creationDate: new Date().toString(),
         id: uniqid(),

@@ -23,11 +23,13 @@ function SignupForm() {
   const handleSubmit = (e) => {
     e.preventDefault()
 
-    const validationErrors = validation({
+    const validator = validation({
       email,
       password,
       confirmation,
-    }).validateForm()
+    })
+
+    const validationErrors = validator.validateForm()
 
     if (validationErrors.length > 0) {
       setValidationErrors(validationErrors)

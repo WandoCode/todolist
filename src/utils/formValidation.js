@@ -1,5 +1,5 @@
 const validation = (formDatas) => {
-  const { password, confirmation, email } = formDatas
+  const { password, confirmation, email, message } = formDatas
 
   const validateForm = () => {
     const validationErrors = []
@@ -8,6 +8,7 @@ const validation = (formDatas) => {
       email: emailIsValid,
       password: passwordIsValid,
       confirmation: confirmationIsValid,
+      message: messageIsValid,
     }
 
     for (const name in formDatas) {
@@ -44,6 +45,12 @@ const validation = (formDatas) => {
     if (!confirmation) return false
 
     return password.length >= 6 && confirmation === password
+  }
+
+  const messageIsValid = () => {
+    if (!message) return false
+
+    return message.length > 0
   }
 
   return { validateForm }

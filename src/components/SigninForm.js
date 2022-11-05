@@ -23,7 +23,12 @@ function SiginForm() {
   const handleSubmit = (e) => {
     e.preventDefault()
 
-    const validationErrors = validation({ email, password }).validateForm()
+    const validator = validation({
+      email,
+      password,
+    })
+
+    const validationErrors = validator.validateForm()
 
     if (validationErrors.length > 0) {
       setValidationErrors(validationErrors)
