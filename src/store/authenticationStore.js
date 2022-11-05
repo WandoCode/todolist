@@ -11,10 +11,13 @@ const createUser = async (email, password) => {
       email,
       password
     )
+    console.log(credential)
     const user = credential.user
-    return user
+    return { user }
   } catch (err) {
-    console.log('Error while creating a new user: ' + err)
+    if (err.code === 'auth/email-already-in-use')
+      return { error: 'email-already-in-use' }
+    else throw err
   }
 }
 
@@ -22,9 +25,10 @@ const signIn = async (email, password) => {
   try {
     const credential = await signInWithEmailAndPassword(auth, email, password)
     const user = credential.user
-    return user
+    return { user }
   } catch (err) {
-    console.log('Error while login in user: ' + err)
+    if (err.code === 'auth/user-not-found') return { error: 'user-not-found' }
+    else throw err
   }
 }
 

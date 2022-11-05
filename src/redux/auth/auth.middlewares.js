@@ -1,13 +1,15 @@
 import { createUser, signIn } from '../../store/authenticationStore'
-import { connectUser, loading } from './auth.actions'
+import { connectUser, loading, setAuthError } from './auth.actions'
 
 const signInMiddleware = (email, password) => {
   return async (dispatch) => {
     dispatch(loading(true))
-    const user = await signIn(email, password)
+    const rep = await signIn(email, password)
 
-    if (user) {
-      dispatch(connectUser(user.email, user.uid, user.displayName))
+    if (rep.error) {
+      dispatch(setAuthError(rep.error))
+    } else if (rep.user) {
+      dispatch(connectUser(rep.user.email, rep.user.uid, rep.user.displayName))
     }
     dispatch(loading(false))
   }
@@ -16,10 +18,13 @@ const signInMiddleware = (email, password) => {
 const signUpMiddleware = (email, password) => {
   return async (dispatch) => {
     dispatch(loading(true))
+    const rep = await createUser(email, password)
 
-    const user = await createUser(email, password)
-    if (user) {
-      dispatch(connectUser(user.email, user.uid, user.displayName))
+    if (rep.error) {
+      dispatch(setAuthError(rep.error))
+    }
+    if (rep.user) {
+      dispatch(connectUser(rep.user.email, rep.user.uid, rep.user.displayName))
     }
     dispatch(loading(false))
   }

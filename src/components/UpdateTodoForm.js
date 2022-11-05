@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { updateTodo } from '../redux/todos/todos.action'
 import { synchronize } from '../redux/todos/todos.middleware'
+import validation from '../utils/formValidation'
 import Button from './Button'
 
 function UpdateTodoForm({ message, todoIndex, status }) {
@@ -12,9 +13,18 @@ function UpdateTodoForm({ message, todoIndex, status }) {
   const handleAccept = (e) => {
     e.preventDefault()
 
-    //TODO: valider le formulaire
-    dispatch(updateTodo(inputValue, status, todoIndex))
-    dispatch(synchronize(userID, [status]))
+    const validator = validation({
+      message: inputValue,
+    })
+
+    const validationErrors = validator.validateForm()
+
+    if (validationErrors.length === 0) {
+      dispatch(updateTodo(inputValue, status, todoIndex))
+      dispatch(synchronize(userID, [status]))
+    } else {
+      //TODO: show error
+    }
   }
 
   const handleCancel = (e) => {

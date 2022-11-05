@@ -14,4 +14,8 @@ const loading = createAction('auth/loading', (isLoading) => ({
 
 const logoutUser = createAction('auth/logoutUser')
 
-export { connectUser, disconnectUser, loading, logoutUser }
+const setAuthError = createAction('auth/setAuthError', (error) => ({
+  payload: { error },
+}))
+
+export { connectUser, disconnectUser, loading, logoutUser, setAuthError }

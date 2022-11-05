@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { useCallback, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import validation from '../utils/formValidation'
@@ -9,16 +9,22 @@ import Button from './Button'
 
 import userIcon from '../assets/user-solid.svg'
 import eyeIcon from '../assets/eye-solid.svg'
+import { setAuthError } from '../redux/auth/auth.actions'
 
 function SiginForm() {
   const dispatch = useDispatch()
 
   const loading = useSelector((state) => state.auth.loading)
+  const authError = useSelector((state) => state.auth.error)
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [currentFocus, setCurrentFocus] = useState()
   const [validationErrors, setValidationErrors] = useState([])
+
+  useEffect(() => {
+    return () => dispatch(setAuthError(null))
+  }, [])
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -57,6 +63,9 @@ function SiginForm() {
 
   return (
     <form className="sign-form">
+      {authError === 'user-not-found' && (
+        <div className="sign-form__error">User/password not found.</div>
+      )}
       <div className={getClassRow('email')}>
         <label className="sign-form__label" htmlFor="email">
           Email
@@ -95,7 +104,6 @@ function SiginForm() {
           onFocus={() => setCurrentFocus('password')}
           onBlur={() => setCurrentFocus(undefined)}
         />
-
         <img src={eyeIcon} alt="Eye" className="sign-form__icon" />
       </div>
 

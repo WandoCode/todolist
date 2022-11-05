@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { useCallback, useState } from 'react'
+import { useCallback, useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { signUpMiddleware } from '../redux/auth/auth.middlewares'
@@ -9,16 +9,22 @@ import Button from './Button'
 
 import userIcon from '../assets/user-solid.svg'
 import eyeIcon from '../assets/eye-solid.svg'
+import { setAuthError } from '../redux/auth/auth.actions'
 
 function SignupForm() {
   const dispatch = useDispatch()
   const loading = useSelector((state) => state.auth.loading)
+  const authError = useSelector((state) => state.auth.error)
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [confirmation, setConfirmation] = useState('')
   const [currentFocus, setCurrentFocus] = useState()
   const [validationErrors, setValidationErrors] = useState([])
+
+  useEffect(() => {
+    return () => dispatch(setAuthError(null))
+  }, [])
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -58,6 +64,9 @@ function SignupForm() {
 
   return (
     <form className="sign-form">
+      {authError === 'email-already-in-use' && (
+        <div className="sign-form__error">Email already used</div>
+      )}
       <div className={getClassRow('email')}>
         <label className="sign-form__label" htmlFor="email">
           Email
