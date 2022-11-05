@@ -3,7 +3,7 @@ import { useCallback, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { signUpMiddleware } from '../redux/auth/auth.middlewares'
-import { validateForm } from '../utils/formValidation'
+import validation from '../utils/formValidation'
 
 import Button from './Button'
 
@@ -23,7 +23,11 @@ function SignupForm() {
   const handleSubmit = (e) => {
     e.preventDefault()
 
-    const validationErrors = validateForm({ email, password, confirmation })
+    const validationErrors = validation({
+      email,
+      password,
+      confirmation,
+    }).validateForm()
 
     if (validationErrors.length > 0) {
       setValidationErrors(validationErrors)

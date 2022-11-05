@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import { useCallback, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { validateForm } from '../utils/formValidation'
+import validation from '../utils/formValidation'
 import { signInMiddleware } from '../redux/auth/auth.middlewares'
 
 import Button from './Button'
@@ -23,7 +23,7 @@ function SiginForm() {
   const handleSubmit = (e) => {
     e.preventDefault()
 
-    const validationErrors = validateForm({ email, password })
+    const validationErrors = validation({ email, password }).validateForm()
 
     if (validationErrors.length > 0) {
       setValidationErrors(validationErrors)

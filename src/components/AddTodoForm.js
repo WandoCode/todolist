@@ -1,7 +1,7 @@
 import { useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { synchronize } from '../redux/todos/todos.middleware'
-import { validateForm } from '../utils/formValidation'
+import validation from '../utils/formValidation'
 import uniqid from 'uniqid'
 import { addTodo, normalizeList } from '../redux/todos/todos.action'
 import Button from './Button'
@@ -16,7 +16,7 @@ function AddTodoForm() {
 
     const formDatas = { message: inputRef.current.value }
 
-    const formIsValid = validateForm(formDatas)
+    const formIsValid = validation(formDatas).validateForm()
 
     if (formIsValid) {
       const newTodo = {
