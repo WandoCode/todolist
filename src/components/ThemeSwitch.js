@@ -1,44 +1,32 @@
-import { useEffect, useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { setTheme } from '../redux/theme/theme.actions'
+import moon from '../assets/moon.svg'
+import sun from '../assets/sun.svg'
 
 function ThemeSwitch() {
   const dispatch = useDispatch()
-  const [nextTheme, setNextTheme] = useState()
+  const currTheme = useSelector((state) => state.theme.theme)
 
   useEffect(() => {
-    if (!nextTheme) {
+    if (!currTheme) {
       const darkThemeMq = window.matchMedia('(prefers-color-scheme: dark)')
-      darkThemeMq.matches ? setNextTheme('dark') : setNextTheme('light')
+      dispatch(setTheme(darkThemeMq.matches ? 'dark' : 'light'))
     }
+  }, [])
 
-    dispatch(setTheme(nextTheme))
-  }, [nextTheme])
+  const handleClick = () => {
+    const newTheme = currTheme === 'light' ? 'dark' : 'light'
+    dispatch(setTheme(newTheme))
+  }
 
   return (
-    <div className="theme-switch">
-      <label htmlFor="light-theme">
-        <input
-          type="radio"
-          name="theme-switch"
-          id="light-theme"
-          value="light"
-          checked={nextTheme === 'light'}
-          onChange={(e) => setNextTheme(e.target.value)}
-        />
-        Light
-      </label>
-      <label htmlFor="dark-theme">
-        <input
-          type="radio"
-          name="theme-switch"
-          id="dark-theme"
-          value="dark"
-          checked={nextTheme === 'dark'}
-          onChange={(e) => setNextTheme(e.target.value)}
-        />
-        Dark
-      </label>
+    <div className="theme-switch" onClick={handleClick}>
+      <img className="theme-switch__icon" src={sun} alt="sun" />
+      <img className="theme-switch__icon" src={moon} alt="moon" />
+      <span
+        className={`theme-switch__cursor theme-switch__cursor--${currTheme}`}
+      ></span>
     </div>
   )
 }

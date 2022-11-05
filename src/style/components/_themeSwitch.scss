@@ -1,2 +1,37 @@
-.themeSwitch {
+.theme-switch {
+  position: relative;
+  background-color: gray;
+  border-radius: 20px;
+  display: flex;
+  gap: 12px;
+  padding: 5px 5px;
+  font-size: 12px;
+  cursor: pointer;
+  width: max-content;
+  &__cursor {
+    position: absolute;
+    height: 18px;
+    width: 18px;
+    background-color: rgb(220, 220, 220);
+    top: 0;
+    bottom: 0;
+    left: 0;
+    border-radius: 20px;
+    transition: 0.2s ease-in-out;
+    &--dark {
+      background-color: rgb(59, 59, 59);
+
+      translate: 150% 2px;
+    }
+    &--light {
+      background-color: rgb(220, 220, 220);
+
+      translate: 4px 2px;
+    }
+  }
+
+  &__icon {
+    height: 13px;
+    filter: invert(100%);
+  }
 }
