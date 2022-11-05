@@ -9,11 +9,19 @@ body {
   background-color: $main-bg;
 }
 
-.App {
-  height: 100vh;
-  & .main {
+.app {
+  min-height: 100vh;
+  & .header {
+    height: 50px;
     display: flex;
     align-items: center;
+    padding: 0 20px;
+  }
+
+  & .main {
+    height: 70vh;
+    display: flex;
     justify-content: center;
+    align-items: center;
   }
 }

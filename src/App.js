@@ -7,8 +7,11 @@ function App() {
   const theme = useSelector((state) => state.theme.theme)
 
   return (
-    <div className="App" id={theme}>
-      <ThemeSwitch />
+    <div className="app" id={theme}>
+      <header className="header">
+        <ThemeSwitch />
+      </header>
+
       <main className="main">
         <Router />
       </main>

@@ -4,6 +4,11 @@
   box-sizing: border-box;
 }
 
+ul {
+  list-style: none;
+  padding: 0;
+}
+
 body,
 input,
 button {
@@ -15,13 +20,20 @@ body {
   background-color: #f1f0f0;
 }
 
-.App {
-  height: 100vh;
+.app {
+  min-height: 100vh;
 }
-.App .main {
+.app .header {
+  height: 50px;
   display: flex;
   align-items: center;
+  padding: 0 20px;
+}
+.app .main {
+  height: 70vh;
+  display: flex;
   justify-content: center;
+  align-items: center;
 }
 
 h1 {
@@ -185,6 +197,6 @@ h2 {
   filter: invert(100%);
 }
 
-#dark.App {
+#dark.app {
   background-color: rgb(73, 73, 73);
 }/*# sourceMappingURL=index.css.map */

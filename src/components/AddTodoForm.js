@@ -25,7 +25,6 @@ function AddTodoForm() {
 
     if (validationErrors.length === 0) {
       setShowError(false)
-
       const newTodo = {
         message,
         status: 0,
@@ -44,6 +43,7 @@ function AddTodoForm() {
     () => (showError ? 'add-todo__input--error' : 'add-todo__input'),
     [showError]
   )
+
   return (
     <form action="" className="add-todo">
       <label htmlFor="new-todo" className="add-todo__label">
