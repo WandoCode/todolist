@@ -1,13 +1,17 @@
+import { useSelector } from 'react-redux'
 import ThemeSwitch from './components/ThemeSwitch'
 import Router from './Router'
 import './style/index.css'
 
 function App() {
-  return (
-    <div className="App">
-      <ThemeSwitch />
+  const theme = useSelector((state) => state.theme.theme)
 
-      <Router />
+  return (
+    <div className="App" id={theme}>
+      <ThemeSwitch />
+      <main className="main">
+        <Router />
+      </main>
     </div>
   )
 }

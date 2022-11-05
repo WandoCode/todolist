@@ -17,16 +17,13 @@ body {
 
 .App {
   height: 100vh;
+}
+.App .main {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-@media (prefers-color-scheme: light) {
-  .App {
-    border: 5px solid red;
-  }
-}
 h1 {
   color: #3b3663;
   font-size: 28px;
@@ -149,4 +146,8 @@ h2 {
   align-self: flex-start;
   margin-top: -12px;
   margin-bottom: 12px;
+}
+
+#dark.App {
+  background-color: rgb(73, 73, 73);
 }/*# sourceMappingURL=index.css.map */
