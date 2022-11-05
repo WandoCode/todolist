@@ -72,6 +72,7 @@ function TodoItem({ todo, tempOrder, onHandleDragStart, onHandleDrop }) {
           message={todo.message}
           todoIndex={tempOrder}
           status={todo.status}
+          onCloseEdit={setEditMessage}
         />
       ) : (
         <>

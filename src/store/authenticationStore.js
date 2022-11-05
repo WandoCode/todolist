@@ -11,7 +11,6 @@ const createUser = async (email, password) => {
       email,
       password
     )
-    console.log(credential)
     const user = credential.user
     return { user }
   } catch (err) {
@@ -28,6 +27,7 @@ const signIn = async (email, password) => {
     return { user }
   } catch (err) {
     if (err.code === 'auth/user-not-found') return { error: 'user-not-found' }
+    if (err.code === 'auth/wrong-password') return { error: 'wrong-password' }
     else throw err
   }
 }

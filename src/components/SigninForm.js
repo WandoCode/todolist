@@ -63,8 +63,8 @@ function SiginForm() {
 
   return (
     <form className="sign-form">
-      {authError === 'user-not-found' && (
-        <div className="sign-form__error">User/password not found.</div>
+      {(authError === 'user-not-found' || authError === 'wrong-password') && (
+        <div className="sign-form__error">User/password incorrect.</div>
       )}
       <div className={getClassRow('email')}>
         <label className="sign-form__label" htmlFor="email">
