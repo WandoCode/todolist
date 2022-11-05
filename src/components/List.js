@@ -59,10 +59,10 @@ function List() {
   }, [droppedItem])
 
   return (
-    <div className="list">
-      <ul>{itemListDOM}</ul>
+    <article className="list">
+      <ul className="list__container">{itemListDOM}</ul>
       <AddTodoForm />
-    </div>
+    </article>
   )
 }
 

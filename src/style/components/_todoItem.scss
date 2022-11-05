@@ -1,0 +1,28 @@
+.todo-item {
+  background-color: lighten($secondary, 0);
+  margin: 5px 0;
+  display: flex;
+  justify-content: space-between;
+  padding: 7px 20px;
+  border-radius: 5px;
+
+  &--pinned {
+    background-color: $secondary-bis;
+    font-weight: 500;
+  }
+  &--archived {
+    background-color: $secondary-ter;
+    color: gray;
+    font-weight: 300;
+  }
+  &__text {
+    flex-grow: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: auto 0;
+  }
+
+  &__btns {
+    display: flex;
+  }
+}

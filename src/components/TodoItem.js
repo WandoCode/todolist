@@ -8,19 +8,20 @@ import { synchronize } from '../redux/todos/todos.middleware'
 import { useState } from 'react'
 import UpdateTodoForm from './UpdateTodoForm'
 import Button from './Button'
+import { useMemo } from 'react'
 
 function TodoItem({ todo, tempOrder, onHandleDragStart, onHandleDrop }) {
   const dispatch = useDispatch()
   const userID = useSelector((state) => state.auth.currentUser.id)
   const [editMessage, setEditMessage] = useState(false)
 
-  const buildItemClass = () => {
-    let itemClass = 'todo-item '
-    if (todo.status === -1) itemClass += 'archived'
-    if (todo.status === 1) itemClass += 'pinned'
+  const buildItemClass = useMemo(() => {
+    let itemClass = 'todo-item'
+    if (todo.status === -1) itemClass += ' todo-item--archived'
+    if (todo.status === 1) itemClass += ' todo-item--pinned'
 
     return itemClass
-  }
+  }, [todo.status])
 
   const handleDragStart = (e) => {
     onHandleDragStart(tempOrder, todo.status)
@@ -64,7 +65,7 @@ function TodoItem({ todo, tempOrder, onHandleDragStart, onHandleDrop }) {
       onDragStartCapture={handleDragStart}
       onDragOver={handleDragOver}
       onDrop={handleDrop}
-      className={buildItemClass()}
+      className={buildItemClass}
       onClick={handleClick}
     >
       {editMessage ? (
@@ -76,17 +77,17 @@ function TodoItem({ todo, tempOrder, onHandleDragStart, onHandleDrop }) {
         />
       ) : (
         <>
-          {todo.message}
-          <div className="btns">
+          <div className="todo-item__text">{todo.message}</div>
+          <div className="todo-item__btns">
             <Button
-              text={todo.status !== -1 ? 'Done' : 'Undone'}
+              text={todo.status !== -1 ? 'v' : 'o'}
               onClickHandler={handleToggleArchive}
             />
             <Button
-              text={todo.status !== 1 ? 'Pin' : 'Unpin'}
+              text={todo.status !== 1 ? '*' : '-'}
               onClickHandler={handleTogglePin}
             />
-            <Button text="Delete" onClickHandler={handleDelete} />
+            <Button text="x" onClickHandler={handleDelete} />
           </div>
         </>
       )}
