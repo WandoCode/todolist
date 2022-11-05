@@ -10,7 +10,8 @@ body {
 }
 
 .app {
-  min-height: 100vh;
+  height: 100vh;
+  overflow: scroll;
   & .header {
     height: 50px;
     display: flex;
@@ -19,7 +20,7 @@ body {
   }
 
   & .main {
-    height: 70vh;
+    min-height: 70vh;
     display: flex;
     justify-content: center;
     align-items: center;

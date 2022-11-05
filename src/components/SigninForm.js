@@ -17,8 +17,8 @@ function SiginForm() {
   const loading = useSelector((state) => state.auth.loading)
   const authError = useSelector((state) => state.auth.error)
 
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
+  const [email, setEmail] = useState('a@gmail.com')
+  const [password, setPassword] = useState('123456')
   const [currentFocus, setCurrentFocus] = useState()
   const [validationErrors, setValidationErrors] = useState([])
 

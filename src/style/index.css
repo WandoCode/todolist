@@ -21,7 +21,8 @@ body {
 }
 
 .app {
-  min-height: 100vh;
+  height: 100vh;
+  overflow: scroll;
 }
 .app .header {
   height: 50px;
@@ -30,7 +31,7 @@ body {
   padding: 0 20px;
 }
 .app .main {
-  height: 70vh;
+  min-height: 70vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -195,8 +196,4 @@ h2 {
 .theme-switch__icon {
   height: 13px;
   filter: invert(100%);
-}
-
-#dark.app {
-  background-color: rgb(73, 73, 73);
 }/*# sourceMappingURL=index.css.map */
