@@ -9,10 +9,11 @@
   font-size: 12px;
   cursor: pointer;
   width: max-content;
+
   &__cursor {
     position: absolute;
-    height: 18px;
-    width: 18px;
+    height: 19px;
+    width: 19px;
     background-color: rgb(220, 220, 220);
     top: 0;
     bottom: 0;
@@ -22,12 +23,12 @@
     &--dark {
       background-color: rgb(59, 59, 59);
 
-      translate: 150% 2px;
+      translate: 143% 2px;
     }
     &--light {
       background-color: rgb(220, 220, 220);
 
-      translate: 4px 2px;
+      translate: 2px 2px;
     }
   }
 

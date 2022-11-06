@@ -80,14 +80,17 @@ function TodoItem({ todo, tempOrder, onHandleDragStart, onHandleDrop }) {
           <div className="todo-item__text">{todo.message}</div>
           <div className="todo-item__btns">
             <Button
-              text={todo.status !== -1 ? 'v' : 'o'}
-              onClickHandler={handleToggleArchive}
+              type={todo.status !== 1 ? 'pin' : 'unpin'}
+              text=""
+              onClickHandler={handleTogglePin}
+              tooltipText={todo.status !== 1 ? 'pin' : 'unpin'}
             />
             <Button
-              text={todo.status !== 1 ? '*' : '-'}
-              onClickHandler={handleTogglePin}
+              type={todo.status !== -1 ? 'archive' : 'unarchive'}
+              text=""
+              onClickHandler={handleToggleArchive}
             />
-            <Button text="x" onClickHandler={handleDelete} />
+            <Button text="" type="delete" onClickHandler={handleDelete} />
           </div>
         </>
       )}
