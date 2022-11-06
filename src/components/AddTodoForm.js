@@ -17,14 +17,13 @@ function AddTodoForm() {
 
     const message = inputRef.current.value
 
-    const validator = validation({
-      message,
-    })
+    const validator = validation({ message })
 
     const validationErrors = validator.validateForm()
 
     if (validationErrors.length === 0) {
       setShowError(false)
+
       const newTodo = {
         message,
         status: 0,
@@ -36,18 +35,24 @@ function AddTodoForm() {
       dispatch(synchronize(userID, [0]))
     } else {
       setShowError(true)
+
+      setTimeout(() => setShowError(false), 2000)
     }
   }
 
   const inputClass = useMemo(
-    () => (showError ? 'add-todo__input--error' : 'add-todo__input'),
+    () =>
+      showError ? 'add-todo__input add-todo__input--error' : ' add-todo__input',
     [showError]
   )
 
   return (
-    <form action="" className="add-todo">
+    <form
+      className={showError ? 'add-todo add-todo--tooltip' : 'add-todo'}
+      data-tooltip={"You can't save an empty task!"}
+    >
       <label htmlFor="new-todo" className="add-todo__label">
-        Nouvelle tâche
+        New todo
       </label>
       <input
         type="text"
@@ -56,11 +61,12 @@ function AddTodoForm() {
         className={inputClass}
         ref={inputRef}
       />
-      {/* //TODO: faire un composant Tooltip (voir updateTodoForm) */}
-      {showError && (
-        <div className="updateTodo__tooltip">You can't save an empty task!</div>
-      )}
-      <Button text="Ajouter" onClickHandler={handleSubmit} />
+
+      <Button
+        text="Add"
+        onClickHandler={handleSubmit}
+        classesArr={['new-todo', 'main']}
+      />
     </form>
   )
 }

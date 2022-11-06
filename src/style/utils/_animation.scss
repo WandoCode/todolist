@@ -1,8 +1,16 @@
 @keyframes tooltip-fade-in {
-  90% {
+  85% {
     opacity: 0;
   }
   100% {
     opacity: 1;
+  }
+}
+@keyframes tooltip-fade-out {
+  90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
   }
 }

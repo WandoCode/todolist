@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import List from '../components/List'
 import { getTodosMiddleware } from '../redux/todos/todos.middleware'
 import { useEffect } from 'react'
+import AddTodoForm from '../components/AddTodoForm'
 
 function Home() {
   const dispatch = useDispatch()
@@ -13,7 +14,19 @@ function Home() {
     dispatch(getTodosMiddleware(userID))
   }, [])
 
-  return <div className="home">{loading ? <h1>Loading...</h1> : <List />}</div>
+  return (
+    <div className="home">
+      {loading ? (
+        <h1>Loading...</h1>
+      ) : (
+        <>
+          <h1>Todos</h1>
+          <AddTodoForm />
+          <List />
+        </>
+      )}
+    </div>
+  )
 }
 
 export default Home

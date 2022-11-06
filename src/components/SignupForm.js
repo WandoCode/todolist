@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { useCallback, useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import rightArrow from '../assets/arrow_right.svg'
 
 import { signUpMiddleware } from '../redux/auth/auth.middlewares'
 import validation from '../utils/formValidation'
@@ -143,10 +144,11 @@ function SignupForm() {
       </Link>
 
       <Button
+        image={rightArrow}
         text="Create user"
         onClickHandler={handleSubmit}
-        type={'main'}
         disabled={loading}
+        classesArr={['main']}
       />
     </form>
   )

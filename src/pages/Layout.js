@@ -24,7 +24,7 @@ function Layout() {
           <Button
             text="Logout"
             onClickHandler={handleLogOut}
-            type="secondary"
+            classesArr={['secondary']}
           />
         )}
       </header>

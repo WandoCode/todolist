@@ -1,3 +1,4 @@
+import { useEffect, useRef } from 'react'
 import { useMemo, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { updateTodo } from '../redux/todos/todos.action'
@@ -7,14 +8,19 @@ import Button from './Button'
 
 function UpdateTodoForm({ message, todoIndex, status, onCloseEdit }) {
   const dispatch = useDispatch()
+  const inputRef = useRef()
   const [inputValue, setInputValue] = useState(message)
   const [showError, setShowError] = useState(false)
   const userID = useSelector((state) => state.auth.currentUser.id)
 
+  useEffect(() => {
+    inputRef.current.focus()
+  }, [])
+
   const handleAccept = (e) => {
     e.preventDefault()
     e.stopPropagation()
-    console.log(e)
+
     const validator = validation({
       message: inputValue,
     })
@@ -48,8 +54,20 @@ function UpdateTodoForm({ message, todoIndex, status, onCloseEdit }) {
     [showError]
   )
 
+  const handleBlur = (e) => {
+    console.log(
+      e.relatedTarget?.id !== 'btn-accept' &&
+        e.relatedTarget?.id !== 'btn-cancel'
+    )
+    if (
+      e.relatedTarget?.id !== 'btn-accept' &&
+      e.relatedTarget?.id !== 'btn-cancel'
+    )
+      onCloseEdit(false)
+  }
+
   return (
-    <form className="updateTodo">
+    <form className="updateTodo" onBlurCapture={handleBlur}>
       <input
         type="text"
         name="message"
@@ -58,12 +76,27 @@ function UpdateTodoForm({ message, todoIndex, status, onCloseEdit }) {
         value={inputValue}
         onChange={(e) => setInputValue(e.target.value)}
         onClick={handleClick}
+        ref={inputRef}
       />
       {showError && (
         <div className="updateTodo__tooltip">You can't save an empty task!</div>
       )}
-      <Button text="Accept" onClickHandler={handleAccept} />
-      <Button text="Cancel" onClickHandler={handleCancel} />
+      <div className="updateTodo__btns">
+        <Button
+          type="accept"
+          text="Accept"
+          onClickHandler={handleAccept}
+          classesArr={['inline', 'medium']}
+          id="btn-accept"
+        />
+        <Button
+          type="cancel"
+          text="Cancel"
+          onClickHandler={handleCancel}
+          classesArr={['inline', 'medium']}
+          id="btn-cancel"
+        />
+      </div>
     </form>
   )
 }

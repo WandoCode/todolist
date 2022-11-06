@@ -12,18 +12,21 @@
   align-items: center;
   justify-content: center;
 
-  &:hover {
-    & .btn__tooltip {
-      display: inline;
-      animation: tooltip-fade-in 1s forwards;
+  &--tooltip {
+    &:hover {
+      &::after {
+        content: attr(data-tooltip);
+        position: absolute;
+        top: 120%;
+        font-size: 12px;
+        border: 1px solid rgb(194, 194, 194);
+        border-radius: 8px;
+        padding: 3px 10px;
+        opacity: 0;
+        background-color: white;
+        animation: tooltip-fade-in 1s forwards;
+      }
     }
-  }
-
-  &__tooltip {
-    display: none;
-    position: absolute;
-    top: 100%;
-    opacity: 0;
   }
 
   &--main {
@@ -63,24 +66,33 @@
     }
   }
 
-  &--archive,
-  &--unarchive,
-  &--unpin,
-  &--pin,
-  &--delete {
-    background-color: white;
+  &--inline {
+    background-color: unset;
     border: none;
-    height: 30px;
-    width: 30px;
     padding: 0;
-    & img {
-      width: 10px;
-      height: auto;
-      background-color: blue;
-    }
 
     &:hover {
       background-color: lighten(gray, 40%);
     }
+  }
+
+  &--medium {
+    height: 30px;
+    padding: 0 10px;
+  }
+
+  &--small {
+    height: 30px;
+    width: 30px;
+    & img {
+      width: 10px;
+      height: auto;
+    }
+  }
+
+  &--new-todo {
+    height: 40px;
+    margin: 0;
+    background-color: lighten($primary, 0%);
   }
 }

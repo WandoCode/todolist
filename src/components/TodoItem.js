@@ -9,6 +9,10 @@ import { useState } from 'react'
 import UpdateTodoForm from './UpdateTodoForm'
 import Button from './Button'
 import { useMemo } from 'react'
+import trashIcone from '../assets/trash.svg'
+import archiveIcone from '../assets/archive.svg'
+import normalIcone from '../assets/normal.svg'
+import pinIcone from '../assets/pin.svg'
 
 function TodoItem({ todo, tempOrder, onHandleDragStart, onHandleDrop }) {
   const dispatch = useDispatch()
@@ -80,17 +84,26 @@ function TodoItem({ todo, tempOrder, onHandleDragStart, onHandleDrop }) {
           <div className="todo-item__text">{todo.message}</div>
           <div className="todo-item__btns">
             <Button
-              type={todo.status !== 1 ? 'pin' : 'unpin'}
+              image={todo.status !== 1 ? pinIcone : normalIcone}
               text=""
               onClickHandler={handleTogglePin}
-              tooltipText={todo.status !== 1 ? 'pin' : 'unpin'}
+              tooltipText={todo.status !== 1 ? 'Pin' : 'Unpin'}
+              classesArr={['inline', 'small']}
             />
             <Button
-              type={todo.status !== -1 ? 'archive' : 'unarchive'}
+              image={todo.status !== -1 ? archiveIcone : normalIcone}
               text=""
               onClickHandler={handleToggleArchive}
+              tooltipText={todo.status !== 1 ? 'Archive' : 'Unarchive'}
+              classesArr={['inline', 'small']}
             />
-            <Button text="" type="delete" onClickHandler={handleDelete} />
+            <Button
+              image={trashIcone}
+              text=""
+              onClickHandler={handleDelete}
+              tooltipText="Delete"
+              classesArr={['inline', 'small']}
+            />
           </div>
         </>
       )}

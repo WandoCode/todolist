@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { useCallback, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import rightArrow from '../assets/arrow_right.svg'
 
 import validation from '../utils/formValidation'
 import { signInMiddleware } from '../redux/auth/auth.middlewares'
@@ -116,10 +117,11 @@ function SiginForm() {
       </Link>
 
       <Button
+        image={rightArrow}
         text="Login"
         onClickHandler={handleSubmit}
         disabled={loading}
-        type="main"
+        classesArr={['main']}
       />
     </form>
   )

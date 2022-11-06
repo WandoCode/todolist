@@ -61,7 +61,6 @@ function List() {
   return (
     <article className="list">
       <ul className="list__container">{itemListDOM}</ul>
-      <AddTodoForm />
     </article>
   )
 }
