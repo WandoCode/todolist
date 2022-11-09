@@ -424,6 +424,7 @@ h2 {
 .dropdown {
   position: relative;
   width: 70px;
+  height: 31px;
   color: hsla(245deg, 14%, 46%, 0.8);
   font-size: 13px;
 }

@@ -1,6 +1,7 @@
 .dropdown {
   position: relative;
   width: 70px;
+  height: 31px;
   color: $medium;
   font-size: 13px;
 
@@ -10,7 +11,9 @@
     background-color: lighten($main-bg, 3%);
     border: 1px solid $lighter-dark;
     border-radius: 5px;
+
     width: 100%;
+
     display: flex;
     justify-content: space-between;
     align-items: center;

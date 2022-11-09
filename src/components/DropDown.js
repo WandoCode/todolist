@@ -2,31 +2,38 @@ import { useEffect, useState } from 'react'
 
 import arrowUp from '../assets/caret-up.svg'
 import arrowDown from '../assets/caret-down.svg'
+import { useMemo } from 'react'
 
 function Dropdown({ choicesArray, onChoice, name }) {
   const [openMenu, setOpenMenu] = useState(false)
-  const [currValue, setCurrValue] = useState(choicesArray[0])
+  const [currValue, setCurrValue] = useState()
+
+  useEffect(() => {
+    setCurrValue(choicesArray.at(0))
+  })
 
   const handleInput = (e) => {
-    onChoice(e)
     setCurrValue(e.target.value)
+    onChoice(e)
     setOpenMenu(false)
   }
 
-  const choicesOptions = choicesArray.map((choice) => {
-    return (
-      <label htmlFor={choice} key={choice} className="dropdown__label">
-        <input
-          type="radio"
-          name={name}
-          id={choice}
-          onChange={handleInput}
-          value={choice}
-        />
-        {choice}
-      </label>
-    )
-  })
+  const choicesOptions = useMemo(() => {
+    return choicesArray.map((choice) => {
+      return (
+        <label htmlFor={choice} key={choice} className="dropdown__label">
+          <input
+            type="radio"
+            name={name}
+            id={choice}
+            onChange={handleInput}
+            value={choice}
+          />
+          {choice}
+        </label>
+      )
+    })
+  }, [choicesArray])
 
   const handleBtnClick = () => {
     setOpenMenu(openMenu ? false : true)
