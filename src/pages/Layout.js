@@ -24,12 +24,14 @@ function Layout() {
   return (
     <>
       <header className="header">
-        <ThemeSwitch />
-        <Dropdown
-          choicesArray={['Eng', 'Fr']}
-          name="language"
-          onChoice={handleLanguage}
-        />
+        <div className="header__options">
+          <ThemeSwitch />
+          <Dropdown
+            choicesArray={['Eng', 'Fr']}
+            name="language"
+            onChoice={handleLanguage}
+          />
+        </div>
         {userIsConnected && (
           <Button
             text="Logout"
