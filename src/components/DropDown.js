@@ -59,7 +59,7 @@ function Dropdown({ choicesArray, onChoice, name }) {
           <img src={arrowDown} alt="arrow down" className="dropdown__img" />
         )}
       </button>
-      {openMenu && <div className="dropdown-options">{choicesOptions}</div>}
+      {openMenu && <div className="dropdown__options">{choicesOptions}</div>}
     </div>
   )
 }

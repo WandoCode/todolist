@@ -5,6 +5,8 @@
   font-size: 13px;
 
   &__selected {
+    position: relative;
+
     background-color: lighten($main-bg, 3%);
     border: 1px solid $lighter-dark;
     border-radius: 5px;
@@ -17,7 +19,17 @@
     margin-top: 5px;
     color: $medium;
     &[data-open='true'] {
+      border-bottom: none;
       border-radius: 5px 5px 0 0;
+      &:after {
+        position: absolute;
+        content: '';
+        bottom: 0;
+        width: 80%;
+        left: 10%;
+        height: 1px;
+        background-color: darken($lighter-dark, 5%);
+      }
     }
   }
 
@@ -29,7 +41,7 @@
       brightness(88%) contrast(96%);
   }
 
-  & .dropdown-options {
+  &__options {
     position: absolute;
 
     bottom: 0;
@@ -43,6 +55,7 @@
     transform: translateY(100%);
 
     border: rgb(235, 235, 235) 1px solid;
+    border-top: none;
     border-radius: 0 0 5px 5px;
 
     background-color: white;

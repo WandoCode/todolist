@@ -1,0 +1,24 @@
+#dark {
+  .dropdown {
+    color: $d-lighter;
+    &__selected {
+      background-color: $d-medium;
+      border: none;
+      color: $d-lighter;
+
+      &[data-open='true']:after {
+        background-color: lighten($d-medium, 10%);
+      }
+    }
+
+    &__img {
+      filter: invert(9%) sepia(14%) saturate(2395%) hue-rotate(207deg)
+        brightness(100%) contrast(92%);
+    }
+
+    &__options {
+      background-color: $d-medium;
+      border: none;
+    }
+  }
+}
