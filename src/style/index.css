@@ -126,7 +126,7 @@ h2 {
   top: 120%;
   z-index: 1;
   padding: 3px 10px;
-  border: 1px solid rgb(231, 231, 231);
+  border: 1px solid #e7e7e7;
   border-radius: 8px;
   opacity: 0;
   background-color: #fdfdfd;
@@ -174,10 +174,11 @@ h2 {
   background-color: unset;
 }
 .btn--inline:hover {
-  background-color: rgb(231, 231, 231);
+  background-color: #e7e7e7;
 }
 .btn--medium {
   height: 30px;
+  color: #e9e9e9;
   padding: 0 10px;
 }
 .btn--small {
@@ -341,7 +342,7 @@ h2 {
   transition: translate 0.1s, box-shadow 0.1s;
 }
 .todo-item__container:hover {
-  box-shadow: 0px 2px 2px 0px rgb(231, 231, 231);
+  box-shadow: 0px 2px 2px 0px #e7e7e7;
 }
 .todo-item__container--pinned {
   border-color: #98a2ff;
@@ -390,7 +391,6 @@ h2 {
   border: none;
   border-bottom: 2px solid rgba(221, 220, 229, 0.8);
   background-color: inherit;
-  font-style: italic;
 }
 .add-todo__input:focus {
   border-radius: 5px;
@@ -414,6 +414,60 @@ h2 {
 .add-todo__label {
   font-weight: 500;
   color: #3b3663;
+}
+
+.dropdown {
+  position: relative;
+  width: 70px;
+  color: hsla(245deg, 14%, 46%, 0.8);
+  font-size: 13px;
+}
+.dropdown__selected {
+  background-color: #f8f8f8;
+  border: 1px solid #e7e7e7;
+  border-radius: 5px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 8px;
+  height: 31px;
+  margin-top: 5px;
+  color: hsla(245deg, 14%, 46%, 0.8);
+}
+.dropdown__selected[data-open=true] {
+  border-radius: 5px 5px 0 0;
+}
+.dropdown__img {
+  height: 20px;
+  margin-right: 5px;
+  filter: invert(57%) sepia(13%) saturate(470%) hue-rotate(205deg) brightness(88%) contrast(96%);
+}
+.dropdown .dropdown-options {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  max-height: 200px;
+  display: flex;
+  flex-direction: column;
+  transform: translateY(100%);
+  border: rgb(235, 235, 235) 1px solid;
+  border-radius: 0 0 5px 5px;
+  background-color: white;
+  overflow-y: auto;
+}
+.dropdown input[type=radio] {
+  height: 0;
+  width: 0;
+  opacity: 0;
+}
+.dropdown__label {
+  padding: 0 5px;
+}
+.dropdown__label:hover {
+  color: #f1f0f0;
+  background-color: #4c60fc;
 }
 
 #dark.app {
@@ -496,11 +550,12 @@ h2 {
 }
 
 #dark .add-todo__input {
-  border-bottom: 2px solid #e9e9e9;
+  border-color: #e9e9e9;
 }
 #dark .add-todo__input:focus {
   background-color: #3f3968;
   color: #e9e9e9;
+  border-color: rgba(255, 255, 255, 0);
 }
 #dark .add-todo__label {
   color: darkgray;
@@ -509,17 +564,22 @@ h2 {
 #dark .todo-item__container {
   color: #e9e9e9;
   background-color: #3f3968;
-  border-top: 4px solid #b5a53f;
   box-shadow: none;
+  border-color: #7e76b5;
 }
 #dark .todo-item__container:hover {
   box-shadow: 0px 2px 10px 0px #3f3968;
 }
 #dark .todo-item__container--pinned {
-  border-color: #7e76b5;
+  border-top: 4px solid #b5a53f;
 }
 #dark .todo-item__container--archived {
   border-color: #817e94;
   background-color: #353057;
   color: #d0d0d0;
+}
+
+#dark .updateTodo__input {
+  background-color: inherit;
+  color: #e9e9e9;
 }/*# sourceMappingURL=index.css.map */

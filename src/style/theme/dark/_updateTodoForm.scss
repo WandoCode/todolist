@@ -1,0 +1,8 @@
+#dark {
+  & .updateTodo {
+    &__input {
+      background-color: inherit;
+      color: $d-lighter;
+    }
+  }
+}

@@ -3,14 +3,14 @@
     &__container {
       color: $d-lighter;
       background-color: lighten($d-main-bg, 10%);
-      border-top: 4px solid $d-secondary-ter;
       box-shadow: none;
+      border-color: $d-secondary-bis;
 
       &:hover {
         box-shadow: 0px 2px 10px 0px lighten($d-main-bg, 10%);
       }
       &--pinned {
-        border-color: $d-secondary-bis;
+        border-top: 4px solid $d-secondary-ter;
       }
       &--archived {
         border-color: $d-medium;

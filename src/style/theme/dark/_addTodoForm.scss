@@ -1,11 +1,11 @@
 #dark {
   & .add-todo {
     &__input {
-      border-bottom: 2px solid $d-lighter;
-
+      border-color: $d-lighter;
       &:focus {
         background-color: lighten($d-main-bg, 10%);
         color: $d-lighter;
+        border-color: rgba(255, 255, 255, 0);
       }
     }
 

@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { Outlet, useNavigate } from 'react-router-dom'
 import Button from '../components/Button'
+import Dropdown from '../components/DropDown'
 import ThemeSwitch from '../components/ThemeSwitch'
 import { logoutUser } from '../redux/auth/auth.actions'
 
@@ -15,11 +16,20 @@ function Layout() {
     dispatch(logoutUser())
     navigate('/')
   }
+
+  const handleLanguage = (e) => {
+    console.log(e)
+  }
+
   return (
     <>
       <header className="header">
         <ThemeSwitch />
-
+        <Dropdown
+          choicesArray={['Eng', 'Fr']}
+          name="language"
+          onChoice={handleLanguage}
+        />
         {userIsConnected && (
           <Button
             text="Logout"

@@ -16,6 +16,7 @@ function AddTodoForm() {
     e.preventDefault()
 
     const message = inputRef.current.value
+    inputRef.current.value = ''
 
     const validator = validation({ message })
 
