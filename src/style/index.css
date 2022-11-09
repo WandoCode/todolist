@@ -311,33 +311,17 @@ h2 {
 .list__container {
   display: flex;
   flex-direction: column;
-  gap: 10px;
 }
 
 .todo-item {
-  background-color: white;
-  display: flex;
-  justify-content: space-between;
-  padding: 7px 20px 4px 20px;
-  border-radius: 5px;
-  border-top: 4px solid #b08c12;
-  box-shadow: 0px 2px 5px 0px rgb(212, 212, 212);
-  font-size: 14px;
-  cursor: pointer;
-  transition: border-color 0.5s, translate 0.1s, box-shadow 0.1s;
+  position: relative;
+  transition: translate 0.2s;
 }
-.todo-item:hover {
-  translate: 0 -1.5%;
-  box-shadow: 0px 2px 5px 0px rgb(255, 255, 255);
+.todo-item--dragged {
+  translate: 3% 0;
 }
-.todo-item--pinned {
-  border-color: #98a2ff;
-  font-weight: 500;
-}
-.todo-item--archived {
-  border-color: gray;
-  color: rgb(83, 83, 83);
-  font-weight: 300;
+.todo-item--hover {
+  translate: 3% 0;
 }
 .todo-item__text {
   flex-grow: 1;
@@ -348,6 +332,31 @@ h2 {
 .todo-item__btns {
   display: flex;
   gap: 7px;
+}
+.todo-item__container {
+  background-color: white;
+  display: flex;
+  justify-content: space-between;
+  padding: 7px 20px 4px 20px;
+  border-radius: 5px;
+  border-top: 4px solid #b08c12;
+  box-shadow: 0px 2px 5px 0px rgb(212, 212, 212);
+  font-size: 14px;
+  cursor: pointer;
+  transition: translate 0.1s, box-shadow 0.1s;
+  margin-bottom: 10px;
+}
+.todo-item__container:hover {
+  box-shadow: 0px 2px 2px 0px rgb(255, 255, 255);
+}
+.todo-item__container--pinned {
+  border-color: #98a2ff;
+  font-weight: 500;
+}
+.todo-item__container--archived {
+  border-color: gray;
+  color: rgb(83, 83, 83);
+  font-weight: 300;
 }
 
 .updateTodo {
