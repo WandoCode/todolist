@@ -1,0 +1,9 @@
+#dark {
+  & .theme-switch {
+    background-color: $medium;
+
+    &__cursor {
+      background-color: darken($d-main-bg, 5%);
+    }
+  }
+}

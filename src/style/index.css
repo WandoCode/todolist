@@ -48,13 +48,12 @@ button {
 }
 
 body {
-  color-scheme: light;
   background-color: #f1f0f0;
 }
 
 .app {
   height: 100vh;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 .app .header {
   height: 50px;
@@ -192,7 +191,6 @@ h2 {
 .btn--new-todo {
   height: 40px;
   margin: 0;
-  background-color: #4c60fc;
 }
 
 .sign-form {
@@ -290,14 +288,13 @@ h2 {
   height: 19px;
   width: 19px;
   border-radius: 20px;
+  background-color: #fdfdfd;
   transition: 0.2s ease-in-out;
 }
 .theme-switch__cursor--dark {
-  background-color: rgb(59, 59, 59);
   translate: 143% 2px;
 }
 .theme-switch__cursor--light {
-  background-color: #fdfdfd;
   translate: 2px 2px;
 }
 .theme-switch__icon {
@@ -420,5 +417,109 @@ h2 {
 }
 
 #dark.app {
-  background-color: rgb(73, 73, 73);
+  background-color: #2b2747;
+}
+
+#dark .btn--main {
+  color: #353057;
+  font-weight: 600;
+  background-color: #909dff;
+}
+#dark .btn--main:hover {
+  translate: 0 -5%;
+  background-color: #b4bdff;
+}
+#dark .btn--main img {
+  filter: invert(18%) sepia(16%) saturate(1734%) hue-rotate(208deg) brightness(94%) contrast(92%);
+}
+#dark .btn--secondary {
+  border: 1px solid #909dff;
+  background-color: #2b2747;
+  color: #909dff;
+}
+#dark .btn--secondary:hover {
+  background-color: #c3caff;
+  color: #2b2747;
+  border-color: #c3caff;
+}
+#dark .btn--inline:hover {
+  background-color: #7e76b5;
+}
+#dark .btn--small img {
+  filter: invert(80%);
+}
+
+#dark .theme-switch {
+  background-color: hsla(245deg, 14%, 46%, 0.8);
+}
+#dark .theme-switch__cursor {
+  background-color: #211e37;
+}
+
+#dark .sign-page {
+  background-color: #3f3968;
+}
+#dark .sign-page__icon {
+  filter: invert(100%);
+}
+
+#dark .sign-form__input {
+  border-bottom: 1px solid #e9e9e9;
+  background-color: #3f3968;
+  color: #e9e9e9;
+  font-weight: 300;
+}
+#dark .sign-form__input--error {
+  background-color: rgba(173, 41, 41, 0.363);
+}
+#dark .sign-form__row {
+  color: darkgray;
+}
+#dark .sign-form__row::after {
+  border-top: 2px solid #909dff;
+}
+#dark .sign-form__link {
+  color: #909dff;
+}
+#dark .sign-form__link:hover {
+  color: #b4bdff;
+}
+#dark .sign-form__error {
+  color: rgb(218, 109, 109);
+}
+
+#dark h1 {
+  color: #e9e9e9;
+}
+#dark h2 {
+  color: #817e94;
+}
+
+#dark .add-todo__input {
+  border-bottom: 2px solid #e9e9e9;
+}
+#dark .add-todo__input:focus {
+  background-color: #3f3968;
+  color: #e9e9e9;
+}
+#dark .add-todo__label {
+  color: darkgray;
+}
+
+#dark .todo-item__container {
+  color: #e9e9e9;
+  background-color: #3f3968;
+  border-top: 4px solid #b5a53f;
+  box-shadow: none;
+}
+#dark .todo-item__container:hover {
+  box-shadow: 0px 2px 10px 0px #3f3968;
+}
+#dark .todo-item__container--pinned {
+  border-color: #7e76b5;
+}
+#dark .todo-item__container--archived {
+  border-color: #817e94;
+  background-color: #353057;
+  color: #d0d0d0;
 }/*# sourceMappingURL=index.css.map */

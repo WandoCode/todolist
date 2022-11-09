@@ -1,0 +1,32 @@
+#dark {
+  & .sign-form {
+    &__input {
+      border-bottom: 1px solid $d-lighter;
+      background-color: lighten($d-main-bg, 10%);
+      color: $d-lighter;
+      font-weight: 300;
+      &--error {
+        background-color: $d-warning;
+      }
+    }
+
+    &__row {
+      color: darken($d-lighter, 25%);
+
+      &::after {
+        border-top: 2px solid $d-primary;
+      }
+    }
+
+    &__link {
+      color: $d-primary;
+      &:hover {
+        color: lighten($d-primary, 7%);
+      }
+    }
+
+    &__error {
+      color: $d-error;
+    }
+  }
+}

@@ -1,0 +1,9 @@
+#dark {
+  & h1 {
+    color: $d-lighter;
+  }
+
+  & h2 {
+    color: $d-medium;
+  }
+}

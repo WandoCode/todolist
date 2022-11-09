@@ -5,13 +5,12 @@ button {
 }
 
 body {
-  color-scheme: light;
   background-color: $main-bg;
 }
 
 .app {
   height: 100vh;
-  overflow-y: scroll;
+  overflow-y: auto;
 
   & .header {
     height: 50px;

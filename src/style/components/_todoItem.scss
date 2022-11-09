@@ -36,6 +36,7 @@
     font-size: 14px;
     cursor: pointer;
     background-color: lighten($main-bg, 10%);
+
     transition: translate 0.1s, box-shadow 0.1s;
 
     &:hover {

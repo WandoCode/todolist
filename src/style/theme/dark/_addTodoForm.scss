@@ -1,0 +1,16 @@
+#dark {
+  & .add-todo {
+    &__input {
+      border-bottom: 2px solid $d-lighter;
+
+      &:focus {
+        background-color: lighten($d-main-bg, 10%);
+        color: $d-lighter;
+      }
+    }
+
+    &__label {
+      color: darken($d-lighter, 25%);
+    }
+  }
+}

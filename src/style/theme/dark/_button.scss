@@ -1,0 +1,42 @@
+#dark {
+  & .btn {
+    &--main {
+      color: lighten($d-main-bg, 5%);
+      font-weight: 600;
+      background-color: $d-primary;
+
+      &:hover {
+        translate: 0 -5%;
+
+        background-color: lighten($d-primary, 7%);
+      }
+
+      & img {
+        filter: invert(18%) sepia(16%) saturate(1734%) hue-rotate(208deg)
+          brightness(94%) contrast(92%);
+      }
+    }
+
+    &--secondary {
+      border: 1px solid $d-primary;
+      background-color: $d-main-bg;
+      color: $d-primary;
+
+      &:hover {
+        background-color: lighten($d-primary, 10%);
+        color: $d-main-bg;
+        border-color: lighten($d-primary, 10%);
+      }
+    }
+    &--inline {
+      &:hover {
+        background-color: $d-secondary-bis;
+      }
+    }
+    &--small {
+      & img {
+        filter: invert(80%);
+      }
+    }
+  }
+}

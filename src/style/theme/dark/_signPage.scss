@@ -1,0 +1,9 @@
+#dark {
+  & .sign-page {
+    background-color: lighten($d-main-bg, 10%);
+
+    &__icon {
+      filter: invert(100%);
+    }
+  }
+}

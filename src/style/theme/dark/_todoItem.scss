@@ -1,0 +1,23 @@
+#dark {
+  & .todo-item {
+    &__container {
+      color: $d-lighter;
+      background-color: lighten($d-main-bg, 10%);
+      border-top: 4px solid $d-secondary-ter;
+      box-shadow: none;
+
+      &:hover {
+        box-shadow: 0px 2px 10px 0px lighten($d-main-bg, 10%);
+      }
+      &--pinned {
+        border-color: $d-secondary-bis;
+      }
+      &--archived {
+        border-color: $d-medium;
+        background-color: lighten($d-main-bg, 5%);
+
+        color: darken($d-lighter, 10%);
+      }
+    }
+  }
+}
