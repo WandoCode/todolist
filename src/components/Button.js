@@ -1,7 +1,5 @@
 import { useMemo } from 'react'
 
-import { useRef } from 'react'
-
 function Button({
   image,
   text,

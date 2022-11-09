@@ -1,32 +1,42 @@
 .theme-switch {
-  user-select: none;
   position: relative;
-  background-color: gray;
-  border-radius: 20px;
+
+  width: max-content;
+
   display: flex;
   gap: 12px;
+
   padding: 5px 5px;
-  font-size: 12px;
+
+  user-select: none;
   cursor: pointer;
-  width: max-content;
+
+  border-radius: 20px;
+
+  background-color: $medium;
+  font-size: 12px;
 
   &__cursor {
     position: absolute;
-    height: 19px;
-    width: 19px;
-    background-color: rgb(220, 220, 220);
+    left: 0;
     top: 0;
     bottom: 0;
-    left: 0;
+
+    height: 19px;
+    width: 19px;
+
     border-radius: 20px;
+
     transition: 0.2s ease-in-out;
+
     &--dark {
       background-color: rgb(59, 59, 59);
 
       translate: 143% 2px;
     }
+
     &--light {
-      background-color: rgb(220, 220, 220);
+      background-color: lighten($main-bg, 5%);
 
       translate: 2px 2px;
     }
@@ -34,6 +44,7 @@
 
   &__icon {
     height: 13px;
+
     filter: invert(100%);
   }
 }

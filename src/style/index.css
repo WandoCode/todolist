@@ -54,7 +54,7 @@ body {
 
 .app {
   height: 100vh;
-  overflow: scroll;
+  overflow-y: scroll;
 }
 .app .header {
   height: 50px;
@@ -82,11 +82,11 @@ h2 {
 }
 
 .home {
-  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  width: 100%;
   margin-bottom: 70px;
 }
 
@@ -94,11 +94,11 @@ h2 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: white;
   width: 90%;
   max-width: 400px;
   padding: 45px 35px;
   border-radius: 5px;
+  background-color: white;
 }
 .sign-page__icon {
   height: 30px;
@@ -108,59 +108,60 @@ h2 {
 
 .btn {
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px 20px;
+  border-radius: 8px;
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
-  font-size: 15px;
-  border-radius: 8px;
-  padding: 5px 20px;
   cursor: pointer;
+  font-size: 15px;
   transition: 0.2s;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 .btn--tooltip:hover::after {
   content: attr(data-tooltip);
   position: absolute;
   top: 120%;
-  font-size: 12px;
-  border: 1px solid rgb(194, 194, 194);
-  border-radius: 8px;
+  z-index: 1;
   padding: 3px 10px;
+  border: 1px solid rgb(231, 231, 231);
+  border-radius: 8px;
   opacity: 0;
-  background-color: white;
+  background-color: #fdfdfd;
   -webkit-animation: tooltip-fade-in 1s forwards;
           animation: tooltip-fade-in 1s forwards;
+  font-size: 12px;
 }
 .btn--main {
   height: 50px;
-  color: white;
-  background-color: #4c60fc;
-  border: none;
-  margin-top: 15px;
-  font-weight: 500;
   padding-top: 15px;
   padding-bottom: 15px;
+  margin-top: 15px;
+  border: none;
+  background-color: #4c60fc;
+  font-weight: 500;
+  color: #fdfdfd;
 }
 .btn--main img {
   height: 100%;
-  filter: invert(100%);
-  margin-left: 10px;
   margin-right: -10px;
+  margin-left: 10px;
+  filter: invert(100%);
 }
 .btn--main:hover {
-  background-color: #2941fb;
   translate: 0 -5%;
+  background-color: #2941fb;
 }
 .btn--secondary {
-  background-color: #f1f0f0;
-  color: #4c60fc;
-  border: 1px solid #4c60fc;
   height: unset;
   margin-top: 0;
   padding: 5px 20px;
+  border: 1px solid #4c60fc;
+  background-color: #f1f0f0;
+  color: #4c60fc;
   font-weight: 500;
 }
 .btn--secondary:hover {
@@ -169,12 +170,12 @@ h2 {
   border-color: #7e8dfd;
 }
 .btn--inline {
-  background-color: unset;
-  border: none;
   padding: 0;
+  border: none;
+  background-color: unset;
 }
 .btn--inline:hover {
-  background-color: #e6e6e6;
+  background-color: rgb(231, 231, 231);
 }
 .btn--medium {
   height: 30px;
@@ -196,26 +197,26 @@ h2 {
 
 .sign-form {
   width: 100%;
-  margin-top: 40px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 40px;
 }
 .sign-form__row {
   position: relative;
+  width: 100%;
   display: flex;
   flex-direction: column;
-  color: rgba(158, 156, 180, 0.8);
   margin-bottom: 15px;
-  width: 100%;
+  color: rgba(158, 156, 180, 0.8);
 }
 .sign-form__row::after {
   content: "";
-  border-top: 2px solid #4c60fc;
   width: 100%;
+  border-top: 2px solid #4c60fc;
   translate: 0 -2px;
-  transition: 0.25s ease-in;
   scale: 0 1;
+  transition: 0.25s ease-in;
 }
 .sign-form__row--focus::after {
   width: 100%;
@@ -225,70 +226,69 @@ h2 {
   font-size: 16px;
 }
 .sign-form__input {
-  font-size: 16px;
   height: 40px;
-  color: dark;
+  padding-right: 25px;
   outline: none;
   border: none;
-  padding-right: 25px;
   border-bottom: 1px solid rgba(221, 220, 229, 0.8);
+  font-size: 16px;
+  color: #1e1b32;
 }
 .sign-form__input--error {
-  background-color: rgba(255, 0, 0, 0.062);
   border-radius: 3px;
+  background-color: rgba(255, 0, 0, 0.062);
 }
 .sign-form__icon {
   position: absolute;
-  width: 18px;
-  height: 18px;
   right: 0;
   bottom: 0;
+  width: 18px;
+  height: 18px;
   translate: 0 -75%;
   filter: invert(97%) sepia(0%) saturate(1262%) hue-rotate(174deg) brightness(94%) contrast(84%);
 }
 .sign-form__link {
   display: inline-block;
+  margin: 0 0 5px 0;
   font-size: 13px;
   text-decoration: none;
   color: #7e8dfd;
-  margin: 0 0 5px 0;
 }
 .sign-form__link:hover {
   color: #1a33fb;
 }
 .sign-form__error {
+  align-self: flex-start;
+  margin-bottom: 12px;
+  margin-top: -12px;
   font-size: 12px;
   color: rgb(219, 0, 0);
-  align-self: flex-start;
-  margin-top: -12px;
-  margin-bottom: 12px;
 }
 
 .theme-switch {
+  position: relative;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  display: flex;
+  gap: 12px;
+  padding: 5px 5px;
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
-  position: relative;
-  background-color: gray;
-  border-radius: 20px;
-  display: flex;
-  gap: 12px;
-  padding: 5px 5px;
-  font-size: 12px;
   cursor: pointer;
-  width: -webkit-max-content;
-  width: -moz-max-content;
-  width: max-content;
+  border-radius: 20px;
+  background-color: hsla(245deg, 14%, 46%, 0.8);
+  font-size: 12px;
 }
 .theme-switch__cursor {
   position: absolute;
-  height: 19px;
-  width: 19px;
-  background-color: rgb(220, 220, 220);
+  left: 0;
   top: 0;
   bottom: 0;
-  left: 0;
+  height: 19px;
+  width: 19px;
   border-radius: 20px;
   transition: 0.2s ease-in-out;
 }
@@ -297,7 +297,7 @@ h2 {
   translate: 143% 2px;
 }
 .theme-switch__cursor--light {
-  background-color: rgb(220, 220, 220);
+  background-color: #fdfdfd;
   translate: 2px 2px;
 }
 .theme-switch__icon {
@@ -317,62 +317,59 @@ h2 {
   position: relative;
   transition: translate 0.2s;
 }
-.todo-item--dragged {
-  translate: 3% 0;
-}
-.todo-item--hover {
+.todo-item--dragged, .todo-item--hover {
   translate: 3% 0;
 }
 .todo-item__text {
   flex-grow: 1;
+  margin: auto 0;
   overflow: hidden;
   text-overflow: ellipsis;
-  margin: auto 0;
 }
 .todo-item__btns {
   display: flex;
   gap: 7px;
 }
 .todo-item__container {
-  background-color: white;
   display: flex;
   justify-content: space-between;
   padding: 7px 20px 4px 20px;
-  border-radius: 5px;
+  margin-bottom: 10px;
   border-top: 4px solid #b08c12;
-  box-shadow: 0px 2px 5px 0px rgb(212, 212, 212);
+  box-shadow: 0px 2px 5px 0px #cecece;
+  border-radius: 5px;
   font-size: 14px;
   cursor: pointer;
+  background-color: white;
   transition: translate 0.1s, box-shadow 0.1s;
-  margin-bottom: 10px;
 }
 .todo-item__container:hover {
-  box-shadow: 0px 2px 2px 0px rgb(255, 255, 255);
+  box-shadow: 0px 2px 2px 0px rgb(231, 231, 231);
 }
 .todo-item__container--pinned {
   border-color: #98a2ff;
   font-weight: 500;
 }
 .todo-item__container--archived {
-  border-color: gray;
-  color: rgb(83, 83, 83);
+  border-color: hsla(245deg, 14%, 46%, 0.8);
+  color: #3b3663;
   font-weight: 300;
 }
 
 .updateTodo {
   display: flex;
   justify-content: space-between;
-  width: 100%;
   align-items: flex-end;
+  width: 100%;
 }
 .updateTodo__input {
-  font-style: italic;
-  outline: none;
-  border: none;
-  border-bottom: 1px solid rgba(221, 220, 229, 0.8);
   flex-grow: 1;
   margin-right: 20px;
   padding-bottom: 3px;
+  outline: none;
+  border: none;
+  border-bottom: 1px solid rgba(221, 220, 229, 0.8);
+  font-style: italic;
 }
 .updateTodo__btns {
   display: flex;
@@ -383,43 +380,43 @@ h2 {
   position: relative;
   display: flex;
   justify-content: space-between;
-  width: 60%;
   align-items: center;
   gap: 25px;
+  width: 60%;
   margin: 50px 0 30px 0;
 }
-.add-todo__label {
-  font-weight: 500;
-  color: #3b3663;
-}
 .add-todo__input {
-  background-color: inherit;
-  border-radius: 8px;
-  font-style: italic;
+  flex-grow: 1;
+  padding: 10px 20px;
+  margin-right: 20px;
   outline: none;
   border: none;
   border-bottom: 2px solid rgba(221, 220, 229, 0.8);
-  flex-grow: 1;
-  margin-right: 20px;
-  padding: 10px 20px;
+  background-color: inherit;
+  font-style: italic;
 }
 .add-todo__input:focus {
+  border-radius: 5px;
   background-color: rgb(250, 250, 250);
 }
 .add-todo--tooltip::after {
   content: attr(data-tooltip);
   position: absolute;
   right: 50%;
-  translate: 50% 0;
   bottom: 110%;
-  font-size: 14px;
+  translate: 50% 0;
+  padding: 3px 10px;
   border: 1px solid rgb(194, 194, 194);
   border-radius: 8px;
-  padding: 3px 10px;
-  opacity: 1;
   background-color: white;
+  opacity: 1;
   -webkit-animation: tooltip-fade-out 2s forwards;
           animation: tooltip-fade-out 2s forwards;
+  font-size: 14px;
+}
+.add-todo__label {
+  font-weight: 500;
+  color: #3b3663;
 }
 
 #dark.app {

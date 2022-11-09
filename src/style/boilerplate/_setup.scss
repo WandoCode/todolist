@@ -11,7 +11,8 @@ body {
 
 .app {
   height: 100vh;
-  overflow: scroll;
+  overflow-y: scroll;
+
   & .header {
     height: 50px;
     display: flex;

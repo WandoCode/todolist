@@ -13,12 +13,9 @@ import trashIcone from '../assets/trash.svg'
 import archiveIcone from '../assets/archive.svg'
 import normalIcone from '../assets/normal.svg'
 import pinIcone from '../assets/pin.svg'
-import { useRef } from 'react'
 
 function TodoItem({ todo, tempOrder, onHandleDragStart, onHandleDrop }) {
   const dispatch = useDispatch()
-  const divRef = useRef()
-  const liRef = useRef()
   const userID = useSelector((state) => state.auth.currentUser.id)
   const [editMessage, setEditMessage] = useState(false)
   const [hovered, setHovered] = useState(0)
@@ -31,7 +28,6 @@ function TodoItem({ todo, tempOrder, onHandleDragStart, onHandleDrop }) {
   }, [hovered])
 
   const draggedItemClass = useMemo(() => {
-    console.log(1)
     let itemClass = 'todo-item'
     if (dragged) itemClass += ' todo-item--dragged'
     return itemClass
@@ -63,21 +59,29 @@ function TodoItem({ todo, tempOrder, onHandleDragStart, onHandleDrop }) {
   }
 
   const handleToggleArchive = (e) => {
+    e.stopPropagation()
+
     dispatch(toggleArchiveItem(tempOrder, todo.status))
     dispatch(synchronize(userID))
   }
 
   const handleTogglePin = (e) => {
+    e.stopPropagation()
+
     dispatch(togglePinItem(tempOrder, todo.status))
     dispatch(synchronize(userID))
   }
 
   const handleDelete = (e) => {
+    e.stopPropagation()
+
     dispatch(delTodo(tempOrder, todo.status))
     dispatch(synchronize(userID, [todo.status]))
   }
 
   const handleClick = (e) => {
+    e.preventDefault()
+    e.stopPropagation()
     setEditMessage(editMessage ? false : true)
   }
 
@@ -100,7 +104,6 @@ function TodoItem({ todo, tempOrder, onHandleDragStart, onHandleDrop }) {
       onDragEnd={handleDragEnd}
       className={dragged ? draggedItemClass : hoveredItemClass}
       onClick={handleClick}
-      ref={liRef}
     >
       <div className={containerClassName}>
         {editMessage ? (
@@ -112,9 +115,7 @@ function TodoItem({ todo, tempOrder, onHandleDragStart, onHandleDrop }) {
           />
         ) : (
           <>
-            <div className="todo-item__text" ref={divRef}>
-              {todo.message}
-            </div>
+            <div className="todo-item__text">{todo.message}</div>
             <div className="todo-item__btns">
               <Button
                 image={todo.status !== 1 ? pinIcone : normalIcone}

@@ -55,10 +55,6 @@ function UpdateTodoForm({ message, todoIndex, status, onCloseEdit }) {
   )
 
   const handleBlur = (e) => {
-    console.log(
-      e.relatedTarget?.id !== 'btn-accept' &&
-        e.relatedTarget?.id !== 'btn-cancel'
-    )
     if (
       e.relatedTarget?.id !== 'btn-accept' &&
       e.relatedTarget?.id !== 'btn-cancel'
