@@ -1,0 +1,11 @@
+{
+  "eng": {
+    "homepage": { "title": "Todos", "loading": "Loading..." }
+  },
+  "fr": {
+    "homepage": { "title": "Tâches", "loading": "Chargement..." }
+  },
+  "es": {
+    "homepage": { "title": "Tascas", "loading": "Cargando..." }
+  }
+}

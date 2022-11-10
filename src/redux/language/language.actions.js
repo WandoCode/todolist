@@ -4,4 +4,8 @@ const setLanguage = createAction('language/setLanguage', (language) => ({
   payload: { language },
 }))
 
-export { setLanguage }
+const setTranslation = createAction('language/setTranslation', (texts) => ({
+  payload: { texts },
+}))
+
+export { setLanguage, setTranslation }

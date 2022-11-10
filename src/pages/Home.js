@@ -9,6 +9,7 @@ function Home() {
 
   const userID = useSelector((state) => state.auth.currentUser.id)
   const loading = useSelector((state) => state.todos.loading)
+  const texts = useSelector((state) => state.language.texts.homepage)
 
   useEffect(() => {
     dispatch(getTodosMiddleware(userID))
@@ -17,10 +18,10 @@ function Home() {
   return (
     <div className="home">
       {loading ? (
-        <h1>Loading...</h1>
+        <h1>{texts.loading}</h1>
       ) : (
         <>
-          <h1>Todos</h1>
+          <h1>{texts.title}</h1>
           <AddTodoForm />
           <List />
         </>
