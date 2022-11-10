@@ -7,7 +7,8 @@ import ThemeSwitch from '../components/ThemeSwitch'
 import { logoutUser } from '../redux/auth/auth.actions'
 import { setLanguage } from '../redux/language/language.actions'
 
-const LANGUAGES = ['Fr', 'aaaa', 'Eng', 'a']
+const LANGUAGES = ['Eng', 'Fr', 'Es']
+
 function Layout() {
   const dispatch = useDispatch()
   const navigate = useNavigate()
@@ -45,7 +46,7 @@ function Layout() {
         <div className="header__options">
           <ThemeSwitch />
           <Dropdown
-            choicesArray={choicesArray}
+            choicesArray={LANGUAGES}
             name="language"
             onChoice={handleLanguage}
           />

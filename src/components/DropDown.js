@@ -3,13 +3,23 @@ import { useEffect, useState } from 'react'
 import arrowUp from '../assets/caret-up.svg'
 import arrowDown from '../assets/caret-down.svg'
 import { useMemo } from 'react'
+import { useSelector } from 'react-redux'
 
-function Dropdown({ choicesArray, onChoice, name }) {
+const LANGUAGES = ['eng', 'fr', 'es']
+
+const languagesDisplay = { eng: 'Eng', fr: 'Fr', es: 'Es' }
+
+function Dropdown({ onChoice, name }) {
   const [openMenu, setOpenMenu] = useState(false)
   const [currValue, setCurrValue] = useState()
+  const userLanguage = useSelector((state) => state.language.language)
 
   useEffect(() => {
-    setCurrValue(choicesArray.at(0))
+    if (userLanguage) {
+      LANGUAGES.includes(userLanguage)
+        ? setCurrValue(userLanguage)
+        : setCurrValue('eng')
+    }
   })
 
   const handleInput = (e) => {
@@ -19,7 +29,7 @@ function Dropdown({ choicesArray, onChoice, name }) {
   }
 
   const choicesOptions = useMemo(() => {
-    return choicesArray.map((choice) => {
+    return LANGUAGES.map((choice) => {
       return (
         <label htmlFor={choice} key={choice} className="dropdown__label">
           <input
@@ -29,11 +39,11 @@ function Dropdown({ choicesArray, onChoice, name }) {
             onChange={handleInput}
             value={choice}
           />
-          {choice}
+          {languagesDisplay[choice]}
         </label>
       )
     })
-  }, [choicesArray])
+  }, [LANGUAGES])
 
   const handleBtnClick = () => {
     setOpenMenu(openMenu ? false : true)
@@ -59,7 +69,7 @@ function Dropdown({ choicesArray, onChoice, name }) {
         name={name}
         data-open={openMenu}
       >
-        {currValue}
+        {languagesDisplay[currValue]}
         {openMenu ? (
           <img src={arrowUp} alt="arrow up" className="dropdown__img" />
         ) : (
