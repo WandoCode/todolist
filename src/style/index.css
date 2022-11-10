@@ -331,12 +331,16 @@ h2 {
 }
 .todo-item__btns {
   display: flex;
+  opacity: 0;
   gap: 7px;
+  transition: opacity 0.2s;
 }
 .todo-item__container {
   display: flex;
   justify-content: space-between;
-  padding: 7px 20px 4px 20px;
+  align-items: center;
+  min-height: 45px;
+  padding: 0 20px;
   margin-bottom: 10px;
   border-top: 4px solid #b08c12;
   box-shadow: 0px 2px 5px 0px #cecece;
@@ -348,6 +352,9 @@ h2 {
 }
 .todo-item__container:hover {
   box-shadow: 0px 2px 2px 0px #e7e7e7;
+}
+.todo-item__container:hover .todo-item__btns {
+  opacity: 1;
 }
 .todo-item__container--pinned {
   border-color: #98a2ff;
