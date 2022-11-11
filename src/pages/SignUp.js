@@ -19,12 +19,12 @@ function SignUp() {
   }, [userConnected])
 
   return (
-    <div className="sign-page">
+    <section className="sign-page">
       <img className="sign-page__icon" src={signupIcon} alt="User" />
 
       <h1 className="h1 sign-page__title">{texts?.title}</h1>
       <SignupForm />
-    </div>
+    </section>
   )
 }
 

@@ -18,7 +18,7 @@ function Home() {
   }, [])
 
   return (
-    <div className="home">
+    <section className="home">
       {loading ? (
         <h1>{texts.loading}</h1>
       ) : (
@@ -28,7 +28,7 @@ function Home() {
           <List />
         </>
       )}
-    </div>
+    </section>
   )
 }
 

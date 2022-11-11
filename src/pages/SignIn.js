@@ -19,12 +19,12 @@ function SignIn() {
   }, [userConnected])
 
   return (
-    <div className="sign-page">
+    <section className="sign-page">
       <img className="sign-page__icon" src={signinIcon} alt="User" />
       <h1 className="h1 sign-page__title">{texts?.title}</h1>
       <h2 className="h2 sign-page__subtitle">{texts?.subtitle}</h2>
       <SiginForm />
-    </div>
+    </section>
   )
 }
 

@@ -124,7 +124,7 @@ function TodoItem({ todo, tempOrder, onHandleDragStart, onHandleDrop }) {
           />
         ) : (
           <>
-            <div className="todo-item__text">{todo.message}</div>
+            <p className="todo-item__text">{todo.message}</p>
 
             <div className="todo-item__btns">
               <Button
