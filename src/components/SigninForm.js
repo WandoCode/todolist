@@ -20,10 +20,12 @@ function SiginForm() {
   const authError = useSelector((state) => state.auth.error)
   const texts = useSelector((state) => state.language.texts?.signIn)
 
-  const [email, setEmail] = useState('a@gmail.com')
-  const [password, setPassword] = useState('123456')
   const [currentFocus, setCurrentFocus] = useState()
   const [validationErrors, setValidationErrors] = useState([])
+  const [formInputs, setFormInputs] = useState({
+    email: 'a@gmail.com',
+    password: '123456',
+  })
 
   useEffect(() => {
     return () => dispatch(setAuthError(null))
@@ -33,8 +35,8 @@ function SiginForm() {
     e.preventDefault()
 
     const validator = validation({
-      email,
-      password,
+      email: formInputs.email,
+      password: formInputs.password,
     })
 
     const validationErrors = validator.validateForm()
@@ -42,7 +44,7 @@ function SiginForm() {
     if (validationErrors.length > 0) {
       setValidationErrors(validationErrors)
     } else {
-      dispatch(signInMiddleware(email, password))
+      dispatch(signInMiddleware(formInputs.email, formInputs.password))
     }
   }
 
@@ -79,8 +81,10 @@ function SiginForm() {
           type="email"
           name="email"
           id="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          value={formInputs.email}
+          onChange={(e) =>
+            setFormInputs((prev) => ({ ...prev, email: e.target.value }))
+          }
           onFocus={() => setCurrentFocus('email')}
           onBlur={() => setCurrentFocus(undefined)}
         />
@@ -102,8 +106,10 @@ function SiginForm() {
           type="password"
           name="password"
           id="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          value={formInputs.password}
+          onChange={(e) =>
+            setFormInputs((prev) => ({ ...prev, password: e.target.value }))
+          }
           onFocus={() => setCurrentFocus('password')}
           onBlur={() => setCurrentFocus(undefined)}
         />

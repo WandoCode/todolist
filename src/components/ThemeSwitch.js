@@ -1,19 +1,24 @@
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { setTheme } from '../redux/theme/theme.actions'
+
 import moon from '../assets/moon.svg'
 import sun from '../assets/sun.svg'
 
 function ThemeSwitch() {
   const dispatch = useDispatch()
+
   const currTheme = useSelector((state) => state.theme.theme)
 
   useEffect(() => {
-    if (!currTheme) {
-      const darkThemeMq = window.matchMedia('(prefers-color-scheme: dark)')
-      dispatch(setTheme(darkThemeMq.matches ? 'dark' : 'light'))
-    }
+    if (!currTheme) getAndSetDefaultTheme()
   }, [])
+
+  const getAndSetDefaultTheme = () => {
+    const darkThemeMq = window.matchMedia('(prefers-color-scheme: dark)')
+
+    dispatch(setTheme(darkThemeMq.matches ? 'dark' : 'light'))
+  }
 
   const handleClick = () => {
     const newTheme = currTheme === 'light' ? 'dark' : 'light'

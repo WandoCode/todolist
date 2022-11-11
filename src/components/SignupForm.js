@@ -20,14 +20,13 @@ function SignupForm() {
   const authError = useSelector((state) => state.auth.error)
   const texts = useSelector((state) => state.language.texts?.signUp)
 
+  const [currentFocus, setCurrentFocus] = useState()
+  const [validationErrors, setValidationErrors] = useState([])
   const [formInputs, setFormInputs] = useState({
     email: '',
     password: '',
     confirmation: '',
   })
-
-  const [currentFocus, setCurrentFocus] = useState()
-  const [validationErrors, setValidationErrors] = useState([])
 
   useEffect(() => {
     return () => dispatch(setAuthError(null))

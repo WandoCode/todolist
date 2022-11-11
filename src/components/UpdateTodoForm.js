@@ -1,18 +1,21 @@
-import { useEffect, useRef } from 'react'
-import { useMemo, useState } from 'react'
+import { useEffect, useRef, useMemo, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+
 import { updateTodo } from '../redux/todos/todos.action'
 import { synchronize } from '../redux/todos/todos.middleware'
 import validation from '../utils/formValidation'
+
 import Button from './Button'
 
 function UpdateTodoForm({ message, todoIndex, status, onCloseEdit }) {
   const dispatch = useDispatch()
   const inputRef = useRef()
-  const [inputValue, setInputValue] = useState(message)
-  const [showError, setShowError] = useState(false)
+
   const userID = useSelector((state) => state.auth.currentUser.id)
   const texts = useSelector((state) => state.language.texts?.homepage)
+
+  const [inputValue, setInputValue] = useState(message)
+  const [showError, setShowError] = useState(false)
 
   useEffect(() => {
     inputRef.current.focus()
@@ -30,8 +33,10 @@ function UpdateTodoForm({ message, todoIndex, status, onCloseEdit }) {
 
     if (validationErrors.length === 0) {
       setShowError(false)
+
       dispatch(updateTodo(inputValue, status, todoIndex))
       dispatch(synchronize(userID, [status]))
+
       onCloseEdit(false)
     } else {
       setShowError(true)
@@ -40,14 +45,13 @@ function UpdateTodoForm({ message, todoIndex, status, onCloseEdit }) {
   }
 
   const handleCancel = (e) => {
-    e.preventDefault()
     e.stopPropagation()
+
     onCloseEdit(false)
   }
 
   const handleClick = (e) => {
     e.stopPropagation()
-    e.preventDefault()
   }
 
   const inputClass = useMemo(
