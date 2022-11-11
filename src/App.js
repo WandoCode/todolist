@@ -1,17 +1,21 @@
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import setupLanguage from './redux/language/language.middlewares'
 import Router from './Router'
+
+import setupLanguage from './redux/language/language.middlewares'
 import './style/index.css'
 
 function App() {
   const dispatch = useDispatch()
+
   const theme = useSelector((state) => state.theme.theme)
+
   const userLanguage =
     window.navigator.userLanguage || window.navigator.language
 
   useEffect(() => {
-    dispatch(setupLanguage(userLanguage.split('-')[0]))
+    const language = userLanguage.split('-')[0]
+    dispatch(setupLanguage(language))
   }, [userLanguage])
 
   return (
