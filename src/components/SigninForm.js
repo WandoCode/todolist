@@ -17,6 +17,7 @@ function SiginForm() {
 
   const loading = useSelector((state) => state.auth.loading)
   const authError = useSelector((state) => state.auth.error)
+  const texts = useSelector((state) => state.language.texts?.signIn)
 
   const [email, setEmail] = useState('a@gmail.com')
   const [password, setPassword] = useState('123456')
@@ -65,11 +66,11 @@ function SiginForm() {
   return (
     <form className="sign-form">
       {(authError === 'user-not-found' || authError === 'wrong-password') && (
-        <div className="sign-form__error">User/password incorrect.</div>
+        <div className="sign-form__error">{texts?.errorSubmit}</div>
       )}
       <div className={getClassRow('email')}>
         <label className="sign-form__label" htmlFor="email">
-          Email
+          {texts?.email}
         </label>
 
         <input
@@ -87,12 +88,12 @@ function SiginForm() {
       </div>
 
       {validationErrors.includes('email') && (
-        <div className="sign-form__error">Invalid email</div>
+        <div className="sign-form__error">{texts?.errorEmail}</div>
       )}
 
       <div className={getClassRow('password')}>
         <label className="sign-form__label" htmlFor="password">
-          Password
+          {texts?.password}
         </label>
 
         <input
@@ -109,16 +110,16 @@ function SiginForm() {
       </div>
 
       {validationErrors.includes('password') && (
-        <div className="sign-form__error">Password incorrect</div>
+        <div className="sign-form__error">{texts?.errorPassword}</div>
       )}
 
       <Link className="sign-form__link" to="/signup">
-        Create an new account here!
+        {texts?.createAccount}
       </Link>
 
       <Button
         image={rightArrow}
-        text="Login"
+        text={texts?.formSubmit}
         onClickHandler={handleSubmit}
         disabled={loading}
         classesArr={['main']}

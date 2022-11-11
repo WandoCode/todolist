@@ -9,6 +9,7 @@ function SignUp() {
   const navigate = useNavigate()
 
   const userConnected = useSelector((state) => state.auth.isConnected)
+  const texts = useSelector((state) => state.language.texts?.signUp)
 
   useEffect(() => {
     if (userConnected) {
@@ -20,7 +21,7 @@ function SignUp() {
     <div className="sign-page">
       <img className="sign-page__icon" src={signupIcon} alt="User" />
 
-      <h1 className="h1 sign-page__title">Create account!</h1>
+      <h1 className="h1 sign-page__title">{texts?.title}</h1>
       <SignupForm />
     </div>
   )

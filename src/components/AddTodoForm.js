@@ -10,6 +10,8 @@ function AddTodoForm() {
   const dispatch = useDispatch()
   const inputRef = useRef()
   const userID = useSelector((state) => state.auth.currentUser.id)
+  const texts = useSelector((state) => state.language.texts?.homepage)
+
   const [showError, setShowError] = useState(false)
 
   const handleSubmit = (e) => {
@@ -50,10 +52,10 @@ function AddTodoForm() {
   return (
     <form
       className={showError ? 'add-todo add-todo--tooltip' : 'add-todo'}
-      data-tooltip={"You can't save an empty task!"}
+      data-tooltip={texts?.errorAddTask}
     >
       <label htmlFor="new-todo" className="add-todo__label">
-        New todo
+        {texts?.newTask}
       </label>
       <input
         type="text"
@@ -64,7 +66,7 @@ function AddTodoForm() {
       />
 
       <Button
-        text="Add"
+        text={texts?.addTask}
         onClickHandler={handleSubmit}
         classesArr={['new-todo', 'main']}
       />

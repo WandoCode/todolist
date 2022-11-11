@@ -1,11 +1,125 @@
 {
   "eng": {
-    "homepage": { "title": "Todos", "loading": "Loading..." }
+    "homepage": {
+      "title": "Todos",
+      "loading": "Loading...",
+      "newTask": "New todo",
+      "addTask": "Add",
+      "errorAddTask": "You can't save an empty taks!",
+      "priority": "Set normal priority",
+      "normal": "Set normal priority",
+      "archive": "Archive task",
+      "delete": "Delete task",
+      "acceptUpdate": "Accept",
+      "cancelUpdate": "Cancel"
+    },
+    "signIn": {
+      "title": "Welcome!",
+      "subtitle": "Sign in your account",
+      "email": "Email",
+      "password": "Password",
+      "createAccount": "Create a new account",
+      "formSubmit": "Login",
+      "errorEmail": "Invalid email",
+      "errorPassword": "Invalid password",
+      "errorSubmit": "Invalid email or password"
+    },
+    "signUp": {
+      "title": "Create account!",
+      "email": "Email",
+      "password": "Password",
+      "confirmation": "Confirmation",
+      "goToSignIn": "You already have an account?",
+      "formSubmit": "Accept",
+      "errorEmail": "Invalid email",
+      "errorPassword": "Invalid password",
+      "errorConfirmation": "Password and confirmation are different",
+      "errorSubmit": "Email already in use"
+    },
+    "layout": {
+      "logout": "Log out"
+    }
   },
   "fr": {
-    "homepage": { "title": "Tâches", "loading": "Chargement..." }
+    "homepage": {
+      "title": "Tâches",
+      "loading": "Chargement...",
+      "newTask": "Nouvelle tâche",
+      "addTask": "Ajouter",
+      "errorAddTask": "La tâche ne peut pas être vide!",
+      "priority": "Définir la tâche comme importante",
+      "normal": "Définir la priorité comme normale",
+      "archive": "Archiver la tâche",
+      "delete": "Effacer la tâche",
+      "acceptUpdate": "Accepter",
+      "cancelUpdate": "Annuler"
+    },
+    "signIn": {
+      "title": "Bienvenue!",
+      "subtitle": "Se connecter à son compte",
+      "email": "Email",
+      "password": "Mot de passe",
+      "createAccount": "Créer un nouveau compte",
+      "formSubmit": "Connexion",
+      "errorEmail": "Email invalide",
+      "errorPassword": "Mot de passe invalide",
+      "errorSubmit": "Email ou mot de passe invalide"
+    },
+    "signUp": {
+      "title": "Créer un compte!",
+      "email": "Email",
+      "password": "Mot de passe",
+      "confirmation": "Confirmation",
+      "goToSignIn": "Vous possedez déjà un compte?",
+      "formSubmit": "Accepter",
+      "errorEmail": "Email invalide",
+      "errorPassword": "Mot de passe invalide",
+      "errorConfirmation": "La confirmation et le mot de passe sont différents",
+      "errorSubmit": "Email déjà utilisé"
+    },
+    "layout": {
+      "logout": "Se déconnecter"
+    }
   },
   "es": {
-    "homepage": { "title": "Tascas", "loading": "Cargando..." }
+    "homepage": {
+      "title": "Tareas",
+      "loading": "Cargando...",
+      "newTask": "Neuva tarea",
+      "addTask": "Añadir",
+      "errorAddTask": "¡La tarea no puede ser vacia!",
+      "priority": "Poner una alta prioridad",
+      "normal": "Poner una prioridad normal",
+      "archive": "Archivar tarea",
+      "delete": "Borrar tarea",
+      "acceptUpdate": "Aceptar",
+      "cancelUpdate": "Cancelar"
+    },
+    "signIn": {
+      "title": "¡Bienvenido!",
+      "subtitle": "Conectate a tu cuenta",
+      "email": "Correo",
+      "password": "Contraseña",
+      "createAccount": "Crear una nueva cuenta",
+      "formSubmit": "Conexión",
+      "errorEmail": "Correo incorrecto",
+      "errorPassword": "Contraseña incorrecta",
+      "errorSubmit": "Correo o Contraseña incorrecto"
+    },
+    "signUp": {
+      "title": "¡Crear cuenta!",
+      "email": "Correo",
+      "password": "Contraseña",
+      "confirmation": "Confirmación",
+      "goToSignIn": "¿Ya tienes una cuenta?",
+      "formSubmit": "Aceptar",
+      "errorEmail": "Correo incorrecto",
+      "errorPassword": "Contraseña incorrecta",
+      "errorConfirmation": "Confirmación y contraseña son diferentes",
+      "errorSubmit": "Correo ya utilizado"
+    },
+    "layout": {
+      "logout": "Disconectar"
+    }
   }
 }

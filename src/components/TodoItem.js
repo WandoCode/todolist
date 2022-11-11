@@ -17,6 +17,8 @@ import pinIcone from '../assets/pin.svg'
 function TodoItem({ todo, tempOrder, onHandleDragStart, onHandleDrop }) {
   const dispatch = useDispatch()
   const userID = useSelector((state) => state.auth.currentUser.id)
+  const texts = useSelector((state) => state.language.texts?.homepage)
+
   const [editMessage, setEditMessage] = useState(false)
   const [hovered, setHovered] = useState(0)
   const [dragged, setDragged] = useState(false)
@@ -121,21 +123,25 @@ function TodoItem({ todo, tempOrder, onHandleDragStart, onHandleDrop }) {
                 image={todo.status !== 1 ? pinIcone : normalIcone}
                 text=""
                 onClickHandler={handleTogglePin}
-                tooltipText={todo.status !== 1 ? 'Pin' : 'Unpin'}
+                tooltipText={
+                  todo.status !== 1 ? texts?.priority : texts?.normal
+                }
                 classesArr={['inline', 'small']}
               />
               <Button
                 image={todo.status !== -1 ? archiveIcone : normalIcone}
                 text=""
                 onClickHandler={handleToggleArchive}
-                tooltipText={todo.status !== 1 ? 'Archive' : 'Unarchive'}
+                tooltipText={
+                  todo.status !== -1 ? texts?.archive : texts?.normal
+                }
                 classesArr={['inline', 'small']}
               />
               <Button
                 image={trashIcone}
                 text=""
                 onClickHandler={handleDelete}
-                tooltipText="Delete"
+                tooltipText={texts?.delete}
                 classesArr={['inline', 'small']}
               />
             </div>

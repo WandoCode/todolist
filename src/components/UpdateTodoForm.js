@@ -12,6 +12,7 @@ function UpdateTodoForm({ message, todoIndex, status, onCloseEdit }) {
   const [inputValue, setInputValue] = useState(message)
   const [showError, setShowError] = useState(false)
   const userID = useSelector((state) => state.auth.currentUser.id)
+  const texts = useSelector((state) => state.language.texts?.homepage)
 
   useEffect(() => {
     inputRef.current.focus()
@@ -75,19 +76,19 @@ function UpdateTodoForm({ message, todoIndex, status, onCloseEdit }) {
         ref={inputRef}
       />
       {showError && (
-        <div className="updateTodo__tooltip">You can't save an empty task!</div>
+        <div className="updateTodo__tooltip">{texts?.errorAddTask}</div>
       )}
       <div className="updateTodo__btns">
         <Button
           type="accept"
-          text="Accept"
+          text={texts?.acceptUpdate}
           onClickHandler={handleAccept}
           classesArr={['inline', 'medium']}
           id="btn-accept"
         />
         <Button
           type="cancel"
-          text="Cancel"
+          text={texts?.cancelUpdate}
           onClickHandler={handleCancel}
           classesArr={['inline', 'medium']}
           id="btn-cancel"

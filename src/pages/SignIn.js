@@ -10,6 +10,7 @@ function SignIn() {
   const navigate = useNavigate()
 
   const userConnected = useSelector((state) => state.auth.isConnected)
+  const texts = useSelector((state) => state.language.texts?.signIn)
 
   useEffect(() => {
     if (userConnected) {
@@ -20,8 +21,8 @@ function SignIn() {
   return (
     <div className="sign-page">
       <img className="sign-page__icon" src={signinIcon} alt="User" />
-      <h1 className="h1 sign-page__title">Welcome!</h1>
-      <h2 className="h2 sign-page__subtitle">Sign in to your account</h2>
+      <h1 className="h1 sign-page__title">{texts?.title}</h1>
+      <h2 className="h2 sign-page__subtitle">{texts?.subtitle}</h2>
       <SiginForm />
     </div>
   )

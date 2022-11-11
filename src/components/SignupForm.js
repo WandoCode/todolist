@@ -16,6 +16,7 @@ function SignupForm() {
   const dispatch = useDispatch()
   const loading = useSelector((state) => state.auth.loading)
   const authError = useSelector((state) => state.auth.error)
+  const texts = useSelector((state) => state.language.texts?.signUp)
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -66,11 +67,11 @@ function SignupForm() {
   return (
     <form className="sign-form">
       {authError === 'email-already-in-use' && (
-        <div className="sign-form__error">Email already used</div>
+        <div className="sign-form__error">{texts?.errorSubmit}</div>
       )}
       <div className={getClassRow('email')}>
         <label className="sign-form__label" htmlFor="email">
-          Email
+          {texts?.email}
         </label>
 
         <input
@@ -88,12 +89,12 @@ function SignupForm() {
       </div>
 
       {validationErrors.includes('email') && (
-        <div className="sign-form__error">Invalid email</div>
+        <div className="sign-form__error">{texts?.errorEmail}</div>
       )}
 
       <div className={getClassRow('password')}>
         <label className="sign-form__label" htmlFor="password">
-          Password
+          {texts?.password}
         </label>
 
         <input
@@ -111,12 +112,12 @@ function SignupForm() {
       </div>
 
       {validationErrors.includes('password') && (
-        <div className="sign-form__error">Invalid password</div>
+        <div className="sign-form__error">{texts?.errorPassword}</div>
       )}
 
       <div className={getClassRow('confirmation')}>
         <label className="sign-form__label" htmlFor="confirmation">
-          Confirm password
+          {texts?.confirmation}
         </label>
 
         <input
@@ -134,18 +135,16 @@ function SignupForm() {
       </div>
 
       {validationErrors.includes('confirmation') && (
-        <div className="sign-form__error">
-          Password and confirmation are different
-        </div>
+        <div className="sign-form__error">{texts?.errorConfirmation}</div>
       )}
 
       <Link className="sign-form__link" to="/signin">
-        You already have an account?
+        {texts?.goToSignIn}
       </Link>
 
       <Button
         image={rightArrow}
-        text="Create user"
+        text={texts?.formSubmit}
         onClickHandler={handleSubmit}
         disabled={loading}
         classesArr={['main']}
