@@ -51,7 +51,10 @@ function UpdateTodoForm({ message, todoIndex, status, onCloseEdit }) {
   }
 
   const inputClass = useMemo(
-    () => (showError ? 'updateTodo__input--error' : 'updateTodo__input'),
+    () =>
+      showError
+        ? 'updateTodo__input updateTodo__input--error'
+        : 'updateTodo__input',
     [showError]
   )
 
@@ -75,9 +78,11 @@ function UpdateTodoForm({ message, todoIndex, status, onCloseEdit }) {
         onClick={handleClick}
         ref={inputRef}
       />
+
       {showError && (
         <div className="updateTodo__tooltip">{texts?.errorAddTask}</div>
       )}
+
       <div className="updateTodo__btns">
         <Button
           type="accept"

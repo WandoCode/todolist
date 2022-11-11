@@ -4,5 +4,15 @@
       background-color: inherit;
       color: $d-lighter;
     }
+
+    &__btns {
+      & button {
+        color: $d-lighter;
+      }
+    }
+
+    &__tooltip {
+      color: $dark;
+    }
   }
 }
