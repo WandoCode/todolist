@@ -1,9 +1,8 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useMemo } from 'react'
+import { useSelector } from 'react-redux'
 
 import arrowUp from '../assets/caret-up.svg'
 import arrowDown from '../assets/caret-down.svg'
-import { useMemo } from 'react'
-import { useSelector } from 'react-redux'
 
 const LANGUAGES = ['eng', 'fr', 'es']
 const languagesDisplay = { eng: 'Eng', fr: 'Fr', es: 'Es' }

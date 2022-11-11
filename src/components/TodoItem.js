@@ -1,21 +1,24 @@
 import { useDispatch, useSelector } from 'react-redux'
+import { useState, useMemo } from 'react'
+
+import trashIcone from '../assets/trash.svg'
+import archiveIcone from '../assets/archive.svg'
+import normalIcone from '../assets/normal.svg'
+import pinIcone from '../assets/pin.svg'
+
 import {
   delTodo,
   toggleArchiveItem,
   togglePinItem,
 } from '../redux/todos/todos.action'
 import { synchronize } from '../redux/todos/todos.middleware'
-import { useEffect, useState } from 'react'
+
 import UpdateTodoForm from './UpdateTodoForm'
 import Button from './Button'
-import { useMemo } from 'react'
-import trashIcone from '../assets/trash.svg'
-import archiveIcone from '../assets/archive.svg'
-import normalIcone from '../assets/normal.svg'
-import pinIcone from '../assets/pin.svg'
 
 function TodoItem({ todo, tempOrder, onHandleDragStart, onHandleDrop }) {
   const dispatch = useDispatch()
+
   const userID = useSelector((state) => state.auth.currentUser.id)
   const texts = useSelector((state) => state.language.texts?.homepage)
 
@@ -25,32 +28,38 @@ function TodoItem({ todo, tempOrder, onHandleDragStart, onHandleDrop }) {
 
   const hoveredItemClass = useMemo(() => {
     let itemClass = 'todo-item'
+
     if (hovered === 1) itemClass += ' todo-item--hover'
+
     return itemClass
   }, [hovered])
 
   const draggedItemClass = useMemo(() => {
     let itemClass = 'todo-item'
+
     if (dragged) itemClass += ' todo-item--dragged'
+
     return itemClass
   }, [dragged])
 
   const containerClassName = useMemo(() => {
     let itemClass = 'todo-item__container'
+
     if (todo.status === -1) itemClass += ' todo-item__container--archived'
     if (todo.status === 1) itemClass += ' todo-item__container--pinned'
+
     return itemClass
   }, [todo.status])
 
-  const handleDragStart = (e) => {
+  const handleDragStart = () => {
     setDragged(true)
     onHandleDragStart(tempOrder, todo.status)
   }
-  const handleDragEnd = (e) => {
+  const handleDragEnd = () => {
     setDragged(false)
   }
 
-  const handleDrop = (e) => {
+  const handleDrop = () => {
     setHovered(0)
     onHandleDrop(tempOrder, todo.status)
   }
@@ -81,17 +90,15 @@ function TodoItem({ todo, tempOrder, onHandleDragStart, onHandleDrop }) {
     dispatch(synchronize(userID, [todo.status]))
   }
 
-  const handleClick = (e) => {
-    e.preventDefault()
-    e.stopPropagation()
+  const handleClick = () => {
     setEditMessage(editMessage ? false : true)
   }
 
-  const handleDragEnter = (e) => {
+  const handleDragEnter = () => {
     setHovered((prev) => prev + 1)
   }
 
-  const handleDragLeave = (e) => {
+  const handleDragLeave = () => {
     setHovered((prev) => prev - 1)
   }
 
@@ -118,6 +125,7 @@ function TodoItem({ todo, tempOrder, onHandleDragStart, onHandleDrop }) {
         ) : (
           <>
             <div className="todo-item__text">{todo.message}</div>
+
             <div className="todo-item__btns">
               <Button
                 image={todo.status !== 1 ? pinIcone : normalIcone}
@@ -128,6 +136,7 @@ function TodoItem({ todo, tempOrder, onHandleDragStart, onHandleDrop }) {
                 }
                 classesArr={['inline', 'small']}
               />
+
               <Button
                 image={todo.status !== -1 ? archiveIcone : normalIcone}
                 text=""
@@ -137,6 +146,7 @@ function TodoItem({ todo, tempOrder, onHandleDragStart, onHandleDrop }) {
                 }
                 classesArr={['inline', 'small']}
               />
+
               <Button
                 image={trashIcone}
                 text=""

@@ -1,16 +1,17 @@
 import { Link } from 'react-router-dom'
 import { useCallback, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+
 import rightArrow from '../assets/arrow_right.svg'
-
-import validation from '../utils/formValidation'
-import { signInMiddleware } from '../redux/auth/auth.middlewares'
-
-import Button from './Button'
-
 import userIcon from '../assets/user-solid.svg'
 import eyeIcon from '../assets/eye-solid.svg'
+
+import validation from '../utils/formValidation'
+
+import { signInMiddleware } from '../redux/auth/auth.middlewares'
 import { setAuthError } from '../redux/auth/auth.actions'
+
+import Button from './Button'
 
 function SiginForm() {
   const dispatch = useDispatch()

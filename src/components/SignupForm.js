@@ -1,26 +1,31 @@
 import { Link } from 'react-router-dom'
 import { useCallback, useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+
 import rightArrow from '../assets/arrow_right.svg'
+import userIcon from '../assets/user-solid.svg'
+import eyeIcon from '../assets/eye-solid.svg'
+
+import validation from '../utils/formValidation'
 
 import { signUpMiddleware } from '../redux/auth/auth.middlewares'
-import validation from '../utils/formValidation'
+import { setAuthError } from '../redux/auth/auth.actions'
 
 import Button from './Button'
 
-import userIcon from '../assets/user-solid.svg'
-import eyeIcon from '../assets/eye-solid.svg'
-import { setAuthError } from '../redux/auth/auth.actions'
-
 function SignupForm() {
   const dispatch = useDispatch()
+
   const loading = useSelector((state) => state.auth.loading)
   const authError = useSelector((state) => state.auth.error)
   const texts = useSelector((state) => state.language.texts?.signUp)
 
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [confirmation, setConfirmation] = useState('')
+  const [formInputs, setFormInputs] = useState({
+    email: '',
+    password: '',
+    confirmation: '',
+  })
+
   const [currentFocus, setCurrentFocus] = useState()
   const [validationErrors, setValidationErrors] = useState([])
 
@@ -31,18 +36,14 @@ function SignupForm() {
   const handleSubmit = (e) => {
     e.preventDefault()
 
-    const validator = validation({
-      email,
-      password,
-      confirmation,
-    })
+    const validator = validation({ ...formInputs })
 
     const validationErrors = validator.validateForm()
 
     if (validationErrors.length > 0) {
       setValidationErrors(validationErrors)
     } else {
-      dispatch(signUpMiddleware(email, password))
+      dispatch(signUpMiddleware(formInputs.email, formInputs.password))
     }
   }
 
@@ -79,8 +80,10 @@ function SignupForm() {
           type="email"
           name="email"
           id="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          value={formInputs.email}
+          onChange={(e) =>
+            setFormInputs((prev) => ({ ...prev, email: e.target.value }))
+          }
           onFocus={() => setCurrentFocus('email')}
           onBlur={() => setCurrentFocus(undefined)}
         />
@@ -102,8 +105,10 @@ function SignupForm() {
           type="password"
           name="password"
           id="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          value={formInputs.password}
+          onChange={(e) =>
+            setFormInputs((prev) => ({ ...prev, password: e.target.value }))
+          }
           onFocus={() => setCurrentFocus('password')}
           onBlur={() => setCurrentFocus(undefined)}
         />
@@ -125,8 +130,10 @@ function SignupForm() {
           type="password"
           name="confirmation"
           id="confirmation"
-          value={confirmation}
-          onChange={(e) => setConfirmation(e.target.value)}
+          value={formInputs.confirmation}
+          onChange={(e) =>
+            setFormInputs((prev) => ({ ...prev, confirmation: e.target.value }))
+          }
           onFocus={() => setCurrentFocus('confirmation')}
           onBlur={() => setCurrentFocus(undefined)}
         />
