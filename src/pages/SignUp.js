@@ -1,8 +1,9 @@
 import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
+
 import signupIcon from '../assets/circle-user-solid.svg'
 
-import { useNavigate } from 'react-router-dom'
 import SignupForm from '../components/SignupForm'
 
 function SignUp() {

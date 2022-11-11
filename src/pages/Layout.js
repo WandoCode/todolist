@@ -1,9 +1,11 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { Outlet, useNavigate } from 'react-router-dom'
+
+import { logoutUser } from '../redux/auth/auth.actions'
+
 import Button from '../components/Button'
 import LanguageSelect from '../components/LanguageSelect'
 import ThemeSwitch from '../components/ThemeSwitch'
-import { logoutUser } from '../redux/auth/auth.actions'
 
 function Layout() {
   const dispatch = useDispatch()

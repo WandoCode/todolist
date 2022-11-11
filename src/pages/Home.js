@@ -1,8 +1,10 @@
-import { useDispatch, useSelector } from 'react-redux'
-import List from '../components/List'
-import { getTodosMiddleware } from '../redux/todos/todos.middleware'
 import { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+
+import { getTodosMiddleware } from '../redux/todos/todos.middleware'
+
 import AddTodoForm from '../components/AddTodoForm'
+import List from '../components/List'
 
 function Home() {
   const dispatch = useDispatch()
