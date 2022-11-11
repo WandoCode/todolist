@@ -7,71 +7,79 @@ import { addTodo, normalizeList } from '../redux/todos/todos.action'
 import Button from './Button'
 
 function AddTodoForm() {
-  const dispatch = useDispatch()
-  const inputRef = useRef()
-  const userID = useSelector((state) => state.auth.currentUser.id)
-  const texts = useSelector((state) => state.language.texts?.homepage)
+    const dispatch = useDispatch()
+    const inputRef = useRef()
 
-  const [showError, setShowError] = useState(false)
+    const userID = useSelector((state) => state.auth.currentUser.id)
+    const texts = useSelector((state) => state.language.texts?.homepage)
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
+    const [showError, setShowError] = useState(false)
 
-    const message = inputRef.current.value
-    inputRef.current.value = ''
+    const handleSubmit = (e) => {
+        e.preventDefault()
 
-    const validator = validation({ message })
+        const message = inputRef.current.value
 
-    const validationErrors = validator.validateForm()
+        const validator = validation({ message })
 
-    if (validationErrors.length === 0) {
-      setShowError(false)
+        const validationErrors = validator.validateForm()
 
-      const newTodo = {
-        message,
-        status: 0,
-        creationDate: new Date().toString(),
-        id: uniqid(),
-      }
-      dispatch(addTodo(newTodo))
-      dispatch(normalizeList(0))
-      dispatch(synchronize(userID, [0]))
-    } else {
-      setShowError(true)
+        if (validationErrors.length === 0) {
+            setShowError(false)
 
-      setTimeout(() => setShowError(false), 2000)
+            inputRef.current.value = ''
+
+            createAndAddTodo(message)
+        } else {
+            setShowError(true)
+
+            setTimeout(() => setShowError(false), 2000)
+        }
     }
-  }
 
-  const inputClass = useMemo(
-    () =>
-      showError ? 'add-todo__input add-todo__input--error' : ' add-todo__input',
-    [showError]
-  )
+    const createAndAddTodo = (message) => {
+        const newTodo = {
+            message,
+            status: 0,
+            creationDate: new Date().toString(),
+            id: uniqid(),
+        }
 
-  return (
-    <form
-      className={showError ? 'add-todo add-todo--tooltip' : 'add-todo'}
-      data-tooltip={texts?.errorAddTask}
-    >
-      <label htmlFor="new-todo" className="add-todo__label">
-        {texts?.newTask}
-      </label>
-      <input
-        type="text"
-        name="new-todo"
-        id="new-todo"
-        className={inputClass}
-        ref={inputRef}
-      />
+        dispatch(addTodo(newTodo))
+        dispatch(normalizeList(0))
+        dispatch(synchronize(userID, [0]))
+    }
 
-      <Button
-        text={texts?.addTask}
-        onClickHandler={handleSubmit}
-        classesArr={['new-todo', 'main']}
-      />
-    </form>
-  )
+    const inputClass = useMemo(() => {
+        return showError
+            ? 'add-todo__input add-todo__input--error'
+            : ' add-todo__input'
+    }, [showError])
+
+    const formClass = useMemo(() => {
+        return showError ? 'add-todo add-todo--tooltip' : 'add-todo'
+    }, [showError])
+
+    return (
+        <form className={formClass} data-tooltip={texts?.errorAddTask}>
+            <label htmlFor="new-todo" className="add-todo__label">
+                {texts?.newTask}
+            </label>
+            <input
+                type="text"
+                name="new-todo"
+                id="new-todo"
+                className={inputClass}
+                ref={inputRef}
+            />
+
+            <Button
+                text={texts?.addTask}
+                onClickHandler={handleSubmit}
+                classesArr={['new-todo', 'main']}
+            />
+        </form>
+    )
 }
 
 export default AddTodoForm
