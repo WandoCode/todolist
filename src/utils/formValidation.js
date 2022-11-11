@@ -24,6 +24,7 @@ const validation = (formDatas) => {
   const emailIsValid = () => {
     if (!email) return false
     if (email.length === 0) return false
+
     const arobaseIndex = email.indexOf('@')
     const pointIndex = email.indexOf('.')
 

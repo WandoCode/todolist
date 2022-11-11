@@ -56,7 +56,7 @@ const todosStore = () => {
     try {
       const listName = getTodosListName(todoObject.status)
 
-      const currentTodos = await getTodos()
+      const currentTodos = await getTodos(userID)
 
       const list = currentTodos.find((el) => el[listName])
 
@@ -74,7 +74,7 @@ const todosStore = () => {
     try {
       const listName = getTodosListName(modifiedTodoObject.status)
 
-      const currentTodos = await getTodos()
+      const currentTodos = await getTodos(userID)
 
       const list = currentTodos.find((el) => el[listName])
 
@@ -102,4 +102,3 @@ const todosStore = () => {
 }
 
 export default todosStore
-// TODO: nettoyer le code...

@@ -4,6 +4,7 @@ import { connectUser, loading, setAuthError } from './auth.actions'
 const signInMiddleware = (email, password) => {
   return async (dispatch) => {
     dispatch(loading(true))
+
     const rep = await signIn(email, password)
 
     if (rep.error) {
