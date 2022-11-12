@@ -4,9 +4,6 @@
   "private": true,
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.6",
-    "@testing-library/jest-dom": "^5.16.5",
-    "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^13.5.0",
     "firebase": "^9.13.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -18,10 +15,7 @@
   "scripts": {
     "firebase:dev": "firebase emulators:start",
     "start:local": "set REACT_APP_LOCAL=true& react-scripts start",
-    "start:firebase": "set REACT_APP_LOCAL=false& react-scripts start",
-    "start:prod": "react-scripts start",
-    "build": "react-scripts build",
-    "eject": "react-scripts eject"
+    "build": "react-scripts build"
   },
   "eslintConfig": {
     "extends": [

@@ -1,70 +1,84 @@
-# Getting Started with Create React App
+# Todos App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+[This repo](https://github.com/WandoCode/todolist) contains the code of my 'Todos App' website. The goal of this website is mainly to show off some of my frontend skills.
 
-## Available Scripts
+It's build with **React** and **Redux**.
 
-In the project directory, you can run:
+## Hightlighted skills in this project
 
-### `npm start`
+- React
+- Redux and his toolkit
+- Async function with redux
+- CSS (with Sass)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Main features
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- Custom routing with protected routes
+- Dark/light mode website
+- Multilanguage website
+- Drag and drop to ease todos management
 
-### `npm test`
+### Responsive
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+The website works on smartphones.
 
-### `npm run build`
+### Design
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+The design will be improved later (mainly for the phone version).
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+I was inspired widely by styles I found on internet.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+# Dependencies
 
-### `npm run eject`
+## React
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+The project is build with React and his most common dependencies.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Firebase
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+In this project, Firebase is used to manage the backend:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- hosting
+- database
+- authentication
 
-## Learn More
+To launch the project in a developement environement, Firebase emulators have to be started with the project (see [scripts](#scripts)).
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Other dependencies
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- Redux (react-redux and @reduxjs/toolkit) for global state management
+- react-router-dom for routing
+- uniqid to build unique ids
 
-### Code Splitting
+# Scripts
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## firebase:dev
 
-### Analyzing the Bundle Size
+Launch Firebase emulators to work in the developement environement.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## start:local
 
-### Making a Progressive Web App
+Launch the Todos App in the developement environement.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+In this environement, an empty todo list of a user will be populated by mocked datas automatically.
 
-### Advanced Configuration
+## start:firebase
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+Launch the Todos App in the developement environement **but** the backend is a real firestore database.
 
-### Deployment
+It allows to test Firebase comportement without have to deploy the App.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+## build
 
-### `npm run build` fails to minify
+Create production files for the Todos App
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Other (firebase)
+
+- firebase emulators:start: launch firebase emulators
+- firebase deploy --only hosting: used to deploy the production build (in /build) on Firebase
+
+# Licence
+
+This website has been build for demonstration purpose only.
+
+All the content is published under the MIT licence (see '/licence.txt')
