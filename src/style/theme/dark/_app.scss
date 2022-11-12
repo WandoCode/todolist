@@ -1,5 +1,20 @@
 #dark {
   &.app {
     background-color: $d-main-bg;
+    color: $d-lighter;
+  }
+
+  & a {
+    color: $d-primary;
+
+    &:hover {
+      color: lighten($d-primary, 5%);
+    }
+    &:visited {
+      &:hover {
+        color: lighten($d-primary, 5%);
+      }
+      color: darken($d-primary, 5%);
+    }
   }
 }

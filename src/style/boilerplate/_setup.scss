@@ -8,10 +8,25 @@ body {
   background-color: $main-bg;
 }
 
-.app {
-  height: 100vh;
-  overflow-y: auto;
+a:visited {
+  text-decoration: none;
+  &:hover {
+    color: lighten($primary, 5%);
+  }
+  &:visited {
+    &:hover {
+      color: lighten($primary, 5%);
+    }
+    color: darken($primary, 5%);
+  }
+}
 
+.app {
+  min-height: 100vh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   & .header {
     height: 50px;
     display: flex;
@@ -33,12 +48,19 @@ body {
     align-items: center;
   }
 
+  & footer {
+    font-size: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
   @media (max-width: 500px) {
     & {
       .header {
         padding: 0;
         width: 95%;
-        margin: auto;
+        margin: 0 auto;
       }
     }
   }

@@ -51,9 +51,25 @@ body {
   background-color: #f1f0f0;
 }
 
+a:visited {
+  text-decoration: none;
+}
+a:visited:hover {
+  color: #6576fc;
+}
+a:visited:visited {
+  color: #334afc;
+}
+a:visited:visited:hover {
+  color: #6576fc;
+}
+
 .app {
-  height: 100vh;
+  min-height: 100vh;
   overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 .app .header {
   height: 50px;
@@ -73,11 +89,17 @@ body {
   justify-content: center;
   align-items: center;
 }
+.app footer {
+  font-size: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 @media (max-width: 500px) {
   .app .header {
     padding: 0;
     width: 95%;
-    margin: auto;
+    margin: 0 auto;
   }
 }
 
@@ -566,6 +588,19 @@ h2 {
 
 #dark.app {
   background-color: #2b2747;
+  color: #e9e9e9;
+}
+#dark a {
+  color: #909dff;
+}
+#dark a:hover {
+  color: #aab4ff;
+}
+#dark a:visited {
+  color: #7786ff;
+}
+#dark a:visited:hover {
+  color: #aab4ff;
 }
 
 #dark .btn--main {
