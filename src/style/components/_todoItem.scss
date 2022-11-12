@@ -11,8 +11,7 @@
   &__text {
     flex-grow: 1;
 
-    margin: auto 0;
-
+    white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
   }
@@ -29,12 +28,13 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    min-height: 45px;
+
+    height: 45px;
 
     padding: 0 20px;
     margin-bottom: 10px;
 
-    border-top: 4px solid $secondary-ter;
+    border-top: 4px solid $secondary-bis;
     box-shadow: 0px 2px 5px 0px darken($lighter-dark, 10%);
 
     border-radius: 5px;
@@ -53,7 +53,7 @@
     }
 
     &--pinned {
-      border-color: $secondary-bis;
+      border-color: $secondary-ter;
       font-weight: 500;
     }
 
@@ -62,6 +62,18 @@
 
       color: $dark;
       font-weight: 300;
+    }
+  }
+
+  @media (max-width: 500px) {
+    & {
+      &__btns {
+        opacity: 1;
+        gap: 0;
+      }
+      &__container {
+        padding: 5px 5px 5px 10px;
+      }
     }
   }
 }

@@ -73,6 +73,13 @@ body {
   justify-content: center;
   align-items: center;
 }
+@media (max-width: 500px) {
+  .app .header {
+    padding: 0;
+    width: 95%;
+    margin: auto;
+  }
+}
 
 h1 {
   color: #3b3663;
@@ -201,6 +208,17 @@ h2 {
   height: 40px;
   margin: 0;
 }
+@media (max-width: 500px) {
+  .btn--main {
+    padding: 25px;
+  }
+  .btn--tooltip:hover::after {
+    content: none;
+  }
+  .btn--inline:hover {
+    background-color: inherit;
+  }
+}
 
 .sign-form {
   width: 100%;
@@ -318,6 +336,11 @@ h2 {
   display: flex;
   flex-direction: column;
 }
+@media (max-width: 500px) {
+  .list {
+    width: 95%;
+  }
+}
 
 .todo-item {
   position: relative;
@@ -328,7 +351,7 @@ h2 {
 }
 .todo-item__text {
   flex-grow: 1;
-  margin: auto 0;
+  white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
@@ -342,10 +365,10 @@ h2 {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  min-height: 45px;
+  height: 45px;
   padding: 0 20px;
   margin-bottom: 10px;
-  border-top: 4px solid #b08c12;
+  border-top: 4px solid #98a2ff;
   box-shadow: 0px 2px 5px 0px #cecece;
   border-radius: 5px;
   font-size: 14px;
@@ -360,13 +383,22 @@ h2 {
   opacity: 1;
 }
 .todo-item__container--pinned {
-  border-color: #98a2ff;
+  border-color: #b08c12;
   font-weight: 500;
 }
 .todo-item__container--archived {
   border-color: hsla(245deg, 14%, 46%, 0.8);
   color: #3b3663;
   font-weight: 300;
+}
+@media (max-width: 500px) {
+  .todo-item__btns {
+    opacity: 1;
+    gap: 0;
+  }
+  .todo-item__container {
+    padding: 5px 5px 5px 10px;
+  }
 }
 
 .updateTodo {
@@ -451,6 +483,19 @@ h2 {
 .add-todo__label {
   font-weight: 500;
   color: #3b3663;
+}
+@media (max-width: 500px) {
+  .add-todo {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 10% 5%;
+    background-color: #e5e3e3;
+  }
+  .add-todo__input {
+    margin-right: 0;
+    width: 100%;
+  }
 }
 
 .dropdown {
@@ -608,6 +653,11 @@ h2 {
 }
 #dark .add-todo__label {
   color: darkgray;
+}
+@media (max-width: 500px) {
+  #dark .add-todo {
+    background-color: #211e37;
+  }
 }
 
 #dark .todo-item__container {

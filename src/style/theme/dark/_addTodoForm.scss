@@ -12,5 +12,10 @@
     &__label {
       color: darken($d-lighter, 25%);
     }
+    @media (max-width: 500px) {
+      & {
+        background-color: darken($d-main-bg, 5%);
+      }
+    }
   }
 }

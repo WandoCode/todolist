@@ -1,42 +1,42 @@
 import { useMemo } from 'react'
 
 function Button({
-    image,
-    text,
-    onClickHandler,
-    type,
-    tooltipText,
-    classesArr,
-    ...rest
+  image,
+  text,
+  onClickHandler,
+  type,
+  tooltipText,
+  classesArr,
+  ...rest
 }) {
-    const classBtn = useMemo(() => {
-        let classString = 'btn'
+  const classBtn = useMemo(() => {
+    let classString = 'btn'
 
-        if (tooltipText) classString += ' btn--tooltip'
-        if (classesArr) {
-            classesArr.forEach((el) => {
-                classString += ` btn--${el}`
-            })
-        }
+    if (tooltipText) classString += ' btn--tooltip'
+    if (classesArr) {
+      classesArr.forEach((el) => {
+        classString += ` btn--${el}`
+      })
+    }
 
-        return classString
-    }, [type, classesArr])
+    return classString
+  }, [type, classesArr])
 
-    const imageTag = useMemo(() => {
-        if (image) return <img src={image} alt="icon" />
-    }, [image])
+  const imageTag = useMemo(() => {
+    if (image) return <img src={image} alt="icon" />
+  }, [image])
 
-    return (
-        <button
-            className={classBtn}
-            onClick={onClickHandler}
-            data-tooltip={tooltipText ? tooltipText : undefined}
-            {...rest}
-        >
-            {text}
-            {image && imageTag}
-        </button>
-    )
+  return (
+    <button
+      className={classBtn}
+      onClick={onClickHandler}
+      data-tooltip={tooltipText ? tooltipText : undefined}
+      {...rest}
+    >
+      {text}
+      {image && imageTag}
+    </button>
+  )
 }
 
 export default Button

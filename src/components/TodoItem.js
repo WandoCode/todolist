@@ -71,6 +71,7 @@ function TodoItem({ todo, tempOrder, onHandleDragStart, onHandleDrop }) {
 
   const handleToggleArchive = (e) => {
     e.stopPropagation()
+    e.target.blur()
 
     dispatch(toggleArchiveItem(tempOrder, todo.status))
     dispatch(synchronize(userID))
@@ -78,6 +79,7 @@ function TodoItem({ todo, tempOrder, onHandleDragStart, onHandleDrop }) {
 
   const handleTogglePin = (e) => {
     e.stopPropagation()
+    e.target.blur()
 
     dispatch(togglePinItem(tempOrder, todo.status))
     dispatch(synchronize(userID))
@@ -85,6 +87,7 @@ function TodoItem({ todo, tempOrder, onHandleDragStart, onHandleDrop }) {
 
   const handleDelete = (e) => {
     e.stopPropagation()
+    e.target.blur()
 
     dispatch(delTodo(tempOrder, todo.status))
     dispatch(synchronize(userID, [todo.status]))
