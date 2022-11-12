@@ -23,7 +23,8 @@ It's build with **React** and **Redux**.
 
 ### Responsive
 
-The website works on desktop (last version of Chromimum or Firefox)
+The website works on desktop (last version of Chromimum or Firefox).
+
 The website works on smartphones (last version of Chromimum or Firefox)
 
 ### Design
@@ -110,8 +111,8 @@ Create production files for the Todos App
 
 For authorized users
 
-- firebase emulators:start: launch firebase emulators
-- firebase deploy --only hosting: used to deploy the production build (in /build) on Firebase
+- `firebase emulators:start`: launch firebase emulators
+- `firebase deploy --only hosting`: used to deploy the production build (in /build) on Firebase
 
 # Licence
 
