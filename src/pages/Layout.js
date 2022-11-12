@@ -40,6 +40,14 @@ function Layout() {
       <main className="main">
         <Outlet />
       </main>
+
+      <footer>
+        <p>
+          This website has been build by WandoCode for demonstration purpose
+          only.
+        </p>
+        <p>All the content is published under the MIT licence.</p>
+      </footer>
     </>
   )
 }
