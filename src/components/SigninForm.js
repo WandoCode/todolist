@@ -23,8 +23,8 @@ function SiginForm() {
   const [currentFocus, setCurrentFocus] = useState()
   const [validationErrors, setValidationErrors] = useState([])
   const [formInputs, setFormInputs] = useState({
-    email: 'a@gmail.com',
-    password: '123456',
+    email: '',
+    password: '',
   })
 
   useEffect(() => {

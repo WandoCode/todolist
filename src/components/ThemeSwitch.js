@@ -4,6 +4,7 @@ import { setTheme } from '../redux/theme/theme.actions'
 
 import moon from '../assets/moon.svg'
 import sun from '../assets/sun.svg'
+import themeStore from '../store/themeStore'
 
 function ThemeSwitch() {
   const dispatch = useDispatch()
@@ -23,6 +24,7 @@ function ThemeSwitch() {
   const handleClick = () => {
     const newTheme = currTheme === 'light' ? 'dark' : 'light'
     dispatch(setTheme(newTheme))
+    themeStore().saveTheme(newTheme)
   }
 
   return (

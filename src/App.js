@@ -4,6 +4,8 @@ import Router from './Router'
 
 import setupLanguage from './redux/language/language.middlewares'
 import './style/index.css'
+import themeStore from './store/themeStore'
+import { setTheme } from './redux/theme/theme.actions'
 
 function App() {
   const dispatch = useDispatch()
@@ -12,6 +14,11 @@ function App() {
 
   const userLanguage =
     window.navigator.userLanguage || window.navigator.language
+
+  useEffect(() => {
+    const defaultTheme = themeStore().getTheme()
+    dispatch(setTheme(defaultTheme))
+  }, [])
 
   useEffect(() => {
     const language = userLanguage.split('-')[0]
