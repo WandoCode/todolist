@@ -15,6 +15,7 @@
   "scripts": {
     "firebase:dev": "firebase emulators:start",
     "start:local": "set REACT_APP_LOCAL=true& react-scripts start",
+    "start:firebase": "set REACT_APP_LOCAL=false& react-scripts start",
     "build": "react-scripts build"
   },
   "eslintConfig": {

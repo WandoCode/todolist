@@ -6,10 +6,13 @@ It's build with **React** and **Redux**.
 
 ## Hightlighted skills in this project
 
+### Technologies
+
 - React
 - Redux and his toolkit
 - Async function with redux
 - CSS (with Sass)
+- React-router-dom for routing
 
 ### Main features
 
@@ -66,7 +69,7 @@ In this environement, an empty todo list of a user will be populated by mocked d
 
 Launch the Todos App in the developement environement **but** the backend is a real firestore database.
 
-It allows to test Firebase comportement without have to deploy the App.
+It allows to test Firebase comportement without having to deploy the App.
 
 ## build
 
