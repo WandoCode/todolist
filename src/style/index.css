@@ -51,6 +51,9 @@ body {
   background-color: #f1f0f0;
 }
 
+a {
+  text-decoration: none;
+}
 a:visited {
   text-decoration: none;
 }

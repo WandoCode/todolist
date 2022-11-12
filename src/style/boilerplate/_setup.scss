@@ -8,16 +8,20 @@ body {
   background-color: $main-bg;
 }
 
-a:visited {
+a {
   text-decoration: none;
-  &:hover {
-    color: lighten($primary, 5%);
-  }
+
   &:visited {
+    text-decoration: none;
     &:hover {
       color: lighten($primary, 5%);
     }
-    color: darken($primary, 5%);
+    &:visited {
+      &:hover {
+        color: lighten($primary, 5%);
+      }
+      color: darken($primary, 5%);
+    }
   }
 }
 
