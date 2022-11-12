@@ -44,12 +44,22 @@ function Layout() {
       <footer>
         <p>
           This website has been build by{' '}
-          <a href="https://github.com/WandoCode/todolist">WandoCode</a> for
-          demonstration purpose only.
+          <a
+            href="https://github.com/WandoCode/todolist"
+            target="_blank"
+            rel="noreferrer"
+          >
+            WandoCode
+          </a>{' '}
+          for demonstration purpose only.
         </p>
         <p>
           All the content is published under the{' '}
-          <a href="https://github.com/WandoCode/todolist/blob/main/licence.txt">
+          <a
+            href="https://github.com/WandoCode/todolist/blob/main/licence.txt"
+            target="_blank"
+            rel="noreferrer"
+          >
             MIT licence
           </a>
           .
