@@ -43,7 +43,7 @@ function Layout() {
 
       <footer>
         <p>
-          This website has been build by{' '}
+          This website has been built by{' '}
           <a
             href="https://github.com/WandoCode/todolist"
             target="_blank"

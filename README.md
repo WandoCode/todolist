@@ -1,8 +1,10 @@
 # Todos App
 
-[This repo](https://github.com/WandoCode/todolist) contains the code of my 'Todos App' website. The goal of this website is mainly to show off some of my frontend skills.
+[This repo](https://github.com/WandoCode/todolist) contains the code of my ['Todos App' website](https://todolist-4ee38.web.app/). The goal of this website is mainly to show off some of my frontend skills.
 
 It's build with **React** and **Redux**.
+
+**Try the app quickly**: use 'a@gmail.com' and '123456' as email and password. Or you can create an your own account!
 
 ## Hightlighted skills in this project
 
@@ -13,6 +15,9 @@ It's build with **React** and **Redux**.
 - Async function with redux
 - CSS (with Sass)
 - React-router-dom for routing
+
+Hosted on Firebase.
+Database on Firebase.
 
 ### Main features
 
