@@ -17,6 +17,7 @@ It's built with **React** and **Redux**.
 - React-router-dom for routing
 
 Hosted on Firebase.
+
 Database on Firebase.
 
 ### Main features
