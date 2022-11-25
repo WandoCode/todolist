@@ -2,7 +2,7 @@
 
 [This repo](https://github.com/WandoCode/todolist) contains the code of my ['Todos App' website](https://todolist-4ee38.web.app/). The goal of this website is mainly to show off some of my frontend skills.
 
-It's build with **React** and **Redux**.
+It's built with **React** and **Redux**.
 
 **Try the app quickly**: use 'a@gmail.com' and '123456' as email and password. Or you can create an your own account!
 
